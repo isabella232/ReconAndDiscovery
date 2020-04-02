@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_GattlingLaser.label>Гаттлинг лазер</RD_GattlingLaser.label>
+  <RD_GattlingLaser.description>Корабельный гаттлинг лазер, вплавленный в основание башни. Предназначенный для космических боев, он ужасающий и мощный а так же имеет необычайную дальность стрельбы, но поскольку его обычные цели больше, чем дома, он ужасно неточен.</RD_GattlingLaser.description>
+
+  <RD_Bullet_GattlingLaser.label>самодельная турельная пуля</RD_Bullet_GattlingLaser.label>
+
+  <RD_Gun_GattlingLaser.label>Гаттлинг лазер</RD_Gun_GattlingLaser.label>
+  <RD_Gun_GattlingLaser.description>Спаренный гаттлинг лазер, вплавленный в основание башни.</RD_Gun_GattlingLaser.description>
+
+  <RD_Teleporter.label>Телепорт</RD_Teleporter.label>
+  <RD_Teleporter.description>Панель телепортации утопического мира. Он может телепортировать людей и животных из любой точки планеты, но из-за повреждения от аварии не может отправить.</RD_Teleporter.description>
+
+  <RD_HolographicEmitter.label>Голо-излучатель</RD_HolographicEmitter.label>
+  <RD_HolographicEmitter.description>Голо-излучатель. Используется на легких, быстрых кораблях для имитации полезных членов экипажа, если они были обнаружены сразу после смерти. Тело разрушается при сканировании.</RD_HolographicEmitter.description>
+
+  <RD_PortableGenerator.label>Портативный генератор</RD_PortableGenerator.label>
+  <RD_PortableGenerator.description>Портативный генератор на химическом топливе с небольшой силовой ячейкой, предназначенный для обеспечения энергией вдали от дома.</RD_PortableGenerator.description>
+
+  <RD_QuestComputerTerminal.label>Компьютерный терминал</RD_QuestComputerTerminal.label>
+  <RD_QuestComputerTerminal.description>Компьютерный терминал. Кто знает, какие секреты таятся в его обширной файловой системе?</RD_QuestComputerTerminal.description>
+
+  <RD_OsirisCasket.label>Саркофаг Озириса</RD_OsirisCasket.label>
+  <RD_OsirisCasket.description>Продвинутый саркофаг криптосна утопического мира, который управляет армией люцифериевых нанонанитов исцеляя раны, излечивая болезни, обращая вспять старение или даже оживляя мертвых. Несмотря на тяжесть, наличие ИИ выделяет его на фоне других саркофагов, невелик и поддается восстановлению.</RD_OsirisCasket.description>
+
+  <RD_Stargate.label>Звездные врата</RD_Stargate.label>
+  <RD_Stargate.description>Шлюз, позволяющий мгновенно перемещаться к другому такому устройству через сворачивание пространства-времени вокруг замкнутого ядра экзотической материи. Опытный инженер может собрать экзотическую материю при деконструкции такого устройства. Связи по своей природе являются односторонними, и для того, чтобы врата были связаны, каждый из них должен быть перенаправлен на другой в соответствии с физическим законом нарративного контроля, описываемым большинством лидеров в этой области как "нонсенс".</RD_Stargate.description>
+
+  <RD_WeatherSat.label>Идол погоды</RD_WeatherSat.label>
+  <RD_WeatherSat.description>Это странное устройство, похоже, считывает желания находящихся поблизости колонистов и соответственно меняет погоду.</RD_WeatherSat.description>
+
+  <RD_PsionicEmanator.label>Идол войны</RD_PsionicEmanator.label>
+  <RD_PsionicEmanator.description>Это устройство может быть использовано экстрасенсами для трансляции психической боевой молитвы, улучшая концентрацию и рефлексы союзников. Он также может передавать психический шок от смерти животного врагам.</RD_PsionicEmanator.description>
+
+
+</LanguageData>

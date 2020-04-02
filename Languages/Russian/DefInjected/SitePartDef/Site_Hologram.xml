@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_AbandonedColony.label>заброшенная колония</RD_AbandonedColony.label>
+  <RD_AbandonedColony.description>Заброшенная колония.</RD_AbandonedColony.description>
+
+  <RD_HoloDisk.label>Галодиск</RD_HoloDisk.label>
+  <RD_HoloDisk.description>Здесь есть галодиск.</RD_HoloDisk.description>
+
+  <RD_Stargate.label>звездные врата</RD_Stargate.label>
+  <RD_Stargate.description>Это место содержит Звездные врата.</RD_Stargate.description>
+
+
+</LanguageData>

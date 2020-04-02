@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_UseComputer.reportString>Использует компьютер.</RD_UseComputer.reportString>
+  <RD_TakeToOsirisCasket.reportString>Загружает тело в саркофаг.</RD_TakeToOsirisCasket.reportString>
+  <RD_MandatoryMilk.reportString>Осторожно доит TargetA.</RD_MandatoryMilk.reportString>
+  <RD_PrayAtObject.reportString>Молится.</RD_PrayAtObject.reportString>
+  <RD_SacrificeAtAltar.reportString>Совершает жертвоприношение.</RD_SacrificeAtAltar.reportString>
+  <RD_PsychicPrayer.reportString>Проведение боевой молитвы.</RD_PsychicPrayer.reportString>
+  <RD_ActivateOsirisCasket.reportString>Активирует саркофаг Осириса.</RD_ActivateOsirisCasket.reportString>
+  <RD_ScanAtEmitter.reportString>Проводит Холо-сканирование тела.</RD_ScanAtEmitter.reportString>
+  <RD_LoadIntoEmitter.reportString>Загружает голограмму.</RD_LoadIntoEmitter.reportString>
+  <RD_Negotiate.reportString>Negotiating.</RD_Negotiate.reportString>
+  <RD_DiscoverStargates.reportString>В поисках звездных врат.</RD_DiscoverStargates.reportString>
+  <RD_TravelThroughStargate.reportString>Вход в звездные врата.</RD_TravelThroughStargate.reportString>
+
+
+</LanguageData>

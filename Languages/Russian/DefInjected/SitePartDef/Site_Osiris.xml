@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_AbandonedCastle.label>заброшенный замок</RD_AbandonedCastle.label>
+  <RD_AbandonedCastle.description>Давно заброшенный средневековый замок.</RD_AbandonedCastle.description>
+
+  <RD_OsirisCasket.label>саркофаг осириса</RD_OsirisCasket.label>
+  <RD_OsirisCasket.description>Здесь находится саркофаг Осириса.</RD_OsirisCasket.description>
+
+  <RD_WeatherSat.label>бог погоды</RD_WeatherSat.label>
+  <RD_WeatherSat.description>Здесь размещен искусственный интеллект управления погодой.</RD_WeatherSat.description>
+
+
+</LanguageData>
