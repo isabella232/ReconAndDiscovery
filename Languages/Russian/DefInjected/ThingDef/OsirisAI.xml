@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_AIPersonaCore.label>Ядро ИИ</RD_AIPersonaCore.label>
+  <RD_AIPersonaCore.description>Сверхпередовое компьютерное ядро со встроенной ИИ-личностью. В отделённом состоянии ядро находится в спящем режиме, однако будучи установлено в подходящую структуру, оно может работать в качестве искусственного интеллекта внушительной мощи.</RD_AIPersonaCore.description>
+
+  <RD_OsirisAI.label>ИИ Озирис</RD_OsirisAI.label>
+  <RD_OsirisAI.description>Специально сконструированный ИИ, который управляет сакофагами Осириса "утопических миров", когда они возвращают мертвых.</RD_OsirisAI.description>
+
+  <RD_ExoticMatter.label>Экзотическая материя</RD_ExoticMatter.label>
+  <RD_ExoticMatter.description>Отрицательная масса этого материала позволяет быстрее, чем свет, перемещаться по методу деформации Алькубьера, а также используется для управления искусственными червоточинами, упакованными в удобный, немного более тяжелый контейнер, позволяющий хранить его на полу!</RD_ExoticMatter.description>
+
+</LanguageData>

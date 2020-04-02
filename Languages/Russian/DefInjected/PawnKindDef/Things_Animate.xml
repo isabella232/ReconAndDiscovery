@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_Devillo.label>девилло</RD_Devillo.label>
+  <RD_Devillo.labelPlural>девилло</RD_Devillo.labelPlural>
+  <RD_Devillo.lifeStages.0.label>телёнок девилло</RD_Devillo.lifeStages.0.label>
+  <RD_Devillo.lifeStages.0.labelPlural>телята девилло</RD_Devillo.lifeStages.0.labelPlural>
+  <RD_Devillo.lifeStages.0.labelMale>телёнок девилло</RD_Devillo.lifeStages.0.labelMale>
+  <RD_Devillo.lifeStages.0.labelMalePlural>телята девилло</RD_Devillo.lifeStages.0.labelMalePlural>
+  <RD_Devillo.lifeStages.0.labelFemale>телёнок девилло</RD_Devillo.lifeStages.0.labelFemale>
+  <RD_Devillo.lifeStages.0.labelFemalePlural>телята девилло</RD_Devillo.lifeStages.0.labelFemalePlural>
+  <RD_Devillo.lifeStages.1.label>молодой девилло</RD_Devillo.lifeStages.1.label>
+  <RD_Devillo.lifeStages.1.labelPlural>девилло</RD_Devillo.lifeStages.1.labelPlural>
+  <RD_Devillo.lifeStages.1.labelMale>молодой девилло</RD_Devillo.lifeStages.1.labelMale>
+  <RD_Devillo.lifeStages.1.labelMalePlural>девилло</RD_Devillo.lifeStages.1.labelMalePlural>
+  <RD_Devillo.lifeStages.1.labelFemale>молодая девилло</RD_Devillo.lifeStages.1.labelFemale>
+  <RD_Devillo.lifeStages.1.labelFemalePlural>девилло</RD_Devillo.lifeStages.1.labelFemalePlural>
+  <RD_Devillo.lifeStages.2.label>девилло</RD_Devillo.lifeStages.2.label>
+  <RD_Devillo.lifeStages.2.labelPlural>девилло</RD_Devillo.lifeStages.2.labelPlural>
+  <RD_Devillo.lifeStages.2.labelMale>девилло</RD_Devillo.lifeStages.2.labelMale>
+  <RD_Devillo.lifeStages.2.labelMalePlural>девилло</RD_Devillo.lifeStages.2.labelMalePlural>
+  <RD_Devillo.lifeStages.2.labelFemale>девилло</RD_Devillo.lifeStages.2.labelFemale>
+  <RD_Devillo.lifeStages.2.labelFemalePlural>девилло</RD_Devillo.lifeStages.2.labelFemalePlural>
+  <RD_Devillo.labelMale>девилло</RD_Devillo.labelMale>
+  <RD_Devillo.labelMalePlural>девилло</RD_Devillo.labelMalePlural>
+  <RD_Devillo.labelFemale>девилло</RD_Devillo.labelFemale>
+  <RD_Devillo.labelFemalePlural>девилло</RD_Devillo.labelFemalePlural>
+
+  <RD_Nitralope.label>нитролопа</RD_Nitralope.label>
+  <RD_Nitralope.labelPlural>нитролопы</RD_Nitralope.labelPlural>
+  <RD_Nitralope.lifeStages.0.label>телёнок нитролопы</RD_Nitralope.lifeStages.0.label>
+  <RD_Nitralope.lifeStages.0.labelPlural>телята нитролопы</RD_Nitralope.lifeStages.0.labelPlural>
+  <RD_Nitralope.lifeStages.0.labelMale>телёнок нитролопы</RD_Nitralope.lifeStages.0.labelMale>
+  <RD_Nitralope.lifeStages.0.labelMalePlural>телята нитролопы</RD_Nitralope.lifeStages.0.labelMalePlural>
+  <RD_Nitralope.lifeStages.0.labelFemale>телёнок нитролопы</RD_Nitralope.lifeStages.0.labelFemale>
+  <RD_Nitralope.lifeStages.0.labelFemalePlural>телята нитролопы</RD_Nitralope.lifeStages.0.labelFemalePlural>
+  <RD_Nitralope.lifeStages.1.label>молодая нитролопа</RD_Nitralope.lifeStages.1.label>
+  <RD_Nitralope.lifeStages.1.labelPlural>молодые нитролопы</RD_Nitralope.lifeStages.1.labelPlural>
+  <RD_Nitralope.lifeStages.1.labelMale>молодая нитролопа</RD_Nitralope.lifeStages.1.labelMale>
+  <RD_Nitralope.lifeStages.1.labelMalePlural>молодые нитролопы</RD_Nitralope.lifeStages.1.labelMalePlural>
+  <RD_Nitralope.lifeStages.1.labelFemale>молодая нитролопа</RD_Nitralope.lifeStages.1.labelFemale>
+  <RD_Nitralope.lifeStages.1.labelFemalePlural>молодые нитролопы</RD_Nitralope.lifeStages.1.labelFemalePlural>
+  <RD_Nitralope.lifeStages.2.label>нитролопа</RD_Nitralope.lifeStages.2.label>
+  <RD_Nitralope.lifeStages.2.labelPlural>нитролопы</RD_Nitralope.lifeStages.2.labelPlural>
+  <RD_Nitralope.lifeStages.2.labelMale>нитролопа</RD_Nitralope.lifeStages.2.labelMale>
+  <RD_Nitralope.lifeStages.2.labelMalePlural>нитролопы</RD_Nitralope.lifeStages.2.labelMalePlural>
+  <RD_Nitralope.lifeStages.2.labelFemale>нитролопа</RD_Nitralope.lifeStages.2.labelFemale>
+  <RD_Nitralope.lifeStages.2.labelFemalePlural>нитролопы</RD_Nitralope.lifeStages.2.labelFemalePlural>
+  <RD_Nitralope.labelMale>нитролопа</RD_Nitralope.labelMale>
+  <RD_Nitralope.labelMalePlural>нитролопы</RD_Nitralope.labelMalePlural>
+  <RD_Nitralope.labelFemale>нитролопа</RD_Nitralope.labelFemale>
+  <RD_Nitralope.labelFemalePlural>нитролопы</RD_Nitralope.labelFemalePlural>
+
+
+</LanguageData>

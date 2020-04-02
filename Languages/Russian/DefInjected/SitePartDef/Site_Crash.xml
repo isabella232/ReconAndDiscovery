@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_CrashedShip.label>разбившийся корабль</RD_CrashedShip.label>
+  <RD_CrashedShip.description>Примерное место падения корабля.</RD_CrashedShip.description>
+
+  <RD_ScatteredTreasure.label>сокровища</RD_ScatteredTreasure.label>
+  <RD_ScatteredTreasure.description>Какие-то разбросанные ценности.</RD_ScatteredTreasure.description>
+
+  <RD_ScatteredManhunters.label>manhunters</RD_ScatteredManhunters.label>
+  <RD_ScatteredManhunters.description>Пойманные в ловушку животные сходят с ума.</RD_ScatteredManhunters.description>
+
+  <RD_MechanoidForces.label>механоиды</RD_MechanoidForces.label>
+  <RD_MechanoidForces.description>У ульев механоидов здесь присутствуют активные силы.</RD_MechanoidForces.description>
+
+  <RD_EnemyRaidOnArrival.label>набег</RD_EnemyRaidOnArrival.label>
+  <RD_EnemyRaidOnArrival.description>Вражеская фракция прибудет сюда в ближайшее время.</RD_EnemyRaidOnArrival.description>
+
+  <RD_MedicalEmergency.label>медицинская помощь</RD_MedicalEmergency.label>
+  <RD_MedicalEmergency.description>Здесь необходима срочная медицинская помощь.</RD_MedicalEmergency.description>
+
+  <RD_RareBeasts.label>редкие звери</RD_RareBeasts.label>
+  <RD_RareBeasts.description>Редкие, необычные животные бродят здесь.</RD_RareBeasts.description>
+
+
+</LanguageData>

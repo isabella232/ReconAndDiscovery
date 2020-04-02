@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_TakeCorpseToCasket.label>отнеси труп в саркофаг</RD_TakeCorpseToCasket.label>
+  <RD_TakeCorpseToCasket.verb>складировать</RD_TakeCorpseToCasket.verb>
+  <RD_TakeCorpseToCasket.gerund>складирует</RD_TakeCorpseToCasket.gerund>
+
+  <RD_ScanCorpseAtEmitter.label>сканировать труп на эмиттере</RD_ScanCorpseAtEmitter.label>
+  <RD_ScanCorpseAtEmitter.verb>сканировать</RD_ScanCorpseAtEmitter.verb>
+  <RD_ScanCorpseAtEmitter.gerund>сканирует</RD_ScanCorpseAtEmitter.gerund>
+
+  <RD_DiscoverStargates.label>изучить врата</RD_DiscoverStargates.label>
+  <RD_DiscoverStargates.verb>изучает</RD_DiscoverStargates.verb>
+  <RD_DiscoverStargates.gerund>изучает</RD_DiscoverStargates.gerund>
+
+  <RD_PrayAtObject.label>молится</RD_PrayAtObject.label>
+  <RD_PrayAtObject.verb>молится</RD_PrayAtObject.verb>
+  <RD_PrayAtObject.gerund>молится</RD_PrayAtObject.gerund>
+
+  <RD_SacrificeAt.label>пожертвовать животное</RD_SacrificeAt.label>
+  <RD_SacrificeAt.verb>пожертвовать</RD_SacrificeAt.verb>
+  <RD_SacrificeAt.gerund>жертвует</RD_SacrificeAt.gerund>
+
+  <RD_PsychicPrayer.label>пожертвовать животное</RD_PsychicPrayer.label>
+  <RD_PsychicPrayer.verb>выполнение боевой молитвы</RD_PsychicPrayer.verb>
+  <RD_PsychicPrayer.gerund>выполнение боевой молитвы</RD_PsychicPrayer.gerund>
+
+  <RD_MandatoryMilk.label>подоить животное</RD_MandatoryMilk.label>
+  <RD_MandatoryMilk.verb>подоить</RD_MandatoryMilk.verb>
+  <RD_MandatoryMilk.gerund>доит</RD_MandatoryMilk.gerund>
+
+  <RD_LoadIntoEmitter.label>сканировать труп на эмиттере</RD_LoadIntoEmitter.label>
+  <RD_LoadIntoEmitter.verb>загрузка</RD_LoadIntoEmitter.verb>
+  <RD_LoadIntoEmitter.gerund>загрузка</RD_LoadIntoEmitter.gerund>
+
+
+</LanguageData>
