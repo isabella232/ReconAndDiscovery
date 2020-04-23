@@ -1,20 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_TargetedStorm.label>Грозовая буря</RD_TargetedStorm.label>
   <RD_TargetedStorm.description>Чрезвычайное количество молний поражает небольшой регион.</RD_TargetedStorm.description>
   <RD_TargetedStorm.endMessage>Грозовая буря утихла.</RD_TargetedStorm.endMessage>
   <RD_TargetedStorm.letterText>Чрезвычайное количество молний поражает небольшой регион.</RD_TargetedStorm.letterText>
-
   <RD_Tremors.label>Подземные толчки</RD_Tremors.label>
   <RD_Tremors.description>Землетрясения вызывают случайные разрушения потолков и крыш.</RD_Tremors.description>
   <RD_Tremors.endMessage>Подземные толчки прекратились.</RD_Tremors.endMessage>
   <RD_Tremors.letterText>Геологические нарушения вызывают подземные толчки. Крыша в некоторых местах может обрушиться. Хотя это просто неудобство в искусственных сооружениях, в горах это может быть очень опасно.</RD_Tremors.letterText>
-
   <RD_Radiation.label>Радиация</RD_Radiation.label>
   <RD_Radiation.description>Воздух содержит радиоактивные осадки. Это будет опасно для всей жизни в этом районе.</RD_Radiation.description>
   <RD_Radiation.endMessage>радиационный фон вернулся к норме.</RD_Radiation.endMessage>
   <RD_Radiation.letterText>Ветер пронес радиоактивную пыль по всей территории. Повышенный уровень радиации увеличивает риск тяжелой болезни даже в помещении, если только оно не глубоко под землей, а в помещении с толстой каменной крышей. Вы можете рассмотреть возможность ухода из области, пока не пройдет эффект.</RD_Radiation.letterText>
-
-
 </LanguageData>

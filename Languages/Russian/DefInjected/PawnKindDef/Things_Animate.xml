@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_Devillo.label>девилло</RD_Devillo.label>
   <RD_Devillo.labelPlural>девилло</RD_Devillo.labelPlural>
   <RD_Devillo.lifeStages.0.label>телёнок девилло</RD_Devillo.lifeStages.0.label>
@@ -25,7 +24,6 @@
   <RD_Devillo.labelMalePlural>девилло</RD_Devillo.labelMalePlural>
   <RD_Devillo.labelFemale>девилло</RD_Devillo.labelFemale>
   <RD_Devillo.labelFemalePlural>девилло</RD_Devillo.labelFemalePlural>
-
   <RD_Nitralope.label>нитролопа</RD_Nitralope.label>
   <RD_Nitralope.labelPlural>нитролопы</RD_Nitralope.labelPlural>
   <RD_Nitralope.lifeStages.0.label>телёнок нитролопы</RD_Nitralope.lifeStages.0.label>
@@ -50,6 +48,4 @@
   <RD_Nitralope.labelMalePlural>нитролопы</RD_Nitralope.labelMalePlural>
   <RD_Nitralope.labelFemale>нитролопа</RD_Nitralope.labelFemale>
   <RD_Nitralope.labelFemalePlural>нитролопы</RD_Nitralope.labelFemalePlural>
-
-
 </LanguageData>

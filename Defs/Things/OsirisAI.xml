@@ -1,5 +1,4 @@
 <Defs>
-
   <ThingDef ParentName="ResourceBase">
     <defName>RD_AIPersonaCore</defName>
     <label>AI persona core</label>
@@ -26,11 +25,10 @@
       <li>Exotic</li>
     </tradeTags>
   </ThingDef>
-
   <ThingDef ParentName="ResourceBase">
     <defName>RD_OsirisAI</defName>
     <label>osiris AI</label>
-     <tradeability>None</tradeability>
+    <tradeability>None</tradeability>
     <description>A special AI construct that directs GilterWorld Osiris caskets as they bring back the dead.</description>
     <graphicData>
       <texPath>Things/Items/OsirisCore</texPath>
@@ -46,16 +44,15 @@
       <MarketValue>10000</MarketValue>
       <Mass>2</Mass>
     </statBases>
-     <thingCategories>
+    <thingCategories>
       <li>Items</li>
     </thingCategories>
     <techLevel>Spacer</techLevel>
   </ThingDef>
-  
   <ThingDef ParentName="ResourceBase">
     <defName>RD_ExoticMatter</defName>
     <label>exotic matter</label>
-     <tradeability>None</tradeability>
+    <tradeability>None</tradeability>
     <description>The negative mass of this material allows for faster than light travel via the Alcubierre warp method, and is also used to control artificial wormholes Packed in a handy, slightly heavier, container allowing storage on the floor!</description>
     <graphicData>
       <texPath>Things/Items/ExoticMatter</texPath>
@@ -66,7 +63,7 @@
       <MarketValue>10000</MarketValue>
       <Mass>0.01</Mass>
     </statBases>
-     <thingCategories>
+    <thingCategories>
       <li>Items</li>
     </thingCategories>
     <techLevel>Spacer</techLevel>

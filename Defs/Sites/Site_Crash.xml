@@ -1,35 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<Defs>  
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
   <IncidentDef>
-		<defName>RD_CrashedShip</defName>
-		<label>Crashed Ship</label>
-		<category>Misc</category>
+    <defName>RD_CrashedShip</defName>
+    <label>Crashed Ship</label>
+    <category>Misc</category>
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>
-		<workerClass>ReconAndDiscovery.Missions.IncidentWorker_CrashedShip</workerClass>
-		<letterLabel>Starship down</letterLabel>
-		<letterText>Our comms console detected a distress call from a ship shortly before it crashed! Other factions may try to loot the wreck, so you will only have a few days to visit the site!</letterText>
-		<letterDef>PositiveEvent</letterDef>
-		<baseChance>6</baseChance>
-		<minRefireDays>8</minRefireDays>
-		<chanceFactorByPopulationCurve>
-			<points>
-				<li>(2,0)</li>
-				<li>(6,1)</li>
-			</points>
-		</chanceFactorByPopulationCurve>
+    <workerClass>ReconAndDiscovery.Missions.IncidentWorker_CrashedShip</workerClass>
+    <letterLabel>Starship down</letterLabel>
+    <letterText>Our comms console detected a distress call from a ship shortly before it crashed! Other factions may try to loot the wreck, so you will only have a few days to visit the site!</letterText>
+    <letterDef>PositiveEvent</letterDef>
+    <baseChance>6</baseChance>
+    <minRefireDays>8</minRefireDays>
+    <chanceFactorByPopulationCurve>
+      <points>
+        <li>(2,0)</li>
+        <li>(6,1)</li>
+      </points>
+    </chanceFactorByPopulationCurve>
   </IncidentDef>
- 
   <SitePartDef>
     <defName>RD_CrashedShip</defName>
     <label>crashed ship</label>
-		<description>The approximate place a ship came down.</description>
+    <description>The approximate place a ship came down.</description>
     <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
     <expandingIconTexture>World/WorldObjects/CrashedShip</expandingIconTexture>
   </SitePartDef>
-  
   <GenStepDef>
     <defName>RD_CrashedShipGen</defName>
     <linkWithSite>RD_CrashedShip</linkWithSite>
@@ -37,9 +34,7 @@
     <genStep Class="ReconAndDiscovery.Maps.GenStep_CrashedShip">
     </genStep>
   </GenStepDef>
-  
-  
-   <SitePartDef>
+  <SitePartDef>
     <defName>RD_ScatteredTreasure</defName>
     <label>treasure</label>
     <description>Some scattered valuables.</description>
@@ -50,15 +45,12 @@
     <badEvenIfNoMap>false</badEvenIfNoMap>
     <requiresFaction>false</requiresFaction>
   </SitePartDef>
-
   <GenStepDef>
     <defName>RD_ScatteredTreasureGen</defName>
     <linkWithSite>RD_ScatteredTreasure</linkWithSite>
     <order>2500</order>
-    <genStep Class="ReconAndDiscovery.Maps.GenStep_ScatteredTreasure"/>
+    <genStep Class="ReconAndDiscovery.Maps.GenStep_ScatteredTreasure" />
   </GenStepDef>
-  
-  
   <SitePartDef>
     <defName>RD_ScatteredManhunters</defName>
     <label>manhunters</label>
@@ -70,14 +62,12 @@
     <badEvenIfNoMap>false</badEvenIfNoMap>
     <requiresFaction>false</requiresFaction>
   </SitePartDef>
-
   <GenStepDef>
     <defName>RD_ScatteredManhuntersGen</defName>
     <linkWithSite>RD_ScatteredManhunters</linkWithSite>
     <order>2500</order>
-    <genStep Class="ReconAndDiscovery.Maps.GenStep_ScatteredManhunters"/>
+    <genStep Class="ReconAndDiscovery.Maps.GenStep_ScatteredManhunters" />
   </GenStepDef>
-  
   <SitePartDef>
     <defName>RD_MechanoidForces</defName>
     <label>mechanoids</label>
@@ -89,16 +79,13 @@
     <badEvenIfNoMap>false</badEvenIfNoMap>
     <requiresFaction>false</requiresFaction>
   </SitePartDef>
-
   <GenStepDef>
     <defName>RD_MechanoidForcesGen</defName>
     <linkWithSite>RD_MechanoidForces</linkWithSite>
     <order>2500</order>
-    <genStep Class="ReconAndDiscovery.Maps.GenStep_MechanoidForces"/>
+    <genStep Class="ReconAndDiscovery.Maps.GenStep_MechanoidForces" />
   </GenStepDef>
-  
-  
-    <SitePartDef>
+  <SitePartDef>
     <defName>RD_EnemyRaidOnArrival</defName>
     <label>raid</label>
     <description>An enemy faction will arrive here imminently.</description>
@@ -110,16 +97,13 @@
     <badEvenIfNoMap>true</badEvenIfNoMap>
     <requiresFaction>false</requiresFaction>
   </SitePartDef>
-  
-
   <GenStepDef>
     <defName>RD_EnemyRaidOnArrivalGen</defName>
     <linkWithSite>RD_EnemyRaidOnArrival</linkWithSite>
     <order>2500</order>
-    <genStep Class="ReconAndDiscovery.Maps.GenStep_EnemyRaidOnArrival"/>
+    <genStep Class="ReconAndDiscovery.Maps.GenStep_EnemyRaidOnArrival" />
   </GenStepDef>
-  
-   <SitePartDef>
+  <SitePartDef>
     <defName>RD_MedicalEmergency</defName>
     <label>medical emergency</label>
     <description>There is an urgent need for medical assistance here.</description>
@@ -131,8 +115,7 @@
     <badEvenIfNoMap>true</badEvenIfNoMap>
     <requiresFaction>false</requiresFaction>
   </SitePartDef>
-  
-   <SitePartDef>
+  <SitePartDef>
     <defName>RD_RareBeasts</defName>
     <label>rare beasts</label>
     <description>Rare, unusual animals roam near here.</description>
@@ -143,12 +126,10 @@
     <badEvenIfNoMap>true</badEvenIfNoMap>
     <requiresFaction>false</requiresFaction>
   </SitePartDef>
-
   <GenStepDef>
     <defName>RD_RareBeastsGen</defName>
     <linkWithSite>RD_RareBeasts</linkWithSite>
     <order>2500</order>
-    <genStep Class="ReconAndDiscovery.Maps.GenStep_RareBeasts"/>
+    <genStep Class="ReconAndDiscovery.Maps.GenStep_RareBeasts" />
   </GenStepDef>
-
 </Defs>

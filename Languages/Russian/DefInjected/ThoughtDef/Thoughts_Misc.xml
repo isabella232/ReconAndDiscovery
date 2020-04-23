@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_ReturnedFromTheDeadGood.stages.0.label>вернулся из мертвых</RD_ReturnedFromTheDeadGood.stages.0.label>
   <RD_ReturnedFromTheDeadGood.stages.0.description>Я умер и остался жив, чтобы рассказать эту историю! Насколько это круто?!</RD_ReturnedFromTheDeadGood.stages.0.description>
-
   <RD_ReturnedFromTheDeadBad.stages.0.label>вернулся из мертвых</RD_ReturnedFromTheDeadBad.stages.0.label>
   <RD_ReturnedFromTheDeadBad.stages.0.description>Я умер. Я действительно умер. Все это так ужасно недолговечно!</RD_ReturnedFromTheDeadBad.stages.0.description>
-
-
 </LanguageData>

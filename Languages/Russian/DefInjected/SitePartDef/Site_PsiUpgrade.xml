@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_PsiMachine.label>Заброшенный военный объект</RD_PsiMachine.label>
   <RD_PsiMachine.description>По слухам, это была база психических воинов.</RD_PsiMachine.description>
-
   <RD_SitePart_WarIdol.label>компьютер</RD_SitePart_WarIdol.label>
   <RD_SitePart_WarIdol.description>Псионический эманатор, используемый передовыми военными организациями для психической войны.</RD_SitePart_WarIdol.description>
-
-
 </LanguageData>

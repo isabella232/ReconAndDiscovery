@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_SiteRadiationQuest.label>источник радиоактивной пыли</RD_SiteRadiationQuest.label>
   <RD_SiteRadiationQuest.description>Источник радиоактивной пыли.</RD_SiteRadiationQuest.description>
-
   <RD_SitePart_RadioactiveDust.label>радиоактивная пыль</RD_SitePart_RadioactiveDust.label>
   <RD_SitePart_RadioactiveDust.description>Радиоактивная пыль!</RD_SitePart_RadioactiveDust.description>
-
-
 </LanguageData>

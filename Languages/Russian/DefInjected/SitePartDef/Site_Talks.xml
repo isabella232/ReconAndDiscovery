@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_PeaceTalks.label>Мирные переговоры</RD_PeaceTalks.label>
   <RD_PeaceTalks.description>Место для переговоров с другой фракцией.</RD_PeaceTalks.description>
-
   <RD_PeaceTalksFaction.label>Мирные переговоры фракций</RD_PeaceTalksFaction.label>
   <RD_PeaceTalksFaction.description>Фракция пригласила вас на мирные переговоры.</RD_PeaceTalksFaction.description>
-
-
 </LanguageData>

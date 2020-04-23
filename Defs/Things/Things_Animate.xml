@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  
   <ThingDef ParentName="AnimalThingBase">
     <defName>RD_Devillo</defName>
     <label>devillo</label>
@@ -36,15 +35,14 @@
       <body>QuadrupedAnimalWithHooves</body>
       <baseBodySize>2.8</baseBodySize>
       <baseHealthScale>2.4</baseHealthScale>
-			<baseHungerRate>1.65</baseHungerRate>
+      <baseHungerRate>1.65</baseHungerRate>
       <foodType>VegetarianRoughAnimal</foodType>
-		<leatherDef>Leather_Thrumbo</leatherDef>
-
+      <leatherDef>Leather_Thrumbo</leatherDef>
       <gestationPeriodDays>40</gestationPeriodDays>
       <trainability>Advanced</trainability>
       <wildness>0.5</wildness>
       <nuzzleMtbHours>120</nuzzleMtbHours>
-			<packAnimal>true</packAnimal>
+      <packAnimal>true</packAnimal>
       <lifeExpectancy>18</lifeExpectancy>
       <lifeStageAges>
         <li>
@@ -69,7 +67,6 @@
       <soundMeleeMiss>Pawn_Melee_BigBash_Miss</soundMeleeMiss>
     </race>
   </ThingDef>
-  
   <PawnKindDef Name="Devillo" ParentName="AnimalKindBase">
     <defName>RD_Devillo</defName>
     <label>devillo</label>
@@ -125,8 +122,6 @@
       </li>
     </lifeStages>
   </PawnKindDef>
-  
-  
   <ThingDef ParentName="AnimalThingBase">
     <defName>RD_Nitralope</defName>
     <label>nitralope</label>
@@ -164,7 +159,7 @@
       <baseHungerRate>1</baseHungerRate>
       <baseHealthScale>0.65</baseHealthScale>
       <foodType>VegetarianRoughAnimal</foodType>
-	<leatherDef>Leather_Plain</leatherDef>
+      <leatherDef>Leather_Plain</leatherDef>
       <wildness>0.6</wildness>
       <canBePredatorPrey>false</canBePredatorPrey>
       <gestationPeriodDays>30</gestationPeriodDays>
@@ -196,7 +191,6 @@
       <li>BadassAnimal</li>
     </tradeTags>
   </ThingDef>
-  
   <PawnKindDef ParentName="AnimalKindBase">
     <defName>RD_Nitralope</defName>
     <label>nitralope</label>
@@ -204,7 +198,6 @@
     <combatPower>95</combatPower>
     <ecoSystemWeight>0.0</ecoSystemWeight>
     <wildGroupSize>1~1</wildGroupSize>
-
     <canArriveManhunter>false</canArriveManhunter>
     <lifeStages>
       <li>
@@ -259,5 +252,4 @@
       </li>
     </lifeStages>
   </PawnKindDef>
-  
 </Defs>

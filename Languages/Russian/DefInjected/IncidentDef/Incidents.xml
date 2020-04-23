@@ -1,33 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <!-- Big threats -->
-
   <RD_RaidEnemyQuest.label>Налёт</RD_RaidEnemyQuest.label>
-
   <RD_DiscoveredStargate.label>обнаружены звездные врата</RD_DiscoveredStargate.label>
   <RD_DiscoveredStargate.letterText>Вы обнаружили еще одни звездные врата на планете!</RD_DiscoveredStargate.letterText>
   <RD_DiscoveredStargate.letterLabel>Звездные врата</RD_DiscoveredStargate.letterLabel>
-
   <RD_RaidStargate.label>набег из звездных врат</RD_RaidStargate.label>
   <RD_RaidStargate.letterText>Рейд-группа из {0} только что прошла через звездные врата!</RD_RaidStargate.letterText>
   <RD_RaidStargate.letterLabel>Налёт</RD_RaidStargate.letterLabel>
-
   <RD_MalevolentAI.label>враждебный ии</RD_MalevolentAI.label>
   <RD_MalevolentAI.letterText>Враждебный ИИ взломал вашу систему защиты в поддержку ваших врагов, {0}!</RD_MalevolentAI.letterText>
   <RD_MalevolentAI.letterLabel>Взлом защитных систем</RD_MalevolentAI.letterLabel>
-
   <RD_RaidTeleporter.label>взлом телепорта</RD_RaidTeleporter.label>
   <RD_RaidTeleporter.letterText>Механоиды взломали наши системы телепорта!</RD_RaidTeleporter.letterText>
   <RD_RaidTeleporter.letterLabel>Взлом телепорта</RD_RaidTeleporter.letterLabel>
-
   <RD_IncidentTremors.label>треморы</RD_IncidentTremors.label>
   <RD_IncidentTremors.letterText>Геологические нарушения вызывают подземные толчки. Крыша в некоторых местах может обрушиться. Хотя это просто неудобство в искусственных сооружениях, в горах это может быть очень опасно.</RD_IncidentTremors.letterText>
   <RD_IncidentTremors.letterLabel>Треморы</RD_IncidentTremors.letterLabel>
-
   <RD_IncidentRadiation.label>радиация</RD_IncidentRadiation.label>
   <RD_IncidentRadiation.letterText>Ветер пронес радиоактивную пыль по всей территории. Повышенный уровень радиации увеличивает риск тяжелой болезни даже в помещении, если только оно не глубоко под землей, а в помещении с толстой каменной крышей. Вы можете рассмотреть возможность ухода из области, пока не пройдет эффект.</RD_IncidentRadiation.letterText>
   <RD_IncidentRadiation.letterLabel>Радиоактивные осадки</RD_IncidentRadiation.letterLabel>
-
-
 </LanguageData>

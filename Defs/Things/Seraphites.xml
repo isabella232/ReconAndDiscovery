@@ -33,7 +33,6 @@
       </li>
     </comps>
   </ThingDef>
-
   <HediffDef>
     <defName>RD_Seraphites</defName>
     <hediffClass>HediffWithComps</hediffClass>
@@ -42,10 +41,10 @@
     <defaultLabelColor>(0.5,0.5,0.9)</defaultLabelColor>
     <scenarioCanAdd>false</scenarioCanAdd>
     <maxSeverity>1.0</maxSeverity>
-		<comps>
-			<li Class="HediffCompProperties_HealPermanentWounds" />
-			<li Class="ReconAndDiscovery.Things.HediffCompProperties_Seraphites" />
-		</comps>
+    <comps>
+      <li Class="HediffCompProperties_HealPermanentWounds" />
+      <li Class="ReconAndDiscovery.Things.HediffCompProperties_Seraphites" />
+    </comps>
     <stages>
       <li>
         <hungerRateFactor>1.5</hungerRateFactor>
@@ -59,10 +58,10 @@
             <capacity>Moving</capacity>
             <offset>0.05</offset>
           </li>
-			<li>
-				<capacity>Sight</capacity>
-				<offset>0.15</offset>
-			</li>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>0.15</offset>
+          </li>
           <li>
             <capacity>BloodFiltration</capacity>
             <offset>0.70</offset>
@@ -71,7 +70,7 @@
             <capacity>BloodPumping</capacity>
             <offset>0.15</offset>
           </li>
-           <li>
+          <li>
             <capacity>Metabolism</capacity>
             <offset>0.20</offset>
           </li>

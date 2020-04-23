@@ -1,70 +1,70 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-	<RD_AlertExplanation>A nitralope has become dangerously bloated. You must relieve the pressure by milking it, or it may explode!</RD_AlertExplanation>
-	<RD_AwaitingPrayersSacrifices>Awaiting prayers and sacrifices.</RD_AwaitingPrayersSacrifices>
-	<RD_BringFog>Bring fog (18 mana)</RD_BringFog>
-	<RD_BringRain>Bring rain (15 mana)</RD_BringRain>
-	<RD_Charge>Charge: </RD_Charge>
-	<RD_DangrouslyOverfull>Dangrously Overfull!</RD_DangrouslyOverfull>
-	<RD_DevelopedRadiationSickness>{PAWN_nameDef} has developed radiation sickness</RD_DevelopedRadiationSickness>
-	<RD_DiplomacyAwful>The flailing diplomatic "strategy" of {0} seemed chiefly to involve wild swings between aggression and panic, peppered liberally with lewd insults involving the negotiator for {1}'s antecedents. Your already strained relations have, understandably, worsened ({2} to relations).</RD_DiplomacyAwful>
-	<RD_DiplomacyExcellent>{0}'s easy, but unyielding manner dealt well with a number of the negotiator for {1}'s concerns. Your relations have improved by {2}</RD_DiplomacyExcellent>
-	<RD_DiplomacyMasterWorkLegendary>{0} made diplomacy look as easy as breathing, with an almost magical ability to make {1}'s negotiator see your perspective. Your relations have undergone a substantial improvement of {2}.</RD_DiplomacyMasterWorkLegendary>
-	<RD_DiplomacyNormalGood>{0}'s negotiation adequately dealt with some minor disputes you have with {1}. Your relations have improved by {2}.</RD_DiplomacyNormalGood>
-	<RD_DiplomacyPoor>The chief negotiation tactic employed by {0} seemed to be staring bored at the wall. This did little to diffuse tensions and engender a feeling of respect ({2} to relations))</RD_DiplomacyPoor>
-	<RD_DispenseTrialCure>Dispense the trial cure</RD_DispenseTrialCure>
-	<RD_EndExtremeWeather>End extreme weather (10 mana)</RD_EndExtremeWeather>
-	<RD_EnteringRepairCycle>Entering Repair Cycle</RD_EnteringRepairCycle>
-	<RD_ExplosiveRisk>Explosive risk!</RD_ExplosiveRisk>
-	<RD_FilesPertanentLuciferiumCure>There seem to be files pertanent to a luciferium cure, but {0} lacks the intellectual skills to access them.</RD_FilesPertanentLuciferiumCure>
-	<RD_FortunatelyDissipateAttack>Fortunately, {PAWN_nameDef} was able to dissipate the attack with their psychic capabilities.</RD_FortunatelyDissipateAttack>
-	<RD_FortunatelyDissipateAttackShock>{PAWN_nameDef} was able to channel the attack, preventing harm to others, but is now in psychic shock!</RD_FortunatelyDissipateAttackShock>
-	<RD_GoldenFoilPacket>A small, golden foil packet drops out of a nearby hatch!</RD_GoldenFoilPacket>
-	<RD_GratefulSurvivorsAmazedDesc>The survivors of the crash are amazed by your rapid and professional emergency medical response, thanks to which no-one died. In gratitude, they have included a special system removed form the wreck.</RD_GratefulSurvivorsAmazedDesc>
-	<RD_GratefulSurvivorsDesc>The survivors of the crash are very thankful for your help, and have send some supplies as a gesture of gratitude.</RD_GratefulSurvivorsDesc>
-	<RD_HoloEmitterAreaFor>HoloEmitter area for {PAWN_nameDef}.</RD_HoloEmitterAreaFor>
-	<RD_LargeMuffaloMigration>days!</RD_LargeMuffaloMigration>
-	<RD_LinkGate>Link a gate.</RD_LinkGate>
-	<RD_LinkGateDesc>Link this gate to another.</RD_LinkGateDesc>
-	<RD_MalevolentPsychicDesc>{PAWN_nameDef} believes that a malevolent psychic energy is massing, and that this peaceful herd of muffalo are on the brink of a mass insanity.</RD_MalevolentPsychicDesc>
-	<RD_MechanitesCureCorrupted>The mechanites in the cure have corrupted their programming and escaped their packaging!</RD_MechanitesCureCorrupted>
-	<RD_MiscarriedRadiation>{PAWN_nameDef} has miscarried due to radiation poisoning.</RD_MiscarriedRadiation>
-	<RD_NegotiationsTrap>The negotiations are a trap!</RD_NegotiationsTrap>
-	<RD_NewFaction>New Faction!</RD_NewFaction>
-	<RD_NewFactionDesc>The survivors of the crash have decided to make a life for themselves here, and have founded a new faction</RD_NewFactionDesc>
-	<RD_OnlyPsychicCanBroadcast>Only psychic pawns can broadcast a battle prayer</RD_OnlyPsychicCanBroadcast>
-	<RD_OtherGateBuried>The other gate has been buried! We cannot transit!</RD_OtherGateBuried>
-	<RD_Overfull>Overfull!</RD_Overfull>
-	<RD_PlantDiedRatiation>A plant has died due to radiation damage</RD_PlantDiedRatiation>
-	<RD_PsionicLandmine>A psionic landmine in the room generates a short-range psychic shock!</RD_PsionicLandmine>
-	<RD_PsychicMessage>Psychic vision</RD_PsychicMessage>
-	<RD_ReceivedVisionBattle>{PAWN_nameDef} has received visions accompanying the drone, showing a battle and crying out for help. Others must have noticed, so the site will probably be dangerous.</RD_ReceivedVisionBattle>
-	<RD_ShootingStar>just saw something fall from the sky near here!</RD_ShootingStar>
-	<RD_StargateLinked>Stargate linked to destination.</RD_StargateLinked>
-	<RD_StargateNoEvidence>There is no evidence of a stargate there.</RD_StargateNoEvidence>
-	<RD_StargateNotLinked>Stargate is not linked to a destination!</RD_StargateNotLinked>
-	<RD_StrikeOurEnemies>Strike our enemies (40 mana)</RD_StrikeOurEnemies>
-	<RD_Teleport>Teleport.</RD_Teleport>
-	<RD_TeleportDesc>Teleport a person or animal.</RD_TeleportDesc>
-	<RD_TeleporterLannotLockThickRock>Teleporter cannot lock on through the thick rock overhead!</RD_TeleporterLannotLockThickRock>
-	<RD_ThinksResearchDubious>\n{PAWN_nameDef} thinks that the research is dubious, and is concerned that any remaining samples will be dangerous.</RD_ThinksResearchDubious>
-	<RD_ThinksScienceUnderlying>\n{PAWN_nameDef} thinks that the science underlying the project is sound, and though the process has been lost, any remaining samples of the cure probably work.</RD_ThinksScienceUnderlying>
-	<RD_YouCannotLock>You cannot lock onto anything there.</RD_YouCannotLock>
-	<RD_YourCaravanSpottedMuffaloMigration>Your caravan has spotted a huge muffalo migration!</RD_YourCaravanSpottedMuffaloMigration>
-	<RD_Mana>Mana</RD_Mana>
-	<RD_Negotiate>Negotiate</RD_Negotiate>
-	<RD_Social>Social</RD_Social>
-	<RD_FormatOccupant>Format Occupant</RD_FormatOccupant>
-	<RD_GratefulSurvivors>Grateful survivors</RD_GratefulSurvivors>
-	<RD_LogOff>Log off {PAWN_nameDef}</RD_LogOff>
-	<RD_ManhunterDanger>Manhunter danger</RD_ManhunterDanger>
-	<RD_MuffaloMigration>Muffalo migration</RD_MuffaloMigration>
-	<RD_ResurrectContained>Resurrect contained</RD_ResurrectContained>
-	<RD_TransferToThisEmitter>Transfer to this emitter</RD_TransferToThisEmitter>
-	<RD_TravelToTargetGate>Travel to target gate</RD_TravelToTargetGate>
-	<RD_UseComputer>Use computer</RD_UseComputer>
-	<RD_UsingComputer>Using computer</RD_UsingComputer>
-	<RD_LetterLabelPawnsLostDueToMapCountdown>Left behind</RD_LetterLabelPawnsLostDueToMapCountdown>
-	<RD_LetterPawnsLostDueToMapCountdown>Some of your animals or prisoners were left behind in the wilderness:\n\n{0}</RD_LetterPawnsLostDueToMapCountdown>
-
+  <RD_AlertExplanation>A nitralope has become dangerously bloated. You must relieve the pressure by milking it, or it may explode!</RD_AlertExplanation>
+  <RD_AwaitingPrayersSacrifices>Awaiting prayers and sacrifices.</RD_AwaitingPrayersSacrifices>
+  <RD_BringFog>Bring fog (18 mana)</RD_BringFog>
+  <RD_BringRain>Bring rain (15 mana)</RD_BringRain>
+  <RD_Charge>Charge: </RD_Charge>
+  <RD_DangrouslyOverfull>Dangrously Overfull!</RD_DangrouslyOverfull>
+  <RD_DevelopedRadiationSickness>{PAWN_nameDef} has developed radiation sickness</RD_DevelopedRadiationSickness>
+  <RD_DiplomacyAwful>The flailing diplomatic "strategy" of {0} seemed chiefly to involve wild swings between aggression and panic, peppered liberally with lewd insults involving the negotiator for {1}'s antecedents. Your already strained relations have, understandably, worsened ({2} to relations).</RD_DiplomacyAwful>
+  <RD_DiplomacyExcellent>{0}'s easy, but unyielding manner dealt well with a number of the negotiator for {1}'s concerns. Your relations have improved by {2}</RD_DiplomacyExcellent>
+  <RD_DiplomacyMasterWorkLegendary>{0} made diplomacy look as easy as breathing, with an almost magical ability to make {1}'s negotiator see your perspective. Your relations have undergone a substantial improvement of {2}.</RD_DiplomacyMasterWorkLegendary>
+  <RD_DiplomacyNormalGood>{0}'s negotiation adequately dealt with some minor disputes you have with {1}. Your relations have improved by {2}.</RD_DiplomacyNormalGood>
+  <RD_DiplomacyPoor>The chief negotiation tactic employed by {0} seemed to be staring bored at the wall. This did little to diffuse tensions and engender a feeling of respect ({2} to relations))</RD_DiplomacyPoor>
+  <RD_DispenseTrialCure>Dispense the trial cure</RD_DispenseTrialCure>
+  <RD_EndExtremeWeather>End extreme weather (10 mana)</RD_EndExtremeWeather>
+  <RD_EnteringRepairCycle>Entering Repair Cycle</RD_EnteringRepairCycle>
+  <RD_ExplosiveRisk>Explosive risk!</RD_ExplosiveRisk>
+  <RD_FilesPertanentLuciferiumCure>There seem to be files pertanent to a luciferium cure, but {0} lacks the intellectual skills to access them.</RD_FilesPertanentLuciferiumCure>
+  <RD_FortunatelyDissipateAttack>Fortunately, {PAWN_nameDef} was able to dissipate the attack with their psychic capabilities.</RD_FortunatelyDissipateAttack>
+  <RD_FortunatelyDissipateAttackShock>{PAWN_nameDef} was able to channel the attack, preventing harm to others, but is now in psychic shock!</RD_FortunatelyDissipateAttackShock>
+  <RD_GoldenFoilPacket>A small, golden foil packet drops out of a nearby hatch!</RD_GoldenFoilPacket>
+  <RD_GratefulSurvivorsAmazedDesc>The survivors of the crash are amazed by your rapid and professional emergency medical response, thanks to which no-one died. In gratitude, they have included a special system removed form the wreck.</RD_GratefulSurvivorsAmazedDesc>
+  <RD_GratefulSurvivorsDesc>The survivors of the crash are very thankful for your help, and have send some supplies as a gesture of gratitude.</RD_GratefulSurvivorsDesc>
+  <RD_HoloEmitterAreaFor>HoloEmitter area for {PAWN_nameDef}.</RD_HoloEmitterAreaFor>
+  <RD_LargeMuffaloMigration>days!</RD_LargeMuffaloMigration>
+  <RD_LinkGate>Link a gate.</RD_LinkGate>
+  <RD_LinkGateDesc>Link this gate to another.</RD_LinkGateDesc>
+  <RD_MalevolentPsychicDesc>{PAWN_nameDef} believes that a malevolent psychic energy is massing, and that this peaceful herd of muffalo are on the brink of a mass insanity.</RD_MalevolentPsychicDesc>
+  <RD_MechanitesCureCorrupted>The mechanites in the cure have corrupted their programming and escaped their packaging!</RD_MechanitesCureCorrupted>
+  <RD_MiscarriedRadiation>{PAWN_nameDef} has miscarried due to radiation poisoning.</RD_MiscarriedRadiation>
+  <RD_NegotiationsTrap>The negotiations are a trap!</RD_NegotiationsTrap>
+  <RD_NewFaction>New Faction!</RD_NewFaction>
+  <RD_NewFactionDesc>The survivors of the crash have decided to make a life for themselves here, and have founded a new faction</RD_NewFactionDesc>
+  <RD_OnlyPsychicCanBroadcast>Only psychic pawns can broadcast a battle prayer</RD_OnlyPsychicCanBroadcast>
+  <RD_OtherGateBuried>The other gate has been buried! We cannot transit!</RD_OtherGateBuried>
+  <RD_Overfull>Overfull!</RD_Overfull>
+  <RD_PlantDiedRatiation>A plant has died due to radiation damage</RD_PlantDiedRatiation>
+  <RD_PsionicLandmine>A psionic landmine in the room generates a short-range psychic shock!</RD_PsionicLandmine>
+  <RD_PsychicMessage>Psychic vision</RD_PsychicMessage>
+  <RD_ReceivedVisionBattle>{PAWN_nameDef} has received visions accompanying the drone, showing a battle and crying out for help. Others must have noticed, so the site will probably be dangerous.</RD_ReceivedVisionBattle>
+  <RD_ShootingStar>just saw something fall from the sky near here!</RD_ShootingStar>
+  <RD_StargateLinked>Stargate linked to destination.</RD_StargateLinked>
+  <RD_StargateNoEvidence>There is no evidence of a stargate there.</RD_StargateNoEvidence>
+  <RD_StargateNotLinked>Stargate is not linked to a destination!</RD_StargateNotLinked>
+  <RD_StrikeOurEnemies>Strike our enemies (40 mana)</RD_StrikeOurEnemies>
+  <RD_Teleport>Teleport.</RD_Teleport>
+  <RD_TeleportDesc>Teleport a person or animal.</RD_TeleportDesc>
+  <RD_TeleporterLannotLockThickRock>Teleporter cannot lock on through the thick rock overhead!</RD_TeleporterLannotLockThickRock>
+  <RD_ThinksResearchDubious>\n{PAWN_nameDef} thinks that the research is dubious, and is concerned that any remaining samples will be dangerous.</RD_ThinksResearchDubious>
+  <RD_ThinksScienceUnderlying>\n{PAWN_nameDef} thinks that the science underlying the project is sound, and though the process has been lost, any remaining samples of the cure probably work.</RD_ThinksScienceUnderlying>
+  <RD_YouCannotLock>You cannot lock onto anything there.</RD_YouCannotLock>
+  <RD_YourCaravanSpottedMuffaloMigration>Your caravan has spotted a huge muffalo migration!</RD_YourCaravanSpottedMuffaloMigration>
+  <RD_Mana>Mana</RD_Mana>
+  <RD_Negotiate>Negotiate</RD_Negotiate>
+  <RD_Social>Social</RD_Social>
+  <RD_FormatOccupant>Format Occupant</RD_FormatOccupant>
+  <RD_GratefulSurvivors>Grateful survivors</RD_GratefulSurvivors>
+  <RD_LogOff>Log off {PAWN_nameDef}</RD_LogOff>
+  <RD_ManhunterDanger>Manhunter danger</RD_ManhunterDanger>
+  <RD_MuffaloMigration>Muffalo migration</RD_MuffaloMigration>
+  <RD_ResurrectContained>Resurrect contained</RD_ResurrectContained>
+  <RD_TransferToThisEmitter>Transfer to this emitter</RD_TransferToThisEmitter>
+  <RD_TravelToTargetGate>Travel to target gate</RD_TravelToTargetGate>
+  <RD_UseComputer>Use computer</RD_UseComputer>
+  <RD_UsingComputer>Using computer</RD_UsingComputer>
+  <RD_LetterLabelPawnsLostDueToMapCountdown>Left behind</RD_LetterLabelPawnsLostDueToMapCountdown>
+  <RD_LetterPawnsLostDueToMapCountdown>Some of your animals or prisoners were left behind in the wilderness:\n\n{0}</RD_LetterPawnsLostDueToMapCountdown>
+  <RD_SettingHeader>Incident baseChances</RD_SettingHeader>
 </LanguageData>

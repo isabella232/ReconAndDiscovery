@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThingDef ParentName="BuildingBase">
     <defName>RD_GattlingLaser</defName>
@@ -15,7 +15,7 @@
     <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
       <li>BuildingsSecurity</li>
-	</thingCategories>
+    </thingCategories>
     <altitudeLayer>Building</altitudeLayer>
     <stealable>false</stealable>
     <rotatable>false</rotatable>
@@ -34,13 +34,13 @@
         <explosiveDamageType>Bomb</explosiveDamageType>
         <chanceNeverExplodeFromDamage>0.1</chanceNeverExplodeFromDamage>
       </li>
-      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Forbiddable" />
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>2300</basePowerConsumption>
       </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Breakdownable" />
     </comps>
     <description>A ship's gattling laser, fused to a turret base. Designed for space combat, it is vicious and powerful and has extraordinary range, but as its usual targets are larger than houses it is terribly inaccurate.</description>
     <passability>PassThroughOnly</passability>
@@ -58,12 +58,11 @@
     </costList>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <building>
-	<ai_combatDangerous>true</ai_combatDangerous>
+      <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>RD_Gun_GattlingLaser</turretGunDef>
       <turretBurstCooldownTime>24.00</turretBurstCooldownTime>
     </building>
-</ThingDef>
-  
+  </ThingDef>
   <ThingDef ParentName="BaseBullet">
     <defName>RD_Bullet_GattlingLaser</defName>
     <label>improvised turret bullet</label>
@@ -73,14 +72,13 @@
     </graphicData>
     <thingClass>Projectile_Explosive</thingClass>
     <projectile>
-      <explosionRadius >1.45</explosionRadius >		
-	  <explosionDelay>0</explosionDelay>
+      <explosionRadius>1.45</explosionRadius>
+      <explosionDelay>0</explosionDelay>
       <damageDef>Flame</damageDef>
       <damageAmountBase>24</damageAmountBase>
       <speed>200</speed>
     </projectile>
   </ThingDef>
-
   <ThingDef ParentName="BaseWeapon">
     <defName>RD_Gun_GattlingLaser</defName>
     <label>Gattling Laser</label>
@@ -110,8 +108,8 @@
         <defaultProjectile>RD_Bullet_GattlingLaser</defaultProjectile>
         <warmupTime>24.0</warmupTime>
         <targetParams>
-			<canTargetLocations>true</canTargetLocations>
-		</targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
         <range>500.0</range>
         <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
         <burstShotCount>96</burstShotCount>
@@ -123,131 +121,124 @@
       </li>
     </verbs>
   </ThingDef>
-  
-  
   <ThingDef ParentName="BuildingBase">
-		<defName>RD_Teleporter</defName>
-		<label>teleporter</label>
-		<thingClass>Building_WorkTable_HeatPush</thingClass>
-		<description>A glittertech teleportation panel. It can beam people and animals in from anywhere on the planet, but due to crash damage cannot send.</description>
-		<graphicData>
-			<texPath>Things/Buildings/Teleporter</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1,1)</drawSize>
-			<damageData>
-				<cornerTL>Damage/Corner</cornerTL>
-				<cornerTR>Damage/Corner</cornerTR>
-				<cornerBL>Damage/Corner</cornerBL>
-				<cornerBR>Damage/Corner</cornerBR>
-			</damageData>
-		</graphicData>
-		<costList>
-			<Steel>120</Steel>
-			<ComponentIndustrial>4</ComponentIndustrial>
-		</costList>
-		<altitudeLayer>Building</altitudeLayer>
-		 <minifiedDef>MinifiedThing</minifiedDef>
+    <defName>RD_Teleporter</defName>
+    <label>teleporter</label>
+    <thingClass>Building_WorkTable_HeatPush</thingClass>
+    <description>A glittertech teleportation panel. It can beam people and animals in from anywhere on the planet, but due to crash damage cannot send.</description>
+    <graphicData>
+      <texPath>Things/Buildings/Teleporter</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <costList>
+      <Steel>120</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+    <altitudeLayer>Building</altitudeLayer>
+    <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
       <li>BuildingsSpecial</li>
-	</thingCategories>
-
-		<tickerType>Normal</tickerType>
-		<fillPercent>0.5</fillPercent>
-		<tradeability>None</tradeability>
-		<useHitPoints>True</useHitPoints>
-		<statBases>
-			<WorkToBuild>6500</WorkToBuild>
-			<Mass>100</Mass>
-			<MaxHitPoints>220</MaxHitPoints>
-			<Flammability>1.0</Flammability>
-		</statBases>
-		<size>(1,1)</size>
-		<passability>Standable</passability>
-		<pathCost>60</pathCost>
-		<hasInteractionCell>True</hasInteractionCell>
-		<interactionCellOffset>(0,0,0)</interactionCellOffset>
-		<surfaceType>None</surfaceType>
-		<comps>
-			<li Class="CompProperties_Power">
-				<compClass>CompPowerTrader</compClass>
-				<shortCircuitInRain>true</shortCircuitInRain>
-				<basePowerConsumption>3000</basePowerConsumption>
-			</li>
-			<li Class="CompProperties_Flickable"/>
-			<li Class="ReconAndDiscovery.CompProperties_Teleporter"/>
-			<li Class="CompProperties_Glower">
-				<glowRadius>4</glowRadius>
-				<glowColor>(120,120,180,0)</glowColor>
-			</li>
-		</comps>
-		<building>
-			<heatPerTickWhileWorking>0.25</heatPerTickWhileWorking>
-		</building>
-		<constructEffect>ConstructMetal</constructEffect>
-	</ThingDef>
-	
-	
-	<ThingDef ParentName="BuildingBase">
-		<defName>RD_HolographicEmitter</defName>
-		<label>holo-emitter</label>
+    </thingCategories>
+    <tickerType>Normal</tickerType>
+    <fillPercent>0.5</fillPercent>
+    <tradeability>None</tradeability>
+    <useHitPoints>True</useHitPoints>
+    <statBases>
+      <WorkToBuild>6500</WorkToBuild>
+      <Mass>100</Mass>
+      <MaxHitPoints>220</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <size>(1,1)</size>
+    <passability>Standable</passability>
+    <pathCost>60</pathCost>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,0)</interactionCellOffset>
+    <surfaceType>None</surfaceType>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>true</shortCircuitInRain>
+        <basePowerConsumption>3000</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="ReconAndDiscovery.CompProperties_Teleporter" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>4</glowRadius>
+        <glowColor>(120,120,180,0)</glowColor>
+      </li>
+    </comps>
+    <building>
+      <heatPerTickWhileWorking>0.25</heatPerTickWhileWorking>
+    </building>
+    <constructEffect>ConstructMetal</constructEffect>
+  </ThingDef>
+  <ThingDef ParentName="BuildingBase">
+    <defName>RD_HolographicEmitter</defName>
+    <label>holo-emitter</label>
     <description>A holo-Emitter. Used on light, fast ships to simulate useful crew members if they are recovered just after death. The body is destroyed on scanning.</description>
     <thingClass>ReconAndDiscovery.Things.HoloEmitter</thingClass>
-		<graphicData>	
-			<texPath>Things/Buildings/HoloEmitter</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1,1)</drawSize>
-			<damageData>
-				<cornerTL>Damage/Corner</cornerTL>
-				<cornerTR>Damage/Corner</cornerTR>
-				<cornerBL>Damage/Corner</cornerBL>
-				<cornerBR>Damage/Corner</cornerBR>
-			</damageData>
-		</graphicData>
-		<costList>
-			<Gold>120</Gold>
-			<ComponentIndustrial>4</ComponentIndustrial>
-		</costList>
-		<altitudeLayer>Building</altitudeLayer>
-		 <minifiedDef>MinifiedThing</minifiedDef>
+    <graphicData>
+      <texPath>Things/Buildings/HoloEmitter</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+    </graphicData>
+    <costList>
+      <Gold>120</Gold>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+    <altitudeLayer>Building</altitudeLayer>
+    <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
       <li>BuildingsSpecial</li>
-	</thingCategories>
-
-		<tickerType>Rare</tickerType>
-		<fillPercent>0.5</fillPercent>
-		<useHitPoints>True</useHitPoints>
-		<statBases>
-			<WorkToBuild>6500</WorkToBuild>
-			<Mass>5</Mass>
-			<MaxHitPoints>100</MaxHitPoints>
-			<Flammability>1.0</Flammability>
-		</statBases>
-		<size>(1,1)</size>
-		<passability>Standable</passability>
-		<pathCost>60</pathCost>
-		<hasInteractionCell>True</hasInteractionCell>
-		<interactionCellOffset>(0,0,0)</interactionCellOffset>
-		<tradeability>None</tradeability>
-		<surfaceType>None</surfaceType>
-		<comps>
-			 <li Class="ReconAndDiscovery.CompProperties_HoloEmitter"/>
-      		<li Class="CompProperties_Glower">  
-       	 	<overlightRadius>9.0</overlightRadius>
-        	<glowRadius>9.0</glowRadius>
-        	<glowColor>(170,170,240,0)</glowColor>
-      		</li>
-      		<li Class="CompProperties_Power">
-        	<compClass>CompPowerTrader</compClass>
-        	<shortCircuitInRain>true</shortCircuitInRain>
-        	<basePowerConsumption>800</basePowerConsumption>
-      		</li>
-		</comps>
-		<building>
-			<heatPerTickWhileWorking>0.25</heatPerTickWhileWorking>
-		</building>
-		<constructEffect>ConstructMetal</constructEffect>
-	</ThingDef>
-  
+    </thingCategories>
+    <tickerType>Rare</tickerType>
+    <fillPercent>0.5</fillPercent>
+    <useHitPoints>True</useHitPoints>
+    <statBases>
+      <WorkToBuild>6500</WorkToBuild>
+      <Mass>5</Mass>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <size>(1,1)</size>
+    <passability>Standable</passability>
+    <pathCost>60</pathCost>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,0)</interactionCellOffset>
+    <tradeability>None</tradeability>
+    <surfaceType>None</surfaceType>
+    <comps>
+      <li Class="ReconAndDiscovery.CompProperties_HoloEmitter" />
+      <li Class="CompProperties_Glower">
+        <overlightRadius>9.0</overlightRadius>
+        <glowRadius>9.0</glowRadius>
+        <glowColor>(170,170,240,0)</glowColor>
+      </li>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>true</shortCircuitInRain>
+        <basePowerConsumption>800</basePowerConsumption>
+      </li>
+    </comps>
+    <building>
+      <heatPerTickWhileWorking>0.25</heatPerTickWhileWorking>
+    </building>
+    <constructEffect>ConstructMetal</constructEffect>
+  </ThingDef>
   <ThingDef ParentName="BuildingBase">
     <defName>RD_PortableGenerator</defName>
     <label>portable generator</label>
@@ -260,7 +251,7 @@
     <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
       <li>BuildingsPower</li>
-	</thingCategories>
+    </thingCategories>
     <soundInteract>Standard_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
     <statBases>
@@ -276,42 +267,40 @@
     <tickerType>Normal</tickerType>
     <rotatable>false</rotatable>
     <canOverlapZones>false</canOverlapZones>
-     <size>(1,1)</size>
+    <size>(1,1)</size>
     <designationCategory>Power</designationCategory>
     <costList>
       <Steel>200</Steel>
       <ComponentIndustrial>5</ComponentIndustrial>
     </costList>
     <comps>
-    	<li Class="CompProperties_Power">
-    	    <compClass>CompPowerPlant</compClass>
-    	    <basePowerConsumption>-800</basePowerConsumption>
-    	    <transmitsPower>true</transmitsPower>
-    	</li>
-      	<li Class="CompProperties_Flickable" />
-      	<li Class="CompProperties_Refuelable">
-        	<fuelConsumptionRate>12.0</fuelConsumptionRate>
-        	<fuelCapacity>96.0</fuelCapacity>
-        	<fuelFilter>
-        	<thingDefs>
-            	<li>Chemfuel</li>
-          	</thingDefs>
-        	</fuelFilter>
-      	</li>
-      	<li Class="CompProperties_HeatPusher">
-        	<compClass>CompHeatPusherPowered</compClass>
-        	<heatPerSecond>5</heatPerSecond>
-      	</li>
-      	<li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerPlant</compClass>
+        <basePowerConsumption>-800</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Refuelable">
+        <fuelConsumptionRate>12.0</fuelConsumptionRate>
+        <fuelCapacity>96.0</fuelCapacity>
+        <fuelFilter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </fuelFilter>
+      </li>
+      <li Class="CompProperties_HeatPusher">
+        <compClass>CompHeatPusherPowered</compClass>
+        <heatPerSecond>5</heatPerSecond>
+      </li>
+      <li Class="CompProperties_Breakdownable" />
     </comps>
     <researchPrerequisites>
       <li>Electricity</li>
       <li>Batteries</li>
     </researchPrerequisites>
   </ThingDef>
-
-  
-   <ThingDef ParentName="BuildingBase">
+  <ThingDef ParentName="BuildingBase">
     <defName>RD_QuestComputerTerminal</defName>
     <label>computerTerminal</label>
     <thingClass>Building</thingClass>
@@ -339,8 +328,8 @@
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>400</basePowerConsumption>
-      </li>   
-      <li Class="ReconAndDiscovery.CompProperties_ComputerTerminal"/>
+      </li>
+      <li Class="ReconAndDiscovery.CompProperties_ComputerTerminal" />
     </comps>
     <description>A computer terminal. Who knows what secrets lie within its sprawling file system?</description>
     <passability>PassThroughOnly</passability>
@@ -358,9 +347,7 @@
       <ComponentIndustrial>40</ComponentIndustrial>
     </costList>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-</ThingDef>
-
-  
+  </ThingDef>
   <ThingDef ParentName="BuildingBase">
     <defName>RD_OsirisCasket</defName>
     <label>osiris casket</label>
@@ -373,7 +360,9 @@
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>
     <resourcesFractionWhenDeconstructed>0.7</resourcesFractionWhenDeconstructed>
-    <researchPrerequisites><li>Cryptosleep</li></researchPrerequisites>
+    <researchPrerequisites>
+      <li>Cryptosleep</li>
+    </researchPrerequisites>
     <designationCategory>Misc</designationCategory>
     <pathCost>70</pathCost>
     <blockWind>true</blockWind>
@@ -385,15 +374,15 @@
       <MaxHitPoints>250</MaxHitPoints>
       <Flammability>1.0</Flammability>
     </statBases>
-     <tradeability>None</tradeability>
+    <tradeability>None</tradeability>
     <tickerType>Normal</tickerType>
     <description>An advanced GlitterWorld cryptosleep casket that instructs an army of Luciferium nanites to heal wounds, cure illnesses, reverse ageing and even revive the dead. Though heavy, the AI, which separates it from other caskets, is light and recoverable.</description>
     <size>(2,3)</size>
     <hasInteractionCell>true</hasInteractionCell>
     <interactionCellOffset>(1,0,0)</interactionCellOffset>
-	<building>
-		<ai_chillDestination>false</ai_chillDestination>
-		</building>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
     <costList>
       <RD_OsirisAI>1</RD_OsirisAI>
       <Steel>180</Steel>
@@ -402,34 +391,32 @@
       <ComponentIndustrial>8</ComponentIndustrial>
     </costList>
     <comps>
-     <li Class="CompProperties_Power">
+      <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>12000</basePowerConsumption>
       </li>
-      <li Class="ReconAndDiscovery.CompProperties_Osiris"/>
+      <li Class="ReconAndDiscovery.CompProperties_Osiris" />
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Refuelable">
-	  	<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
-      	<fuelCapacity>100.0</fuelCapacity>
-      	<targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelCapacity>100.0</fuelCapacity>
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
         <initialConfigurableTargetFuelLevel>75</initialConfigurableTargetFuelLevel>
-      	<fuelFilter>
-      		<thingDefs>
-          		<li>Luciferium</li>
-      		</thingDefs>
-      	</fuelFilter>
+        <fuelFilter>
+          <thingDefs>
+            <li>Luciferium</li>
+          </thingDefs>
+        </fuelFilter>
         <initialFuelPercent>0</initialFuelPercent>
-      	</li>
-      	<li Class="CompProperties_Glower">
-        	<glowRadius>1</glowRadius>
-        	<glowColor>(100,100,200,0)</glowColor>
-      	</li>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>1</glowRadius>
+        <glowColor>(100,100,200,0)</glowColor>
+      </li>
     </comps>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <staticSunShadowHeight>0.4</staticSunShadowHeight>
   </ThingDef>
-  
-  
   <ThingDef ParentName="BuildingBase">
     <defName>RD_Stargate</defName>
     <label>stargate</label>
@@ -447,7 +434,7 @@
     <fillPercent>0.5</fillPercent>
     <canOverlapZones>false</canOverlapZones>
     <researchPrerequisites>
-    	<li>ShipEngine</li>	
+      <li>ShipEngine</li>
     </researchPrerequisites>
     <statBases>
       <WorkToBuild>3200</WorkToBuild>
@@ -457,9 +444,9 @@
     <tickerType>Normal</tickerType>
     <description>A gateway allowing for instant travel to another such device via the folding of spacetime around a contained core of exotic matter. A skiled engineer can collect the exotic matter when deconstructing such a device. Links are one way by nature, and for two gates to be linked, each much redirect to the other in accordance with the physical law of narrative control, described by most leaders in the field as "nonsense".</description>
     <size>(4,2)</size>
-	<building>
-		<ai_chillDestination>false</ai_chillDestination>
-		</building>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
     <costList>
       <Steel>20</Steel>
       <Gold>50</Gold>
@@ -468,18 +455,17 @@
       <RD_ExoticMatter>1</RD_ExoticMatter>
     </costList>
     <comps>
-    	<li Class="CompProperties_Forbiddable"/>
-      	<li Class="CompProperties_Glower">
-        	<glowRadius>3</glowRadius>
-        	<overlightRadius>3.0</overlightRadius>
-        	<glowColor>(100,100,350,0)</glowColor>
-      	</li>
-      	<li Class="ReconAndDiscovery.CompProperties_Stargate"/>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <overlightRadius>3.0</overlightRadius>
+        <glowColor>(100,100,350,0)</glowColor>
+      </li>
+      <li Class="ReconAndDiscovery.CompProperties_Stargate" />
     </comps>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
   </ThingDef>
-  
-   <ThingDef ParentName="BuildingBase">
+  <ThingDef ParentName="BuildingBase">
     <defName>RD_WeatherSat</defName>
     <label>weather idol</label>
     <graphicData>
@@ -490,7 +476,7 @@
     <altitudeLayer>Building</altitudeLayer>
     <passability>Impassable</passability>
     <minifiedDef>MinifiedThing</minifiedDef>
-	<thingCategories>
+    <thingCategories>
       <li>BuildingsTemperature</li>
     </thingCategories>
     <tradeability>None</tradeability>
@@ -501,16 +487,16 @@
     <canOverlapZones>false</canOverlapZones>
     <statBases>
       <WorkToBuild>3200</WorkToBuild>
-	<Mass>10</Mass>
+      <Mass>10</Mass>
       <MaxHitPoints>250</MaxHitPoints>
       <Flammability>1.0</Flammability>
     </statBases>
     <tickerType>Rare</tickerType>
     <description>This strange device seems to read the desires of colonists nearby and change the weather accordingly.</description>
     <size>(2,2)</size>
-	<building>
-		<ai_chillDestination>false</ai_chillDestination>
-	</building>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
     <costList>
       <Steel>60</Steel>
       <Gold>5</Gold>
@@ -518,14 +504,12 @@
       <ComponentIndustrial>16</ComponentIndustrial>
     </costList>
     <comps>
-    	<li Class="CompProperties_Forbiddable"/>
-      	<li Class="ReconAndDiscovery.CompProperties_WeatherSat"/>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="ReconAndDiscovery.CompProperties_WeatherSat" />
     </comps>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
   </ThingDef>
-  
-  
-     <ThingDef ParentName="BuildingBase">
+  <ThingDef ParentName="BuildingBase">
     <defName>RD_PsionicEmanator</defName>
     <label>war idol</label>
     <graphicData>
@@ -539,24 +523,23 @@
     <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
       <li>BuildingsSpecial</li>
-	</thingCategories>
-
+    </thingCategories>
     <pathCost>0</pathCost>
     <blockWind>true</blockWind>
     <castEdgeShadows>false</castEdgeShadows>
     <fillPercent>0.5</fillPercent>
     <canOverlapZones>false</canOverlapZones>
     <statBases>
-	<Mass>10</Mass>
+      <Mass>10</Mass>
       <WorkToBuild>3200</WorkToBuild>
       <MaxHitPoints>250</MaxHitPoints>
       <Flammability>1.0</Flammability>
     </statBases>
     <description>This device can be used by psychics to broadcast a psychic battle ward, improving allies' concentration and reflexes. It can also broadcast the psychic shock of an animal's death to enemies.</description>
     <size>(1,1)</size>
-	<building>
-		<ai_chillDestination>false</ai_chillDestination>
-	</building>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
     <costList>
       <Steel>60</Steel>
       <Gold>5</Gold>
@@ -564,12 +547,9 @@
       <ComponentIndustrial>16</ComponentIndustrial>
     </costList>
     <comps>
-    	<li Class="CompProperties_Forbiddable"/>
-      	<li Class="ReconAndDiscovery.CompProperties_PsionicEmanator"/>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="ReconAndDiscovery.CompProperties_PsionicEmanator" />
     </comps>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
   </ThingDef>
-  
-  
-  
 </Defs>

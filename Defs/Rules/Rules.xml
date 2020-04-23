@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <RuleDef>
     <defName>RD_CrashedShip</defName>
     <symbol>crashedShip</symbol>
@@ -10,7 +9,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_TriangularRoom</defName>
     <symbol>triangularRoom</symbol>
@@ -20,7 +18,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_InsertFurnishing</defName>
     <symbol>insertFurnishing</symbol>
@@ -30,7 +27,6 @@
       </li>
     </resolvers>
   </RuleDef>
-    
   <RuleDef>
     <defName>RD_MakeMainAdventureTrigger</defName>
     <symbol>makeMainAdventureTrigger</symbol>
@@ -40,8 +36,6 @@
       </li>
     </resolvers>
   </RuleDef>
-   
-   
   <RuleDef>
     <defName>RD_PathOfDestruction</defName>
     <symbol>pathOfDestruction</symbol>
@@ -51,7 +45,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_EdgeFence</defName>
     <symbol>edgeFence</symbol>
@@ -61,7 +54,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_WireOutline</defName>
     <symbol>wireOutline</symbol>
@@ -71,7 +63,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_RoomWithDoor</defName>
     <symbol>roomWithDoor</symbol>
@@ -81,7 +72,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_WallDoor</defName>
     <symbol>wallDoor</symbol>
@@ -91,8 +81,7 @@
       </li>
     </resolvers>
   </RuleDef>
-  
-   <RuleDef>
+  <RuleDef>
     <defName>RD_AbandonedLab</defName>
     <symbol>abandonedLab</symbol>
     <resolvers>
@@ -101,7 +90,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_OldMilitaryBase</defName>
     <symbol>oldMilitaryBase</symbol>
@@ -111,7 +99,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_NestedRoomMaze</defName>
     <symbol>nestedRoomMaze</symbol>
@@ -121,8 +108,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
-  
   <RuleDef>
     <defName>RD_EdgeShields</defName>
     <symbol>edgeShields</symbol>
@@ -132,7 +117,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_OldCastle</defName>
     <symbol>oldCastle</symbol>
@@ -142,7 +126,6 @@
       </li>
     </resolvers>
   </RuleDef>
-  
   <RuleDef>
     <defName>RD_PlaceTrigger</defName>
     <symbol>placeTrigger</symbol>
@@ -152,8 +135,6 @@
       </li>
     </resolvers>
   </RuleDef>
-
-
   <!--
   <RuleDef>
     <defName>RD_Storage</defName>

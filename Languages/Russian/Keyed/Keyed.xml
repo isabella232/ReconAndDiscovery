@@ -1,70 +1,69 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-	<RD_AlertExplanation>Нитролопа начинает опасно раздуваться. Вы должны сбросить давление, подоив её, иначе она может взорваться!</RD_AlertExplanation>
-	<RD_AwaitingPrayersSacrifices>В ожидании молитв и жертвоприношений.</RD_AwaitingPrayersSacrifices>
-	<RD_BringFog>Принесите туман (18 маны)</RD_BringFog>
-	<RD_BringRain>Принесите дождь (15 маны)</RD_BringRain>
-	<RD_Charge>Заряд: </RD_Charge>
-	<RD_DangrouslyOverfull>Опасно переполнена!</RD_DangrouslyOverfull>
-	<RD_DevelopedRadiationSickness>У {PAWN_nameDef} развилась лучевая болезнь</RD_DevelopedRadiationSickness>
-	<RD_DiplomacyAwful>Дрожащая дипломатическая «стратегия» {0}, по-видимому, в основном включала в себя дикие колебания между агрессией и паникой, щедро усыпанные непристойными оскорблениями, в которых участвовал переговорщик для предшественников {1}. Ваши и без того напряженные отношения, понятно, ухудшились ({2} к отношениям).</RD_DiplomacyAwful>
-	<RD_DiplomacyExcellent>Легкая, но непреклонная манера {0} хорошо справлялась с рядом проблем переговорщика по {1}. Ваши отношения улучшились на {2}</RD_DiplomacyExcellent>
-	<RD_DiplomacyMasterWorkLegendary>{0} сделал дипломатию такой же легкой, как дыхание, с почти волшебной способностью заставить переговорщика {1} видеть вашу точку зрения. Ваши отношения претерпели существенное улучшение {2}.</RD_DiplomacyMasterWorkLegendary>
-	<RD_DiplomacyNormalGood>Переговоры с {0} должным образом разрешают некоторые незначительные споры, с которыми вы столкнулись {1}. Ваши отношения улучшились на {2}.</RD_DiplomacyNormalGood>
-	<RD_DiplomacyPoor>Главная переговорная тактика, применяемая {0}, казалось, скучать, уставившись в стену. Это мало помогло рассеять напряженность и породить чувство уважения ({2} к отношениям))</RD_DiplomacyPoor>
-	<RD_DispenseTrialCure>Отказаться от пробного лечения</RD_DispenseTrialCure>
-	<RD_EndExtremeWeather>Конец экстремальной погоды (10 маны)</RD_EndExtremeWeather>
-	<RD_EnteringRepairCycle>Entering ремонтный цикл</RD_EnteringRepairCycle>
-	<RD_ExplosiveRisk>Риск взрыва!</RD_ExplosiveRisk>
-	<RD_FilesPertanentLuciferiumCure>Кажется, есть файлы, относящиеся к лечению люциферием, но {0} не хватает интеллектуальных навыков для доступа к ним.</RD_FilesPertanentLuciferiumCure>
-	<RD_FortunatelyDissipateAttack>К счастью, {PAWN_nameDef} смог рассеять атаку своими экстрасенсорными способностями.</RD_FortunatelyDissipateAttack>
-	<RD_FortunatelyDissipateAttackShock>{PAWN_nameDef} смог перенаправить атаку, предотвратив причинение вреда другим, но теперь находится в психическом шоке!</RD_FortunatelyDissipateAttackShock>
-	<RD_GoldenFoilPacket>Из соседнего люка выпадает маленький пакетик из золотой фольги!</RD_GoldenFoilPacket>
-	<RD_GratefulSurvivorsAmazedDesc>Выжившие в катастрофе поражены вашей быстрой и профессиональной скорой медицинской помощью, благодаря которой никто не погиб. В благодарность они включили специальную систему, снятую с места крушения.</RD_GratefulSurvivorsAmazedDesc>
-	<RD_GratefulSurvivorsDesc>Выжившие в катастрофе очень благодарны вам за помощь и прислали некоторые припасы в знак благодарности.</RD_GratefulSurvivorsDesc>
-	<RD_HoloEmitterAreaFor>Область Голоэмиттера для {PAWN_nameDef}.</RD_HoloEmitterAreaFor>
-	<RD_LargeMuffaloMigration>дней!</RD_LargeMuffaloMigration>
-	<RD_LinkGate>соедените врата.</RD_LinkGate>
-	<RD_LinkGateDesc>Соедените эти врата с другими.</RD_LinkGateDesc>
-	<RD_MalevolentPsychicDesc>{PAWN_nameDef} считает, что злобная психическая энергия накапливается, и что это мирное стадо маффало находится на грани массового безумия.</RD_MalevolentPsychicDesc>
-	<RD_MechanitesCureCorrupted>Механиты в лекарстве испортили свою программу и сбежали из упаковки!</RD_MechanitesCureCorrupted>
-	<RD_MiscarriedRadiation>{PAWN_nameDef} произошел выкидыш из-за радиационного отравления.</RD_MiscarriedRadiation>
-	<RD_NegotiationsTrap>Переговоры - это ловушка!</RD_NegotiationsTrap>
-	<RD_NewFaction>Новая Фракция!</RD_NewFaction>
-	<RD_NewFactionDesc>Выжившие в катастрофе решили устроить здесь свою жизнь и основали новую фракцию</RD_NewFactionDesc>
-	<RD_OnlyPsychicCanBroadcast>Только психические пешки могут транслировать боевую молитву</RD_OnlyPsychicCanBroadcast>
-	<RD_OtherGateBuried>Другие ворота были похоронены! Мы не можем пройти!</RD_OtherGateBuried>
-	<RD_Overfull>Перегрузка!</RD_Overfull>
-	<RD_PlantDiedRatiation>Растение умерло от радиационного повреждения</RD_PlantDiedRatiation>
-	<RD_PsionicLandmine>Псионическая Мина в комнате вызывает кратковременный психический шок!</RD_PsionicLandmine>
-	<RD_PsychicMessage>Экстрасенсорное видение</RD_PsychicMessage>
-	<RD_ReceivedVisionBattle>{{PAWN_name Def} получил видения, сопровождающие беспилотник, показывая битву и взывая о помощи. Другие наверняка заметили, так что место, вероятно, будет опасным.</RD_ReceivedVisionBattle>
-	<RD_ShootingStar>только что видел, как что-то упало с неба неподалеку отсюда!</RD_ShootingStar>
-	<RD_StargateLinked>Звездные врата связаны с местом назначения.</RD_StargateLinked>
-	<RD_StargateNoEvidence>Там нет никаких признаков Звездных врат.</RD_StargateNoEvidence>
-	<RD_StargateNotLinked>Звездные врата не связаны с местом назначения!</RD_StargateNotLinked>
-	<RD_StrikeOurEnemies>Поразить наших врагов (40 маны)</RD_StrikeOurEnemies>
-	<RD_Teleport>Телепорт.</RD_Teleport>
-	<RD_TeleportDesc>Телепортируйте человека или животное.</RD_TeleportDesc>
-	<RD_TeleporterLannotLockThickRock>Телепорт не может закрепиться через толстую скалу над головой!</RD_TeleporterLannotLockThickRock>
-	<RD_ThinksResearchDubious>\n{PAWN_nameDef} считает, что исследование сомнительно, и обеспокоен тем, что любые оставшиеся образцы будут опасны.</RD_ThinksResearchDubious>
-	<RD_ThinksScienceUnderlying>\n{{PAWN_nameDef} считает, что наука, лежащая в основе проекта, является здравой, и в результате этого процесса все потерянные оставшиеся образцы лечения, вероятно работали.</RD_ThinksScienceUnderlying>
-	<RD_YouCannotLock>Вы не можете там ничего зафиксировать.</RD_YouCannotLock>
-	<RD_YourCaravanSpottedMuffaloMigration>Ваш караван заметил огромную миграцию муффало!</RD_YourCaravanSpottedMuffaloMigration>
-	<RD_Mana>Мана</RD_Mana>
-	<RD_Negotiate>Переговоры</RD_Negotiate>
-	<RD_Social>Социальный</RD_Social>
-	<RD_FormatOccupant>Format Occupant</RD_FormatOccupant>
-	<RD_GratefulSurvivors>Благодарные выжившие</RD_GratefulSurvivors>
-	<RD_LogOff>Выйти {PAWN_nameDef}</RD_LogOff>
-	<RD_ManhunterDanger>Опасность охотников за людьми</RD_ManhunterDanger>
-	<RD_MuffaloMigration>Миграция муффало</RD_MuffaloMigration>
-	<RD_ResurrectContained>Возродить содержащиеся</RD_ResurrectContained>
-	<RD_TransferToThisEmitter>Переход к этому эмиттеру</RD_TransferToThisEmitter>
-	<RD_TravelToTargetGate>Путешествие к целевым воротам</RD_TravelToTargetGate>
-	<RD_UseComputer>Использовать компьютер</RD_UseComputer>
-	<RD_UsingComputer>Использует компьютер</RD_UsingComputer>
-	<RD_LetterLabelPawnsLostDueToMapCountdown>Оставили позади</RD_LetterLabelPawnsLostDueToMapCountdown>
-	<RD_LetterPawnsLostDueToMapCountdown>Некоторые из ваших животных или пленников остались в пустошах:\n\n{0}</RD_LetterPawnsLostDueToMapCountdown>
-
+  <RD_AlertExplanation>Нитролопа начинает опасно раздуваться. Вы должны сбросить давление, подоив её, иначе она может взорваться!</RD_AlertExplanation>
+  <RD_AwaitingPrayersSacrifices>В ожидании молитв и жертвоприношений.</RD_AwaitingPrayersSacrifices>
+  <RD_BringFog>Принесите туман (18 маны)</RD_BringFog>
+  <RD_BringRain>Принесите дождь (15 маны)</RD_BringRain>
+  <RD_Charge>Заряд: </RD_Charge>
+  <RD_DangrouslyOverfull>Опасно переполнена!</RD_DangrouslyOverfull>
+  <RD_DevelopedRadiationSickness>У {PAWN_nameDef} развилась лучевая болезнь</RD_DevelopedRadiationSickness>
+  <RD_DiplomacyAwful>Дрожащая дипломатическая «стратегия» {0}, по-видимому, в основном включала в себя дикие колебания между агрессией и паникой, щедро усыпанные непристойными оскорблениями, в которых участвовал переговорщик для предшественников {1}. Ваши и без того напряженные отношения, понятно, ухудшились ({2} к отношениям).</RD_DiplomacyAwful>
+  <RD_DiplomacyExcellent>Легкая, но непреклонная манера {0} хорошо справлялась с рядом проблем переговорщика по {1}. Ваши отношения улучшились на {2}</RD_DiplomacyExcellent>
+  <RD_DiplomacyMasterWorkLegendary>{0} сделал дипломатию такой же легкой, как дыхание, с почти волшебной способностью заставить переговорщика {1} видеть вашу точку зрения. Ваши отношения претерпели существенное улучшение {2}.</RD_DiplomacyMasterWorkLegendary>
+  <RD_DiplomacyNormalGood>Переговоры с {0} должным образом разрешают некоторые незначительные споры, с которыми вы столкнулись {1}. Ваши отношения улучшились на {2}.</RD_DiplomacyNormalGood>
+  <RD_DiplomacyPoor>Главная переговорная тактика, применяемая {0}, казалось, скучать, уставившись в стену. Это мало помогло рассеять напряженность и породить чувство уважения ({2} к отношениям))</RD_DiplomacyPoor>
+  <RD_DispenseTrialCure>Отказаться от пробного лечения</RD_DispenseTrialCure>
+  <RD_EndExtremeWeather>Конец экстремальной погоды (10 маны)</RD_EndExtremeWeather>
+  <RD_EnteringRepairCycle>Entering ремонтный цикл</RD_EnteringRepairCycle>
+  <RD_ExplosiveRisk>Риск взрыва!</RD_ExplosiveRisk>
+  <RD_FilesPertanentLuciferiumCure>Кажется, есть файлы, относящиеся к лечению люциферием, но {0} не хватает интеллектуальных навыков для доступа к ним.</RD_FilesPertanentLuciferiumCure>
+  <RD_FortunatelyDissipateAttack>К счастью, {PAWN_nameDef} смог рассеять атаку своими экстрасенсорными способностями.</RD_FortunatelyDissipateAttack>
+  <RD_FortunatelyDissipateAttackShock>{PAWN_nameDef} смог перенаправить атаку, предотвратив причинение вреда другим, но теперь находится в психическом шоке!</RD_FortunatelyDissipateAttackShock>
+  <RD_GoldenFoilPacket>Из соседнего люка выпадает маленький пакетик из золотой фольги!</RD_GoldenFoilPacket>
+  <RD_GratefulSurvivorsAmazedDesc>Выжившие в катастрофе поражены вашей быстрой и профессиональной скорой медицинской помощью, благодаря которой никто не погиб. В благодарность они включили специальную систему, снятую с места крушения.</RD_GratefulSurvivorsAmazedDesc>
+  <RD_GratefulSurvivorsDesc>Выжившие в катастрофе очень благодарны вам за помощь и прислали некоторые припасы в знак благодарности.</RD_GratefulSurvivorsDesc>
+  <RD_HoloEmitterAreaFor>Область Голоэмиттера для {PAWN_nameDef}.</RD_HoloEmitterAreaFor>
+  <RD_LargeMuffaloMigration>дней!</RD_LargeMuffaloMigration>
+  <RD_LinkGate>соедените врата.</RD_LinkGate>
+  <RD_LinkGateDesc>Соедените эти врата с другими.</RD_LinkGateDesc>
+  <RD_MalevolentPsychicDesc>{PAWN_nameDef} считает, что злобная психическая энергия накапливается, и что это мирное стадо маффало находится на грани массового безумия.</RD_MalevolentPsychicDesc>
+  <RD_MechanitesCureCorrupted>Механиты в лекарстве испортили свою программу и сбежали из упаковки!</RD_MechanitesCureCorrupted>
+  <RD_MiscarriedRadiation>{PAWN_nameDef} произошел выкидыш из-за радиационного отравления.</RD_MiscarriedRadiation>
+  <RD_NegotiationsTrap>Переговоры - это ловушка!</RD_NegotiationsTrap>
+  <RD_NewFaction>Новая Фракция!</RD_NewFaction>
+  <RD_NewFactionDesc>Выжившие в катастрофе решили устроить здесь свою жизнь и основали новую фракцию</RD_NewFactionDesc>
+  <RD_OnlyPsychicCanBroadcast>Только психические пешки могут транслировать боевую молитву</RD_OnlyPsychicCanBroadcast>
+  <RD_OtherGateBuried>Другие ворота были похоронены! Мы не можем пройти!</RD_OtherGateBuried>
+  <RD_Overfull>Перегрузка!</RD_Overfull>
+  <RD_PlantDiedRatiation>Растение умерло от радиационного повреждения</RD_PlantDiedRatiation>
+  <RD_PsionicLandmine>Псионическая Мина в комнате вызывает кратковременный психический шок!</RD_PsionicLandmine>
+  <RD_PsychicMessage>Экстрасенсорное видение</RD_PsychicMessage>
+  <RD_ReceivedVisionBattle>{{PAWN_name Def} получил видения, сопровождающие беспилотник, показывая битву и взывая о помощи. Другие наверняка заметили, так что место, вероятно, будет опасным.</RD_ReceivedVisionBattle>
+  <RD_ShootingStar>только что видел, как что-то упало с неба неподалеку отсюда!</RD_ShootingStar>
+  <RD_StargateLinked>Звездные врата связаны с местом назначения.</RD_StargateLinked>
+  <RD_StargateNoEvidence>Там нет никаких признаков Звездных врат.</RD_StargateNoEvidence>
+  <RD_StargateNotLinked>Звездные врата не связаны с местом назначения!</RD_StargateNotLinked>
+  <RD_StrikeOurEnemies>Поразить наших врагов (40 маны)</RD_StrikeOurEnemies>
+  <RD_Teleport>Телепорт.</RD_Teleport>
+  <RD_TeleportDesc>Телепортируйте человека или животное.</RD_TeleportDesc>
+  <RD_TeleporterLannotLockThickRock>Телепорт не может закрепиться через толстую скалу над головой!</RD_TeleporterLannotLockThickRock>
+  <RD_ThinksResearchDubious>\n{PAWN_nameDef} считает, что исследование сомнительно, и обеспокоен тем, что любые оставшиеся образцы будут опасны.</RD_ThinksResearchDubious>
+  <RD_ThinksScienceUnderlying>\n{{PAWN_nameDef} считает, что наука, лежащая в основе проекта, является здравой, и в результате этого процесса все потерянные оставшиеся образцы лечения, вероятно работали.</RD_ThinksScienceUnderlying>
+  <RD_YouCannotLock>Вы не можете там ничего зафиксировать.</RD_YouCannotLock>
+  <RD_YourCaravanSpottedMuffaloMigration>Ваш караван заметил огромную миграцию муффало!</RD_YourCaravanSpottedMuffaloMigration>
+  <RD_Mana>Мана</RD_Mana>
+  <RD_Negotiate>Переговоры</RD_Negotiate>
+  <RD_Social>Социальный</RD_Social>
+  <RD_FormatOccupant>Format Occupant</RD_FormatOccupant>
+  <RD_GratefulSurvivors>Благодарные выжившие</RD_GratefulSurvivors>
+  <RD_LogOff>Выйти {PAWN_nameDef}</RD_LogOff>
+  <RD_ManhunterDanger>Опасность охотников за людьми</RD_ManhunterDanger>
+  <RD_MuffaloMigration>Миграция муффало</RD_MuffaloMigration>
+  <RD_ResurrectContained>Возродить содержащиеся</RD_ResurrectContained>
+  <RD_TransferToThisEmitter>Переход к этому эмиттеру</RD_TransferToThisEmitter>
+  <RD_TravelToTargetGate>Путешествие к целевым воротам</RD_TravelToTargetGate>
+  <RD_UseComputer>Использовать компьютер</RD_UseComputer>
+  <RD_UsingComputer>Использует компьютер</RD_UsingComputer>
+  <RD_LetterLabelPawnsLostDueToMapCountdown>Оставили позади</RD_LetterLabelPawnsLostDueToMapCountdown>
+  <RD_LetterPawnsLostDueToMapCountdown>Некоторые из ваших животных или пленников остались в пустошах:\n\n{0}</RD_LetterPawnsLostDueToMapCountdown>
 </LanguageData>

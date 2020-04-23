@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Recon And Discovery (Continued)</name>
-  	<packageId>Mlie.ReconAndDiscovery</packageId>
-	<author>SeveralPuffins</author>
-	<url>https://github.com/emipa606/ReconAndDiscovery</url>
-	<supportedVersions>
-		<li>1.1</li>
-	</supportedVersions>
-	<modDependencies />
-	<loadAfter />
-	<description>Update of SeveralPuffins mod for RimWorld 1.1.
+  <name>Recon And Discovery (Continued)</name>
+  <packageId>Mlie.ReconAndDiscovery</packageId>
+  <author>SeveralPuffins</author>
+  <url>https://github.com/emipa606/ReconAndDiscovery</url>
+  <supportedVersions>
+    <li>1.1</li>
+  </supportedVersions>
+  <modDependencies />
+  <loadAfter />
+  <description>Update of SeveralPuffins mod for RimWorld 1.1.
 
 [img]https://raw.githubusercontent.com/emipa606/RimWorld-Wrapper/master/Notice.png[/img]
+
+[img]https://i.imgur.com/GYswkZ7.png[/img]
 
 Support-chat:
 https://invite.gg/mlie
