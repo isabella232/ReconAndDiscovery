@@ -1,4 +1,5 @@
 ﻿using System;
+using ExpandedIncidents.Settings;
 using RimWorld;
 using Verse;
 
@@ -53,6 +54,11 @@ namespace ReconAndDiscovery
 
 		public override void Init()
 		{
+            if(RaD_ModSettings.IncidentTremorsBaseChance == 0)
+            {
+                base.End();
+                return;
+            }
 			this.CollapseRandomRoof();
 			base.Init();
 		}
