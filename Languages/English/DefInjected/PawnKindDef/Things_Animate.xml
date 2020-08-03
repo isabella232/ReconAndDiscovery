@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RD_Devillo.label>devillo</RD_Devillo.label>
+  <RD_Devillo.labelPlural>devillos</RD_Devillo.labelPlural>
+  <RD_Devillo.lifeStages.0.label>devillo calf</RD_Devillo.lifeStages.0.label>
+  <RD_Devillo.lifeStages.0.labelPlural>devillo calves</RD_Devillo.lifeStages.0.labelPlural>
+  <RD_Devillo.lifeStages.0.labelMale>male devillo calf</RD_Devillo.lifeStages.0.labelMale>
+  <RD_Devillo.lifeStages.0.labelMalePlural>male devillo calves</RD_Devillo.lifeStages.0.labelMalePlural>
+  <RD_Devillo.lifeStages.0.labelFemale>female devillo calf</RD_Devillo.lifeStages.0.labelFemale>
+  <RD_Devillo.lifeStages.0.labelFemalePlural>female devillo calves</RD_Devillo.lifeStages.0.labelFemalePlural>
+  <RD_Devillo.lifeStages.1.label>devillo</RD_Devillo.lifeStages.1.label>
+  <RD_Devillo.lifeStages.1.labelPlural>devillo</RD_Devillo.lifeStages.1.labelPlural>
+  <RD_Devillo.lifeStages.1.labelMale>male devillo</RD_Devillo.lifeStages.1.labelMale>
+  <RD_Devillo.lifeStages.1.labelMalePlural>male devillos</RD_Devillo.lifeStages.1.labelMalePlural>
+  <RD_Devillo.lifeStages.1.labelFemale>female devillo</RD_Devillo.lifeStages.1.labelFemale>
+  <RD_Devillo.lifeStages.1.labelFemalePlural>female devillos</RD_Devillo.lifeStages.1.labelFemalePlural>
+  <RD_Devillo.lifeStages.2.label>devillo</RD_Devillo.lifeStages.2.label>
+  <RD_Devillo.lifeStages.2.labelPlural>devillo</RD_Devillo.lifeStages.2.labelPlural>
+  <RD_Devillo.lifeStages.2.labelMale>male devillo</RD_Devillo.lifeStages.2.labelMale>
+  <RD_Devillo.lifeStages.2.labelMalePlural>male devillos</RD_Devillo.lifeStages.2.labelMalePlural>
+  <RD_Devillo.lifeStages.2.labelFemale>female devillo</RD_Devillo.lifeStages.2.labelFemale>
+  <RD_Devillo.lifeStages.2.labelFemalePlural>female devillos</RD_Devillo.lifeStages.2.labelFemalePlural>
+  <RD_Devillo.labelMale>male devillo</RD_Devillo.labelMale>
+  <RD_Devillo.labelMalePlural>male devillos</RD_Devillo.labelMalePlural>
+  <RD_Devillo.labelFemale>female devillo</RD_Devillo.labelFemale>
+  <RD_Devillo.labelFemalePlural>female devillos</RD_Devillo.labelFemalePlural>
+
+  <RD_Nitralope.label>nitralope</RD_Nitralope.label>
+  <RD_Nitralope.labelPlural>nitralopes</RD_Nitralope.labelPlural>
+  <RD_Nitralope.lifeStages.0.label>nitralope calf</RD_Nitralope.lifeStages.0.label>
+  <RD_Nitralope.lifeStages.0.labelPlural>nitralope calves</RD_Nitralope.lifeStages.0.labelPlural>
+  <RD_Nitralope.lifeStages.0.labelMale>male nitralope calf</RD_Nitralope.lifeStages.0.labelMale>
+  <RD_Nitralope.lifeStages.0.labelMalePlural>male nitralope calves</RD_Nitralope.lifeStages.0.labelMalePlural>
+  <RD_Nitralope.lifeStages.0.labelFemale>female nitralope calf</RD_Nitralope.lifeStages.0.labelFemale>
+  <RD_Nitralope.lifeStages.0.labelFemalePlural>female nitralope calves</RD_Nitralope.lifeStages.0.labelFemalePlural>
+  <RD_Nitralope.lifeStages.1.label>nitralope</RD_Nitralope.lifeStages.1.label>
+  <RD_Nitralope.lifeStages.1.labelPlural>nitralope</RD_Nitralope.lifeStages.1.labelPlural>
+  <RD_Nitralope.lifeStages.1.labelMale>male nitralope</RD_Nitralope.lifeStages.1.labelMale>
+  <RD_Nitralope.lifeStages.1.labelMalePlural>male nitralopes</RD_Nitralope.lifeStages.1.labelMalePlural>
+  <RD_Nitralope.lifeStages.1.labelFemale>female nitralope</RD_Nitralope.lifeStages.1.labelFemale>
+  <RD_Nitralope.lifeStages.1.labelFemalePlural>female nitralopes</RD_Nitralope.lifeStages.1.labelFemalePlural>
+  <RD_Nitralope.lifeStages.2.label>nitralope</RD_Nitralope.lifeStages.2.label>
+  <RD_Nitralope.lifeStages.2.labelPlural>nitralope</RD_Nitralope.lifeStages.2.labelPlural>
+  <RD_Nitralope.lifeStages.2.labelMale>male nitralope</RD_Nitralope.lifeStages.2.labelMale>
+  <RD_Nitralope.lifeStages.2.labelMalePlural>male nitralopes</RD_Nitralope.lifeStages.2.labelMalePlural>
+  <RD_Nitralope.lifeStages.2.labelFemale>female nitralope</RD_Nitralope.lifeStages.2.labelFemale>
+  <RD_Nitralope.lifeStages.2.labelFemalePlural>female nitralopes</RD_Nitralope.lifeStages.2.labelFemalePlural>
+  <RD_Nitralope.labelMale>male nitralope</RD_Nitralope.labelMale>
+  <RD_Nitralope.labelMalePlural>male nitralopes</RD_Nitralope.labelMalePlural>
+  <RD_Nitralope.labelFemale>female nitralope</RD_Nitralope.labelFemale>
+  <RD_Nitralope.labelFemalePlural>female nitralopes</RD_Nitralope.labelFemalePlural>
+
+
+</LanguageData>

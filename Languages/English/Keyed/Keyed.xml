@@ -67,4 +67,5 @@
   <RD_LetterLabelPawnsLostDueToMapCountdown>Left behind</RD_LetterLabelPawnsLostDueToMapCountdown>
   <RD_LetterPawnsLostDueToMapCountdown>Some of your animals or prisoners were left behind in the wilderness:\n\n{0}</RD_LetterPawnsLostDueToMapCountdown>
   <RD_SettingHeader>Incident baseChances</RD_SettingHeader>
+
 </LanguageData>
