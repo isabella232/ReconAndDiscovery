@@ -140,8 +140,7 @@ namespace ReconAndDiscovery
                     List<Thing> list = map.listerThings.ThingsInGroup(ThingRequestGroup.Plant);
                     if (list.Count != 0)
                     {
-                        Plant plant = list.RandomElement<Thing>() as Plant;
-                        if (plant != null)
+                        if (list.RandomElement<Thing>() is Plant plant)
                         {
                             if (!this.IsProtectedAt(map, plant.Position))
                             {
@@ -150,7 +149,7 @@ namespace ReconAndDiscovery
                                     plant.CropBlighted();
                                     if (plant.sown)
                                     {
-	
+
                                         Messages.Message("RD_PlantDiedRatiation".Translate() //A plant has died due to radiation damage"
                                             , MessageTypeDefOf.NegativeEvent);
                                     }

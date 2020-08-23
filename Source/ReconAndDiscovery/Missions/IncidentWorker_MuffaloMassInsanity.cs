@@ -20,9 +20,8 @@ namespace ReconAndDiscovery.Missions
 
 		protected override bool TryExecuteWorker(IncidentParms parms)
 		{
-			Map map = parms.target as Map;
-			bool result;
-			if (map == null)
+            bool result;
+            if (!(parms.target is Map map))
 			{
 				result = false;
 			}

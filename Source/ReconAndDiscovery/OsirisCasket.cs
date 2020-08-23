@@ -12,12 +12,11 @@ namespace ReconAndDiscovery
 			{
 				for (int i = 0; i < this.innerContainer.Count; i++)
 				{
-					Corpse corpse = this.innerContainer[i] as Corpse;
-					if (corpse != null)
-					{
-						return corpse;
-					}
-				}
+                    if (this.innerContainer[i] is Corpse corpse)
+                    {
+                        return corpse;
+                    }
+                }
 				return null;
 			}
 		}

@@ -89,16 +89,15 @@ namespace ReconAndDiscovery.Missions
 
 		private void MakeTradeCaravans(Map map)
 		{
-			IntVec3 spot;
-			if (RCellFinder.TryFindRandomSpotJustOutsideColony(CellFinderLoose.RandomCellWith((IntVec3 c) => c.Standable(map), map, 1000), map, out spot))
-			{
-				foreach (Faction faction in this.Factions)
-				{
-					this.MakeTradeCaravan(faction, spot, map);
-				}
-				this.MakeTradeCaravan(this.hostFaction, spot, map);
-			}
-		}
+            if (RCellFinder.TryFindRandomSpotJustOutsideColony(CellFinderLoose.RandomCellWith((IntVec3 c) => c.Standable(map), map, 1000), map, out IntVec3 spot))
+            {
+                foreach (Faction faction in this.Factions)
+                {
+                    this.MakeTradeCaravan(faction, spot, map);
+                }
+                this.MakeTradeCaravan(this.hostFaction, spot, map);
+            }
+        }
 
 		private void MakePartyGroups(Map map)
 		{

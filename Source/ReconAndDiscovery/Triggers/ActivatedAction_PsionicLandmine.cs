@@ -24,9 +24,11 @@ namespace ReconAndDiscovery.Triggers
 					diaNode3.text += "RD_FortunatelyDissipateAttackShock".Translate( this.bestPsychic.Named("PAWN")); //" {0} was able to channel the attack, preventing harm to others, but is now in psychic shock!
 				}
 			}
-			DiaOption diaOption = new DiaOption("OK".Translate());
-			diaOption.resolveTree = true;
-			diaNode.options.Add(diaOption);
+            DiaOption diaOption = new DiaOption("OK".Translate())
+            {
+                resolveTree = true
+            };
+            diaNode.options.Add(diaOption);
 			Find.WindowStack.Add(new Dialog_NodeTree(diaNode, true, true, null));
 		}
 
@@ -73,15 +75,14 @@ namespace ReconAndDiscovery.Triggers
 					}
 				}
 			}
-			ActionTrigger actionTrigger = trigger as ActionTrigger;
-			if (actionTrigger != null)
-			{
-				IEnumerable<IntVec3> cells = actionTrigger.Cells;
-				IntVec3 center = cells.RandomElement<IntVec3>();
+            if (trigger is ActionTrigger actionTrigger)
+            {
+                IEnumerable<IntVec3> cells = actionTrigger.Cells;
+                IntVec3 center = cells.RandomElement<IntVec3>();
                 //TODO: check if it works
                 GenExplosion.DoExplosion(center, map, 2f, DamageDefOf.Flame, null, -1, -1f, null, null, null, null, ThingDefOf.ChunkSlagSteel, 0.4f, 1, true, null, 0f, 1);
-			}
-		}
+            }
+        }
 
 		private Pawn bestPsychic = null;
 	}

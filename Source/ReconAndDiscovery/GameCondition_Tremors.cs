@@ -21,8 +21,7 @@ namespace ReconAndDiscovery
 		{
             foreach (Map map in AffectedMaps)
             {
-                IntVec3 intVec;
-                if (CellFinderLoose.TryGetRandomCellWith((IntVec3 c) => c.Standable(map) && map.roofGrid.Roofed(c), map, 500, out intVec))
+                if (CellFinderLoose.TryGetRandomCellWith((IntVec3 c) => c.Standable(map) && map.roofGrid.Roofed(c), map, 500, out IntVec3 intVec))
                 {
                     map.roofCollapseBuffer.MarkToCollapse(intVec);
                     IntVec3[] array = new IntVec3[]

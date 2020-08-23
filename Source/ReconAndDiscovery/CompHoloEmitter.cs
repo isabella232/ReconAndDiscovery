@@ -73,12 +73,11 @@ namespace ReconAndDiscovery
 				{
 					foreach (Thing thing in this.parent.Map.listerBuildings.AllBuildingsColonistOfDef(ThingDef.Named("RD_HolographicEmitter")))
 					{
-						HoloEmitter holoEmitter = thing as HoloEmitter;
-						if (holoEmitter == null)
-						{
-							break;
-						}
-						if (holoEmitter.GetComp<CompHoloEmitter>().SimPawn == selPawn)
+                        if (!(thing is HoloEmitter holoEmitter))
+                        {
+                            break;
+                        }
+                        if (holoEmitter.GetComp<CompHoloEmitter>().SimPawn == selPawn)
 						{
 							holoEmitter.GetComp<CompHoloEmitter>().SimPawn = null;
 							this.pawn = selPawn;
@@ -163,9 +162,8 @@ namespace ReconAndDiscovery
 			IEnumerable<IntVec3> enumerable = from cell in GenRadial.RadialCellsAround(this.parent.Position, 18f, true)
 			where cell.InHorDistOf(this.parent.Position, 12f) && GenSight.LineOfSight(this.parent.Position, cell, this.parent.Map, true, null, 0, 0)
 			select cell;
-			Area_Allowed area_Allowed;
-			this.parent.Map.areaManager.TryMakeNewAllowed(out area_Allowed);
-			foreach (IntVec3 c in enumerable)
+            this.parent.Map.areaManager.TryMakeNewAllowed(out Area_Allowed area_Allowed);
+            foreach (IntVec3 c in enumerable)
 			{
 				area_Allowed[this.parent.Map.cellIndices.CellToIndex(c)] = true;
 			}

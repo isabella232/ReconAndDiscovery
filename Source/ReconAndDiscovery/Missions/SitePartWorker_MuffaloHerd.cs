@@ -14,22 +14,20 @@ namespace ReconAndDiscovery.Missions
             //TODO: check if it works
 			IncidentParms incidentParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.FactionArrival, map);
 			incidentParms.forced = true;
-			IntVec3 spawnCenter;
-			if (RCellFinder.TryFindRandomPawnEntryCell(out spawnCenter, map, 0f, false, (IntVec3 v) => v.Standable(map)))
-			{
-				incidentParms.spawnCenter = spawnCenter;
-			}
-			IntVec3 spawnCenter2;
-			if (CellFinder.TryFindRandomEdgeCellWith((IntVec3 c) => map.reachability.CanReachColony(c), map, CellFinder.EdgeRoadChance_Neutral, out spawnCenter2))
-			{
-				incidentParms.faction = faction;
-				incidentParms.spawnCenter = spawnCenter2;
-				incidentParms.points *= 4f;
-				incidentParms.points = Math.Max(incidentParms.points, 250f);
-				QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.TravelerGroup, null, incidentParms), Find.TickManager.TicksGame + Rand.RangeInclusive(5000, 15000));
-				Find.Storyteller.incidentQueue.Add(qi);
-			}
-		}
+            if (RCellFinder.TryFindRandomPawnEntryCell(out IntVec3 spawnCenter, map, 0f, false, (IntVec3 v) => v.Standable(map)))
+            {
+                incidentParms.spawnCenter = spawnCenter;
+            }
+            if (CellFinder.TryFindRandomEdgeCellWith((IntVec3 c) => map.reachability.CanReachColony(c), map, CellFinder.EdgeRoadChance_Neutral, out IntVec3 spawnCenter2))
+            {
+                incidentParms.faction = faction;
+                incidentParms.spawnCenter = spawnCenter2;
+                incidentParms.points *= 4f;
+                incidentParms.points = Math.Max(incidentParms.points, 250f);
+                QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDefOf.TravelerGroup, null, incidentParms), Find.TickManager.TicksGame + Rand.RangeInclusive(5000, 15000));
+                Find.Storyteller.incidentQueue.Add(qi);
+            }
+        }
 
 		public void QueueArrivals(Map map)
 		{

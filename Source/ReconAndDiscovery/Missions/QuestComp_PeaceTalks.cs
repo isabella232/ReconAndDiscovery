@@ -14,8 +14,7 @@ namespace ReconAndDiscovery.Missions
             {
                 if (this.negotiator == null)
                 {
-                    MapParent mapParent = this.parent as MapParent;
-                    if (mapParent != null && mapParent.Map != null)
+                    if (this.parent is MapParent mapParent && mapParent.Map != null)
                     {
                         this.negotiator = (from p in mapParent.Map.mapPawns.AllPawnsSpawned
                                            where p.Faction == this.requestingFaction
@@ -45,16 +44,17 @@ namespace ReconAndDiscovery.Missions
             {
                 if (this.active)
                 {
-                    MapParent mapParent = this.parent as MapParent;
-                    if (mapParent != null && mapParent.Map != null)
+                    if (this.parent is MapParent mapParent && mapParent.Map != null)
                     {
                         if (this.Negotiator != null && this.Negotiator.Spawned)
                         {
                             this.Negotiator.mindState.wantsToTradeWithColony = true;
                             if (this.Negotiator.GetComp<CompNegotiator>() == null)
                             {
-                                ThingComp thingComp = new CompNegotiator();
-                                thingComp.parent = this.Negotiator;
+                                ThingComp thingComp = new CompNegotiator
+                                {
+                                    parent = this.Negotiator
+                                };
                                 this.Negotiator.AllComps.Add(thingComp);
                             }
                         }
@@ -117,8 +117,10 @@ namespace ReconAndDiscovery.Missions
                         break;
                 }
                 DiaNode diaNode = new DiaNode(text);
-                DiaOption diaOption = new DiaOption("OK".Translate());
-                diaOption.resolveTree = true;
+                DiaOption diaOption = new DiaOption("OK".Translate())
+                {
+                    resolveTree = true
+                };
                 diaNode.options.Add(diaOption);
                 Dialog_NodeTree window = new Dialog_NodeTree(diaNode, false, false, null);
                 Find.WindowStack.Add(window);
@@ -133,8 +135,10 @@ namespace ReconAndDiscovery.Missions
             else
             {
                 DiaNode diaNode2 = new DiaNode("RD_NegotiationsTrap".Translate()); //"The negotiations are a trap!"
-                DiaOption diaOption2 = new DiaOption("OK".Translate());
-                diaOption2.resolveTree = true;
+                DiaOption diaOption2 = new DiaOption("OK".Translate())
+                {
+                    resolveTree = true
+                };
                 diaNode2.options.Add(diaOption2);
                 Dialog_NodeTree window2 = new Dialog_NodeTree(diaNode2, false, false, null);
                 Find.WindowStack.Add(window2);

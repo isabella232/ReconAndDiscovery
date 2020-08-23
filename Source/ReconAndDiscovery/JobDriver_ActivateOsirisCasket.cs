@@ -30,9 +30,11 @@ namespace ReconAndDiscovery
 		{
 			yield return Toils_Reserve.Reserve(TargetIndex.A, 1, -1, null);
 			yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
-			Toil tFuel = new Toil();
-			tFuel.defaultCompleteMode = ToilCompleteMode.Instant;
-			tFuel.AddFailCondition(() => this.Casket.GetComp<CompRefuelable>().Fuel < 50f);
+            Toil tFuel = new Toil
+            {
+                defaultCompleteMode = ToilCompleteMode.Instant
+            };
+            tFuel.AddFailCondition(() => this.Casket.GetComp<CompRefuelable>().Fuel < 50f);
 			tFuel.AddFailCondition(() => !this.Casket.GetComp<CompPowerTrader>().PowerOn);
 			tFuel.initAction = delegate()
 			{

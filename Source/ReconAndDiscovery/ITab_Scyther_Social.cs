@@ -33,12 +33,11 @@ namespace ReconAndDiscovery
 				}
 				else
 				{
-					Corpse corpse = base.SelThing as Corpse;
-					if (corpse == null)
-					{
-						throw new InvalidOperationException("Social tab on non-pawn non-corpse " + base.SelThing);
-					}
-					result = corpse.InnerPawn;
+                    if (!(base.SelThing is Corpse corpse))
+                    {
+                        throw new InvalidOperationException("Social tab on non-pawn non-corpse " + base.SelThing);
+                    }
+                    result = corpse.InnerPawn;
 				}
 				return result;
 			}

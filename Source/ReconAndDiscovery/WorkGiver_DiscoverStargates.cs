@@ -31,9 +31,8 @@ namespace ReconAndDiscovery
 
 		public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
-			Building building = t as Building;
-			return building != null && ReservationUtility.CanReserve(pawn, t, 1, -1, null, forced);
-		}
+            return t is Building building && ReservationUtility.CanReserve(pawn, t, 1, -1, null, forced);
+        }
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{

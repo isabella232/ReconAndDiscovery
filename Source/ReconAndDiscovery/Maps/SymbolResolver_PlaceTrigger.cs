@@ -15,12 +15,11 @@ namespace ReconAndDiscovery.Maps
 		public override void Resolve(ResolveParams rp)
 		{
 			Map map = BaseGen.globalSettings.map;
-			RectActionTrigger rectActionTrigger;
-			if (rp.TryGetCustom<RectActionTrigger>("trigger", out rectActionTrigger))
-			{
-				GenSpawn.Spawn(rectActionTrigger, rectActionTrigger.Rect.CenterCell, map);
-			}
-		}
+            if (rp.TryGetCustom<RectActionTrigger>("trigger", out RectActionTrigger rectActionTrigger))
+            {
+                GenSpawn.Spawn(rectActionTrigger, rectActionTrigger.Rect.CenterCell, map);
+            }
+        }
 	}
 }
 

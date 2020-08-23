@@ -63,9 +63,11 @@ namespace ReconAndDiscovery
 			{
 				list.Add(new FloatMenuOption("RD_TravelToTargetGate".Translate(), delegate()
 					{
-						Job job = new Job(JobDefOfReconAndDiscovery.RD_TravelThroughStargate, this.parent);
-						job.playerForced = true;
-						selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                        Job job = new Job(JobDefOfReconAndDiscovery.RD_TravelThroughStargate, this.parent)
+                        {
+                            playerForced = true
+                        };
+                        selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
 					}
 				));
 			}
@@ -110,46 +112,44 @@ namespace ReconAndDiscovery
 			}
 			else
 			{
-				MapParent mapParent = target.WorldObject as MapParent;
-				if (mapParent != null)
-				{
-					if (mapParent.HasMap)
-					{
-						Map map = this.parent.Map;
-						Map map2 = mapParent.Map;
-						Current.Game.CurrentMap = map2;
-						if (map2.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate")).Count<Thing>() > 0)
-						{
-							this.MakeLink(map2.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate")).FirstOrDefault<Thing>());
-							result = true;
-						}
-						else
-						{
-							Messages.Message("RD_StargateNoEvidence".Translate(), MessageTypeDefOf.RejectInput); // "There is no evidence of a stargate there."
-							result = false;
-						}
-					}
-					else
-					{
-						Site site = mapParent as Site;
-						if (site != null && site.parts.Select(x => x.def).Contains(SiteDefOfReconAndDiscovery.RD_Stargate))
-						{
-							this.MakeLink(site);
-							result = true;
-						}
-						else
-						{
-							Messages.Message("RD_StargateNoEvidence".Translate(), MessageTypeDefOf.RejectInput);
-							result = false;
-						}
-					}
-				}
-				else
-				{
-					Messages.Message("RD_StargateNoEvidence".Translate(), MessageTypeDefOf.RejectInput);
-					result = false;
-				}
-			}
+                if (target.WorldObject is MapParent mapParent)
+                {
+                    if (mapParent.HasMap)
+                    {
+                        Map map = this.parent.Map;
+                        Map map2 = mapParent.Map;
+                        Current.Game.CurrentMap = map2;
+                        if (map2.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate")).Count<Thing>() > 0)
+                        {
+                            this.MakeLink(map2.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate")).FirstOrDefault<Thing>());
+                            result = true;
+                        }
+                        else
+                        {
+                            Messages.Message("RD_StargateNoEvidence".Translate(), MessageTypeDefOf.RejectInput); // "There is no evidence of a stargate there."
+                            result = false;
+                        }
+                    }
+                    else
+                    {
+                        if (mapParent is Site site && site.parts.Select(x => x.def).Contains(SiteDefOfReconAndDiscovery.RD_Stargate))
+                        {
+                            this.MakeLink(site);
+                            result = true;
+                        }
+                        else
+                        {
+                            Messages.Message("RD_StargateNoEvidence".Translate(), MessageTypeDefOf.RejectInput);
+                            result = false;
+                        }
+                    }
+                }
+                else
+                {
+                    Messages.Message("RD_StargateNoEvidence".Translate(), MessageTypeDefOf.RejectInput);
+                    result = false;
+                }
+            }
 			return result;
 		}
 
@@ -205,9 +205,11 @@ namespace ReconAndDiscovery
 				}
 				else
 				{
-					List<Pawn> pawns = new List<Pawn>();
-					pawns.Add(p);
-					LongEventHandler.QueueLongEvent(delegate()
+                    List<Pawn> pawns = new List<Pawn>
+                    {
+                        p
+                    };
+                    LongEventHandler.QueueLongEvent(delegate()
 					{
 						SitePartWorker_Stargate.tmpPawnsToSpawn.AddRange(pawns);
 						Map orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(this.LinkedSite.Tile, this.LinkedSite.Map.Size, null);

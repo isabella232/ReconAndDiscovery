@@ -38,13 +38,12 @@ namespace ReconAndDiscovery.Maps
 				{
 					thing.stackCount = thing.def.stackLimit;
 				}
-				IntVec3 intVec;
-				if (CellFinderLoose.TryGetRandomCellWith((IntVec3 x) => x.Standable(map) && x.Fogged(map) && GridsUtility.GetRoom(x, map, RegionType.Set_Passable).CellCount >= 2, map, 1000, out intVec))
-				{
+                if (CellFinderLoose.TryGetRandomCellWith((IntVec3 x) => x.Standable(map) && x.Fogged(map) && GridsUtility.GetRoom(x, map, RegionType.Set_Passable).CellCount >= 2, map, 1000, out IntVec3 intVec))
+                {
                     // TODO: check if it works
                     GenSpawn.Spawn(thing, intVec, map, Rot4.Random, WipeMode.Vanish, false);
-				}
-			}
+                }
+            }
 		}
 	}
 }

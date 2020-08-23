@@ -61,9 +61,8 @@ namespace ReconAndDiscovery
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
-            Corpse corpse = t as Corpse;
             Job result;
-            if (corpse == null)
+            if (!(t is Corpse corpse))
             {
                 result = null;
             }

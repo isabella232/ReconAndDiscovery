@@ -13,15 +13,14 @@ namespace ReconAndDiscovery.Triggers
 				{
 					if (thing.def.category == ThingCategory.Pawn && thing.def.race.intelligence == Intelligence.Humanlike)
 					{
-						Pawn pawn = thing as Pawn;
-						if (pawn != null)
-						{
-							Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named("LuciferiumHigh"), pawn, null);
-							Hediff hediff2 = HediffMaker.MakeHediff(HediffDef.Named("LuciferiumAddiction"), pawn, null);
-							pawn.health.AddHediff(hediff, null, null);
-							pawn.health.AddHediff(hediff2, null, null);
-						}
-					}
+                        if (thing is Pawn pawn)
+                        {
+                            Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named("LuciferiumHigh"), pawn, null);
+                            Hediff hediff2 = HediffMaker.MakeHediff(HediffDef.Named("LuciferiumAddiction"), pawn, null);
+                            pawn.health.AddHediff(hediff, null, null);
+                            pawn.health.AddHediff(hediff2, null, null);
+                        }
+                    }
 				}
 			}
 			base.DoAnyFurtherActions(activatedBy, map, trigger);

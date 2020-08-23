@@ -20,23 +20,23 @@ namespace ReconAndDiscovery.Maps
 			IncidentParms incidentParms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.FactionArrival, map);
 			incidentParms.points = Mathf.Max(incidentParms.points, 250f);
 			incidentParms.points *= 2f;
-			PawnGroupMakerParms pawnGroupMakerParms = new PawnGroupMakerParms();
-			pawnGroupMakerParms.groupKind = PawnGroupKindDefOf.Settlement;
-			pawnGroupMakerParms.tile = map.Tile;
-			pawnGroupMakerParms.faction = faction;
-			pawnGroupMakerParms.points = incidentParms.points;
-			pawnGroupMakerParms.inhabitants = true;
-			List<Pawn> list = new List<Pawn>();
+            PawnGroupMakerParms pawnGroupMakerParms = new PawnGroupMakerParms
+            {
+                groupKind = PawnGroupKindDefOf.Settlement,
+                tile = map.Tile,
+                faction = faction,
+                points = incidentParms.points,
+                inhabitants = true
+            };
+            List<Pawn> list = new List<Pawn>();
 			foreach (Pawn pawn in PawnGroupMakerUtility.GeneratePawns(pawnGroupMakerParms, true))
 			{
-				IntVec3 loc;
-				CellFinder.TryFindRandomCellInsideWith(new CellRect(40, 40, map.Size.x - 80, map.Size.z - 80), (IntVec3 c) => c.Standable(map), out loc);
-				GenSpawn.Spawn(pawn, loc, map);
+                CellFinder.TryFindRandomCellInsideWith(new CellRect(40, 40, map.Size.x - 80, map.Size.z - 80), (IntVec3 c) => c.Standable(map), out IntVec3 loc);
+                GenSpawn.Spawn(pawn, loc, map);
 				list.Add(pawn);
 			}
-			IntVec3 intVec;
-			CellFinder.TryFindRandomCellInsideWith(new CellRect(50, 50, map.Size.x - 100, map.Size.z - 100), (IntVec3 c) => c.Standable(map), out intVec);
-			if (faction.leader != null)
+            CellFinder.TryFindRandomCellInsideWith(new CellRect(50, 50, map.Size.x - 100, map.Size.z - 100), (IntVec3 c) => c.Standable(map), out IntVec3 intVec);
+            if (faction.leader != null)
 			{
 				GenSpawn.Spawn(faction.leader, intVec, map);
 				mapParent.GetComponent<QuestComp_PeaceTalks>().Negotiator = faction.leader;

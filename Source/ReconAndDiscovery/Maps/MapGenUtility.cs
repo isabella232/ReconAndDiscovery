@@ -246,12 +246,11 @@ namespace ReconAndDiscovery.Maps
 				{
 					compQuality.SetQuality(QualityUtility.GenerateQualityCreatedByPawn(12, false), ArtGenerationContext.Outsider);
 				}
-				IntVec3 loc2;
-				if (thing != null && CellFinder.TryFindRandomCellInsideWith(within, (IntVec3 loc) => loc.Standable(map), out loc2))
-				{
-					GenSpawn.Spawn(thing, loc2, map);
-				}
-			}
+                if (thing != null && CellFinder.TryFindRandomCellInsideWith(within, (IntVec3 loc) => loc.Standable(map), out IntVec3 loc2))
+                {
+                    GenSpawn.Spawn(thing, loc2, map);
+                }
+            }
 		}
 
 		public static void MakeLongWall(IntVec3 start, Map map, int extendDist, bool horizontal, float integrity, ThingDef stuffDef)

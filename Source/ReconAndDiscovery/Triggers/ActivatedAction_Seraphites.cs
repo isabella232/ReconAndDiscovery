@@ -17,11 +17,15 @@ namespace ReconAndDiscovery.Triggers
 			bool flag = Rand.Value > 0.4f;
 			int level = activatedBy.skills.GetSkill(SkillDefOf.Intellectual).Level;
 			DiaNode diaNode = new DiaNode("");
-           	        DiaOption diaOption = new DiaOption("RD_LogOff".Translate(activatedBy.Named("PAWN")));
-			diaOption.resolveTree = true;
-			DiaOption diaOption2 = new DiaOption("OK".Translate(activatedBy.Named("PAWN")));
-			diaOption2.resolveTree = true;
-			diaNode.options.Add(diaOption);
+            DiaOption diaOption = new DiaOption("RD_LogOff".Translate(activatedBy.Named("PAWN")))
+            {
+                resolveTree = true
+            };
+            DiaOption diaOption2 = new DiaOption("OK".Translate(activatedBy.Named("PAWN")))
+            {
+                resolveTree = true
+            };
+            diaNode.options.Add(diaOption);
 			if (level < 5)
 			{
 				diaNode.text = TranslatorFormattedStringExtensions.Translate("RD_FilesPertanentLuciferiumCure", activatedBy.Label); //"There seem to be files pertanent to a luciferium cure, but {0} lacks the intellectual skills to access them."
@@ -77,13 +81,12 @@ namespace ReconAndDiscovery.Triggers
 							{
 								if (Rand.Chance(0.9f) && thing.def.category == ThingCategory.Pawn && (thing as Pawn).RaceProps.Humanlike)
 								{
-									Pawn pawn = thing as Pawn;
-									if (pawn != null)
-									{
-										Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named("FibrousMechanites"), pawn, null);
-										pawn.health.AddHediff(hediff, null, null);
-									}
-								}
+                                    if (thing is Pawn pawn)
+                                    {
+                                        Hediff hediff = HediffMaker.MakeHediff(HediffDef.Named("FibrousMechanites"), pawn, null);
+                                        pawn.health.AddHediff(hediff, null, null);
+                                    }
+                                }
 							}
 						}
 						List<Thing> list = new List<Thing>();

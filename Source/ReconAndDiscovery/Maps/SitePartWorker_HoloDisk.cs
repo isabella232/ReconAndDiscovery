@@ -18,13 +18,12 @@ namespace ReconAndDiscovery.Maps
 			{
 				pawn.Destroy(DestroyMode.Vanish);
 			}
-			IntVec3 loc;
-			if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 x) => x.Standable(map) && x.Fogged(map) && GridsUtility.GetRoom(x, map, RegionType.Set_Passable).CellCount <= 30, map, out loc))
-			{
-				Thing newThing = ThingMaker.MakeThing(ThingDef.Named("RD_HoloDisk"), null);
-				GenSpawn.Spawn(newThing, loc, map);
-			}
-		}
+            if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 x) => x.Standable(map) && x.Fogged(map) && GridsUtility.GetRoom(x, map, RegionType.Set_Passable).CellCount <= 30, map, out IntVec3 loc))
+            {
+                Thing newThing = ThingMaker.MakeThing(ThingDef.Named("RD_HoloDisk"), null);
+                GenSpawn.Spawn(newThing, loc, map);
+            }
+        }
 	}
 }
 

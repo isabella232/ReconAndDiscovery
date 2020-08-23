@@ -28,9 +28,11 @@ namespace ReconAndDiscovery.Triggers
 		protected virtual void DisplayDialog(Pawn activatedBy, Map map, Thing trigger)
 		{
 			DiaNode diaNode = new DiaNode(this.def.dialogText);
-			DiaOption diaOption = new DiaOption("OK".Translate());
-			diaOption.resolveTree = true;
-			diaNode.options.Add(diaOption);
+            DiaOption diaOption = new DiaOption("OK".Translate())
+            {
+                resolveTree = true
+            };
+            diaNode.options.Add(diaOption);
 			Find.WindowStack.Add(new Dialog_NodeTree(diaNode, false, false, null));
 		}
 

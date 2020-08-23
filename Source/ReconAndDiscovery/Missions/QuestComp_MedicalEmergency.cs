@@ -77,36 +77,35 @@ namespace ReconAndDiscovery.Missions
 			base.CompTick();
 			if (this.active)
 			{
-				MapParent mapParent = this.parent as MapParent;
-				if (mapParent != null && mapParent.Map != null)
-				{
-					if (this.injured.NullOrEmpty<Pawn>())
-					{
-						this.injured = (from p in mapParent.Map.mapPawns.AllPawns
-						where p.Faction == QuestComp_MedicalEmergency.fac && p.RaceProps.Humanlike
-						select p).ToList<Pawn>();
-						Log.Message(string.Format("Found {0} injured pawns", this.injured.Count));
-					}
-					else
-					{
-						Log.Message(string.Format("Active with {0} in list and max of {1}.", this.injured.Count, this.maxPawns));
-						foreach (Pawn pawn in this.injured)
-						{
-							if (!pawn.Dead && !pawn.Downed && pawn.GetLord() == null)
-							{
-								LordJob_DefendBase lordJob = new LordJob_DefendBase(QuestComp_MedicalEmergency.fac, pawn.Position);
-								List<Pawn> list = new List<Pawn>();
-								list.Add(pawn);
-								LordMaker.MakeNewLord(QuestComp_MedicalEmergency.fac, lordJob, mapParent.Map, list);
-							}
-						}
-						if (this.CheckAllStanding())
-						{
-							this.CalculateQuestOutcome();
-						}
-					}
-				}
-			}
+                if (this.parent is MapParent mapParent && mapParent.Map != null)
+                {
+                    if (this.injured.NullOrEmpty<Pawn>())
+                    {
+                        this.injured = (from p in mapParent.Map.mapPawns.AllPawns
+                                        where p.Faction == QuestComp_MedicalEmergency.fac && p.RaceProps.Humanlike
+                                        select p).ToList<Pawn>();
+                        Log.Message(string.Format("Found {0} injured pawns", this.injured.Count));
+                    }
+                    else
+                    {
+                        Log.Message(string.Format("Active with {0} in list and max of {1}.", this.injured.Count, this.maxPawns));
+                        foreach (Pawn pawn in this.injured)
+                        {
+                            if (!pawn.Dead && !pawn.Downed && pawn.GetLord() == null)
+                            {
+                                LordJob_DefendBase lordJob = new LordJob_DefendBase(QuestComp_MedicalEmergency.fac, pawn.Position);
+                                List<Pawn> list = new List<Pawn>();
+                                list.Add(pawn);
+                                LordMaker.MakeNewLord(QuestComp_MedicalEmergency.fac, lordJob, mapParent.Map, list);
+                            }
+                        }
+                        if (this.CheckAllStanding())
+                        {
+                            this.CalculateQuestOutcome();
+                        }
+                    }
+                }
+            }
 		}
 
 		public void GetChildHolders(List<IThingHolder> outChildren)
@@ -148,83 +147,82 @@ namespace ReconAndDiscovery.Missions
 
 		private void CloseMapImmediate()
 		{
-			MapParent mapParent = this.parent as MapParent;
-			if (mapParent != null)
-			{
-				if (Dialog_FormCaravan.AllSendablePawns(mapParent.Map, true).Any((Pawn x) => x.IsColonist || x.IsPrisonerOfColony || x.Faction == Faction.OfPlayer || x.HostFaction == Faction.OfPlayer))
-				{
-					foreach (Pawn pawn in mapParent.Map.mapPawns.AllPawnsSpawned)
-					{
-						if (pawn.RaceProps.Humanlike)
-						{
-							Lord lord = pawn.GetLord();
-							if (lord != null)
-							{
-								lord.Notify_PawnLost(pawn, PawnLostCondition.ExitedMap);
-								pawn.ClearMind(false);
-							}
-						}
-					}
-					Messages.Message("MessageYouHaveToReformCaravanNow".Translate(), new GlobalTargetInfo(mapParent.Tile), MessageTypeDefOf.NeutralEvent);
-					Current.Game.CurrentMap = mapParent.Map;
-					Dialog_FormCaravan window = new Dialog_FormCaravan(mapParent.Map, true, delegate()
-					{
-						if (mapParent.HasMap)
-						{
-							Find.WorldObjects.Remove(mapParent);
-						}
-					}, false);
-					List<Pawn> list = mapParent.Map.mapPawns.AllPawnsSpawned.ToList<Pawn>();
-					for (int i = 0; i < list.Count; i++)
-					{
-						Pawn pawn2 = list[i];
-						if (!pawn2.HostileTo(Faction.OfPlayer) && (pawn2.Faction == Faction.OfPlayer || pawn2.IsPrisonerOfColony))
-						{
-							Log.Message(pawn2.Label + " Meets criteria in CaravanUtility.");
-						}
-						else
-						{
-							Log.Message(pawn2.Label + " NOT ALLOWED by in CaravanUtility.");
-						}
-					}
-					Find.WindowStack.Add(window);
-				}
-				else
-				{
-					List<Pawn> list2 = new List<Pawn>();
-					list2.AddRange(from x in mapParent.Map.mapPawns.AllPawns
-					where x.IsColonist || x.IsPrisonerOfColony || x.Faction == Faction.OfPlayer || x.HostFaction == Faction.OfPlayer
-					select x);
-					if (list2.Any<Pawn>())
-					{
-						if (list2.Any((Pawn x) => CaravanUtility.IsOwner(x, Faction.OfPlayer)))
-						{
+            if (this.parent is MapParent mapParent)
+            {
+                if (Dialog_FormCaravan.AllSendablePawns(mapParent.Map, true).Any((Pawn x) => x.IsColonist || x.IsPrisonerOfColony || x.Faction == Faction.OfPlayer || x.HostFaction == Faction.OfPlayer))
+                {
+                    foreach (Pawn pawn in mapParent.Map.mapPawns.AllPawnsSpawned)
+                    {
+                        if (pawn.RaceProps.Humanlike)
+                        {
+                            Lord lord = pawn.GetLord();
+                            if (lord != null)
+                            {
+                                lord.Notify_PawnLost(pawn, PawnLostCondition.ExitedMap);
+                                pawn.ClearMind(false);
+                            }
+                        }
+                    }
+                    Messages.Message("MessageYouHaveToReformCaravanNow".Translate(), new GlobalTargetInfo(mapParent.Tile), MessageTypeDefOf.NeutralEvent);
+                    Current.Game.CurrentMap = mapParent.Map;
+                    Dialog_FormCaravan window = new Dialog_FormCaravan(mapParent.Map, true, delegate ()
+                    {
+                        if (mapParent.HasMap)
+                        {
+                            Find.WorldObjects.Remove(mapParent);
+                        }
+                    }, false);
+                    List<Pawn> list = mapParent.Map.mapPawns.AllPawnsSpawned.ToList<Pawn>();
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        Pawn pawn2 = list[i];
+                        if (!pawn2.HostileTo(Faction.OfPlayer) && (pawn2.Faction == Faction.OfPlayer || pawn2.IsPrisonerOfColony))
+                        {
+                            Log.Message(pawn2.Label + " Meets criteria in CaravanUtility.");
+                        }
+                        else
+                        {
+                            Log.Message(pawn2.Label + " NOT ALLOWED by in CaravanUtility.");
+                        }
+                    }
+                    Find.WindowStack.Add(window);
+                }
+                else
+                {
+                    List<Pawn> list2 = new List<Pawn>();
+                    list2.AddRange(from x in mapParent.Map.mapPawns.AllPawns
+                                   where x.IsColonist || x.IsPrisonerOfColony || x.Faction == Faction.OfPlayer || x.HostFaction == Faction.OfPlayer
+                                   select x);
+                    if (list2.Any<Pawn>())
+                    {
+                        if (list2.Any((Pawn x) => CaravanUtility.IsOwner(x, Faction.OfPlayer)))
+                        {
                             //TODO: check if it works
                             CaravanExitMapUtility.ExitMapAndCreateCaravan(list2, Faction.OfPlayer,
                                 mapParent.Tile, mapParent.Tile, mapParent.Tile, false);
-							Messages.Message("MessageReformedCaravan".Translate(),
+                            Messages.Message("MessageReformedCaravan".Translate(),
                                 MessageTypeDefOf.PositiveEvent);
-						}
-						else
-						{
-							StringBuilder stringBuilder = new StringBuilder();
-							for (int j = 0; j < list2.Count; j++)
-							{
-								stringBuilder.AppendLine("    " + list2[j].LabelCap);
-							}
+                        }
+                        else
+                        {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            for (int j = 0; j < list2.Count; j++)
+                            {
+                                stringBuilder.AppendLine("    " + list2[j].LabelCap);
+                            }
                             Find.LetterStack.ReceiveLetter("RD_LetterLabelPawnsLostDueToMapCountdown".Translate(),
-                            TranslatorFormattedStringExtensions.Translate("RD_LetterPawnsLostDueToMapCountdown", 
+                            TranslatorFormattedStringExtensions.Translate("RD_LetterPawnsLostDueToMapCountdown",
                             new NamedArgument[]
                             {
                                 stringBuilder.ToString().TrimEndNewlines()
                             }), LetterDefOf.ThreatSmall, new GlobalTargetInfo(mapParent.Tile), null);
-						}
-						list2.Clear();
-					}
-					Find.WorldObjects.Remove(mapParent);
-				}
-			}
-		}
+                        }
+                        list2.Clear();
+                    }
+                    Find.WorldObjects.Remove(mapParent);
+                }
+            }
+        }
 
 		private void GiveRewardsAndSendLetter(bool giveTech, bool newFaction)
 		{

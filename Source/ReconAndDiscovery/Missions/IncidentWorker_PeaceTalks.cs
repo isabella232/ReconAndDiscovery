@@ -11,8 +11,7 @@ namespace ReconAndDiscovery.Missions
     {
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            int num;
-            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out num);
+            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out int num);
         }
 
         public bool TryFindFaction(out Faction faction, Predicate<Faction> validator)
@@ -42,30 +41,30 @@ namespace ReconAndDiscovery.Missions
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
             bool result;
-            Faction faction;
             if ((from wo in Find.WorldObjects.AllWorldObjects
                  where wo.def == SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks
                  select wo).Count<WorldObject>() > 0)
             {
                 result = false;
             }
-            else if (!this.TryFindFaction(out faction, (Faction f) => f != Faction.OfPlayer && f.PlayerGoodwill < 0f && f.def.CanEverBeNonHostile && f.def.humanlikeFaction))
+            else if (!this.TryFindFaction(out Faction faction, (Faction f) => f != Faction.OfPlayer && f.PlayerGoodwill < 0f && f.def.CanEverBeNonHostile && f.def.humanlikeFaction))
             {
                 result = false;
             }
             else
             {
-                int tile;
-                if (TileFinder.TryFindNewSiteTile(out tile))
+                if (TileFinder.TryFindNewSiteTile(out int tile))
                 {
                     Site site = (Site)WorldObjectMaker.MakeWorldObject(SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks);
                     site.Tile = tile;
-                    site.SetFaction(faction); 
+                    site.SetFaction(faction);
                     site.AddPart(new SitePart(site, SiteDefOfReconAndDiscovery.RD_PeaceTalks,
 SiteDefOfReconAndDiscovery.RD_PeaceTalks.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
 
-                    SitePart peaceTalksFaction = new SitePart(site, SiteDefOfReconAndDiscovery.RD_PeaceTalksFaction, SiteDefOfReconAndDiscovery.RD_PeaceTalksFaction.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                    peaceTalksFaction.hidden = true;
+                    SitePart peaceTalksFaction = new SitePart(site, SiteDefOfReconAndDiscovery.RD_PeaceTalksFaction, SiteDefOfReconAndDiscovery.RD_PeaceTalksFaction.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
                     site.parts.Add(peaceTalksFaction);
                     site.GetComponent<QuestComp_PeaceTalks>().StartQuest(faction);
                     int num = 5;

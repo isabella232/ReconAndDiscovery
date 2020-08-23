@@ -11,9 +11,8 @@ namespace ReconAndDiscovery.Missions
 	{
 		protected override bool CanFireNowSub(IncidentParms parms)
 		{
-			int num;
-			return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out num);
-		}
+            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out int num);
+        }
 
 		private bool CanFindVisitor(Map map, out Pawn pawn)
 		{
@@ -58,16 +57,14 @@ namespace ReconAndDiscovery.Missions
 			}
 			else
 			{
-				Pawn pawn;
-				if (this.CanFindPsychic(map, out pawn))
-				{
-					Pawn pawn2;
-					if (this.CanFindVisitor(map, out pawn2))
-					{
-						return true;
-					}
-				}
-				result = false;
+                if (this.CanFindPsychic(map, out Pawn pawn))
+                {
+                    if (this.CanFindVisitor(map, out Pawn pawn2))
+                    {
+                        return true;
+                    }
+                }
+                result = false;
 			}
 			return result;
 		}
@@ -78,22 +75,19 @@ namespace ReconAndDiscovery.Missions
 			bool result;
             if (this.GetHasGoodStoryConditions(map))
 			{
-				Pawn pawn;
-				Pawn pawn2;
-				if (!this.CanFindVisitor(map, out pawn))
-				{
+                if (!this.CanFindVisitor(map, out Pawn pawn))
+                {
 
-					result = false;
-				}
-				else if (!this.CanFindPsychic(map, out pawn2))
-				{
-					result = false;
-				}
-				else
-				{
-                    int tile;
-					if (TileFinder.TryFindNewSiteTile(out tile))
-					{
+                    result = false;
+                }
+                else if (!this.CanFindPsychic(map, out Pawn pawn2))
+                {
+                    result = false;
+                }
+                else
+                {
+                    if (TileFinder.TryFindNewSiteTile(out int tile))
+                    {
                         Site site = (Site)WorldObjectMaker.MakeWorldObject(SiteDefOfReconAndDiscovery.RD_Adventure);
 
                         site.Tile = tile;
@@ -102,33 +96,42 @@ namespace ReconAndDiscovery.Missions
                         site.AddPart(new SitePart(site, SiteDefOfReconAndDiscovery.RD_PsiMachine,
 SiteDefOfReconAndDiscovery.RD_PsiMachine.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
 
-                        SitePart warIdol = new SitePart(site, SiteDefOfReconAndDiscovery.RD_SitePart_WarIdol, SiteDefOfReconAndDiscovery.RD_SitePart_WarIdol.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-
-                        warIdol.hidden = true;
+                        SitePart warIdol = new SitePart(site, SiteDefOfReconAndDiscovery.RD_SitePart_WarIdol, SiteDefOfReconAndDiscovery.RD_SitePart_WarIdol.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                        {
+                            hidden = true
+                        };
 
                         site.parts.Add(warIdol);
                         if (Rand.Value < 0.15f)
                         {
-                            SitePart scatteredManhunters = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredManhunters, SiteDefOfReconAndDiscovery.RD_ScatteredManhunters.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                            scatteredManhunters.hidden = true;
+                            SitePart scatteredManhunters = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredManhunters, SiteDefOfReconAndDiscovery.RD_ScatteredManhunters.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            {
+                                hidden = true
+                            };
                             site.parts.Add(scatteredManhunters);
                         }
                         if (Rand.Value < 0.3f)
                         {
-                            SitePart scatteredTreasure = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                            scatteredTreasure.hidden = true;
+                            SitePart scatteredTreasure = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            {
+                                hidden = true
+                            };
                             site.parts.Add(scatteredTreasure);
                         }
                         if (Rand.Value < 0.3f)
                         {
-                            SitePart enemyRaidOnArrival = new SitePart(site, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                            enemyRaidOnArrival.hidden = true;
+                            SitePart enemyRaidOnArrival = new SitePart(site, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            {
+                                hidden = true
+                            };
                             site.parts.Add(enemyRaidOnArrival);
                         }
                         if (Rand.Value < 0.1f)
                         {
-                            SitePart mechanoidForces = new SitePart(site, SiteDefOfReconAndDiscovery.RD_MechanoidForces, SiteDefOfReconAndDiscovery.RD_MechanoidForces.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                            mechanoidForces.hidden = true;
+                            SitePart mechanoidForces = new SitePart(site, SiteDefOfReconAndDiscovery.RD_MechanoidForces, SiteDefOfReconAndDiscovery.RD_MechanoidForces.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            {
+                                hidden = true
+                            };
                             site.parts.Add(mechanoidForces);
                         }
                         Find.WorldObjects.Add(site);
@@ -137,18 +140,18 @@ SiteDefOfReconAndDiscovery.RD_PsiMachine.Worker.GenerateDefaultParams(Storytelle
                             result = false;
                         }
                         base.SendStandardLetter(parms, site, new NamedArgument[]
-						{
-							pawn.Label,
-							pawn2.Label
-						});
-						result = true;
-					}
+                        {
+                            pawn.Label,
+                            pawn2.Label
+                        });
+                        result = true;
+                    }
                     else
                     {
                         result = false;
                     }
-				}
-			}
+                }
+            }
 			else
 			{
 				result = false;

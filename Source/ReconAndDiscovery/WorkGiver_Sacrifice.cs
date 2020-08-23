@@ -32,9 +32,8 @@ namespace ReconAndDiscovery
 
 		public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
-            Building building_PsionicEmanator = t as Building;
-			bool result;
-            if (building_PsionicEmanator == null)
+            bool result;
+            if (!(t is Building building_PsionicEmanator))
 			{
 				result = false;
 			}

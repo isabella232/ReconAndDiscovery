@@ -79,8 +79,7 @@ namespace ReconAndDiscovery
                 GenSpawn.Spawn(pawn, thing.Position, thing.Map);
                 GiveSideEffects(pawn);
 
-                Building_Casket building_Casket = thing as Building_Casket;
-                if (building_Casket != null)
+                if (thing is Building_Casket building_Casket)
                 {
                     building_Casket.GetDirectlyHeldThings().Clear();
                 }
@@ -91,9 +90,8 @@ namespace ReconAndDiscovery
         {
             if (this.Casket.ContainedThing != null)
             {
-                Corpse corpse = this.Casket.ContainedThing as Corpse;
                 Pawn pawn;
-                if (corpse != null)
+                if (this.Casket.ContainedThing is Corpse corpse)
                 {
                     pawn = corpse.InnerPawn;
                 }
@@ -175,8 +173,10 @@ namespace ReconAndDiscovery
             List<FloatMenuOption> list = new List<FloatMenuOption>();
             FloatMenuOption floatMenuOption = new FloatMenuOption("RD_ResurrectContained".Translate(), delegate ()
             {
-                Job job = new Job(JobDefOfReconAndDiscovery.RD_ActivateOsirisCasket, this.parent);
-                job.playerForced = true;
+                Job job = new Job(JobDefOfReconAndDiscovery.RD_ActivateOsirisCasket, this.parent)
+                {
+                    playerForced = true
+                };
                 selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             }); ;
             if (this.ReadyToHeal)

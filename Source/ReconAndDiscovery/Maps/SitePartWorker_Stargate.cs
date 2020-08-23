@@ -18,22 +18,21 @@ namespace ReconAndDiscovery.Maps
 			{
 				pawn.Destroy(DestroyMode.Vanish);
 			}
-			IntVec3 loc;
-			if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 x) => x.Standable(map) && !x.Fogged(map), map, out loc))
-			{
-				Thing newThing = ThingMaker.MakeThing(ThingDef.Named("RD_Stargate"), null);
-				GenSpawn.Spawn(newThing, loc, map);
-				foreach (Pawn pawn2 in SitePartWorker_Stargate.tmpPawnsToSpawn)
-				{
-					if (pawn2.Spawned)
-					{
-						pawn2.DeSpawn();
-					}
-					GenSpawn.Spawn(pawn2, loc, map);
-				}
-				SitePartWorker_Stargate.tmpPawnsToSpawn.Clear();
-			}
-		}
+            if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 x) => x.Standable(map) && !x.Fogged(map), map, out IntVec3 loc))
+            {
+                Thing newThing = ThingMaker.MakeThing(ThingDef.Named("RD_Stargate"), null);
+                GenSpawn.Spawn(newThing, loc, map);
+                foreach (Pawn pawn2 in SitePartWorker_Stargate.tmpPawnsToSpawn)
+                {
+                    if (pawn2.Spawned)
+                    {
+                        pawn2.DeSpawn();
+                    }
+                    GenSpawn.Spawn(pawn2, loc, map);
+                }
+                SitePartWorker_Stargate.tmpPawnsToSpawn.Clear();
+            }
+        }
 
 		public static List<Pawn> tmpPawnsToSpawn = new List<Pawn>();
 	}

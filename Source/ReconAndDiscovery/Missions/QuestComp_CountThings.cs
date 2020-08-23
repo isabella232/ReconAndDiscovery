@@ -23,27 +23,26 @@ namespace ReconAndDiscovery.Missions
 			{
 				if (this.active)
 				{
-					MapParent mapParent = this.parent as MapParent;
-					if (mapParent != null && mapParent.Map != null)
-					{
-						int num = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).Count<Thing>();
-						if (num > this.targetNumber)
-						{
-							if (this.ticksHeld > this.ticksTarget)
-							{
-								this.StopQuest();
-							}
-							else
-							{
-								this.ticksHeld++;
-							}
-						}
-						else
-						{
-							this.ticksHeld = 0;
-						}
-					}
-				}
+                    if (this.parent is MapParent mapParent && mapParent.Map != null)
+                    {
+                        int num = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).Count<Thing>();
+                        if (num > this.targetNumber)
+                        {
+                            if (this.ticksHeld > this.ticksTarget)
+                            {
+                                this.StopQuest();
+                            }
+                            else
+                            {
+                                this.ticksHeld++;
+                            }
+                        }
+                        else
+                        {
+                            this.ticksHeld = 0;
+                        }
+                    }
+                }
 			}
 			catch
 			{
@@ -72,28 +71,27 @@ namespace ReconAndDiscovery.Missions
 		public void StopQuest()
 		{
 			this.active = false;
-			MapParent mapParent = this.parent as MapParent;
-			if (mapParent != null && mapParent.Map != null)
-			{
-				int num = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).Count<Thing>();
-				if (num > this.targetNumber && this.ticksHeld > this.ticksTarget)
-				{
-					if (mapParent.Map.gameConditionManager.ConditionIsActive(this.gameConditionCaused))
-					{
-						mapParent.Map.gameConditionManager.ActiveConditions.Remove(mapParent.Map.gameConditionManager.GetActiveCondition(this.gameConditionCaused));
-					}
-					Settlement settlement = Find.World.worldObjects.SettlementAt(this.worldTileAffected);
-					if (settlement != null && settlement.HasMap)
-					{
-						GameConditionManager gameConditionManager = settlement.Map.gameConditionManager;
-						if (gameConditionManager.ConditionIsActive(this.gameConditionCaused))
-						{
-							gameConditionManager.ActiveConditions.Remove(gameConditionManager.GetActiveCondition(this.gameConditionCaused));
-						}
-					}
-				}
-			}
-		}
+            if (this.parent is MapParent mapParent && mapParent.Map != null)
+            {
+                int num = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).Count<Thing>();
+                if (num > this.targetNumber && this.ticksHeld > this.ticksTarget)
+                {
+                    if (mapParent.Map.gameConditionManager.ConditionIsActive(this.gameConditionCaused))
+                    {
+                        mapParent.Map.gameConditionManager.ActiveConditions.Remove(mapParent.Map.gameConditionManager.GetActiveCondition(this.gameConditionCaused));
+                    }
+                    Settlement settlement = Find.World.worldObjects.SettlementAt(this.worldTileAffected);
+                    if (settlement != null && settlement.HasMap)
+                    {
+                        GameConditionManager gameConditionManager = settlement.Map.gameConditionManager;
+                        if (gameConditionManager.ConditionIsActive(this.gameConditionCaused))
+                        {
+                            gameConditionManager.ActiveConditions.Remove(gameConditionManager.GetActiveCondition(this.gameConditionCaused));
+                        }
+                    }
+                }
+            }
+        }
 
 		public override void PostPostRemove()
 		{

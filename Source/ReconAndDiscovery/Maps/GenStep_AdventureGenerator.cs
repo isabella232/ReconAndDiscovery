@@ -25,9 +25,8 @@ namespace ReconAndDiscovery.Maps
 			this.adventureRegion.ClipInsideMap(map);
 			BaseGen.globalSettings.map = map;
 			this.randomRoomEvents.Clear();
-			IntVec3 playerStartSpot;
-			CellFinder.TryFindRandomEdgeCellWith((IntVec3 v) => v.Standable(map), map, 0f, out playerStartSpot);
-			MapGenerator.PlayerStartSpot = playerStartSpot;
+            CellFinder.TryFindRandomEdgeCellWith((IntVec3 v) => v.Standable(map), map, 0f, out IntVec3 playerStartSpot);
+            MapGenerator.PlayerStartSpot = playerStartSpot;
 			this.baseResolveParams = default(ResolveParams);
 			foreach (string text in this.randomRoomEvents.Keys)
 			{

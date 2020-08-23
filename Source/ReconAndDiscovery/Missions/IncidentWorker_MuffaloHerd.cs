@@ -11,17 +11,15 @@ namespace ReconAndDiscovery.Missions
     {
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            int num;
-            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out num);
+            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out int num);
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            Map map = parms.target as Map;
             int num = IncidentWorker_MuffaloHerd.TimeoutDaysRange.RandomInRange;
             int num2 = -1;
             string text;
-            if (map != null)
+            if (parms.target is Map map)
             {
                 if (!TileFinder.TryFindNewSiteTile(out num2))
                 {
@@ -65,8 +63,10 @@ namespace ReconAndDiscovery.Missions
 SiteDefOfReconAndDiscovery.RD_MuffaloMigration.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), num2, null)));
                 if (Rand.Value < 0.5f)
                 {
-                    SitePart scatteredTreasure = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), num2, null));
-                    scatteredTreasure.hidden = true;
+                    SitePart scatteredTreasure = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), num2, null))
+                    {
+                        hidden = true
+                    };
                     site.parts.Add(scatteredTreasure);
                 }
                 Find.LetterStack.ReceiveLetter("RD_MuffaloMigration".Translate(), text, LetterDefOf.PositiveEvent, site, null);

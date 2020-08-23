@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Reflection;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace ExpandedIncidents.Settings

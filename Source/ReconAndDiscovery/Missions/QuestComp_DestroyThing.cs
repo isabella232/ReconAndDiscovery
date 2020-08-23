@@ -17,12 +17,14 @@ namespace ReconAndDiscovery.Missions
 					{
 						return null;
 					}
-					MapParent mapParent = this.parent as MapParent;
-					if (mapParent != null && mapParent.HasMap)
-					{
-						this.thingToDestroy = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).RandomElement<Thing>();
-					}
-				}
+                    if (this.parent is MapParent mapParent && mapParent.HasMap)
+                    {
+						if (mapParent.Map.listerThings.ThingsOfDef(this.targetDef).Count > 0)
+							this.thingToDestroy = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).RandomElement<Thing>();
+						else
+							return null;
+                    }
+                }
 				return this.thingToDestroy;
 			}
 		}
@@ -42,18 +44,17 @@ namespace ReconAndDiscovery.Missions
 			{
 				if (this.active)
 				{
-					MapParent mapParent = this.parent as MapParent;
-					if (mapParent != null && mapParent.Map != null)
-					{
-						if (this.ThingToDestroy != null)
-						{
-							if (this.ThingToDestroy.Destroyed)
-							{
-								this.StopQuest();
-							}
-						}
-					}
-				}
+                    if (this.parent is MapParent mapParent && mapParent.Map != null)
+                    {
+                        if (this.ThingToDestroy != null)
+                        {
+                            if (this.ThingToDestroy.Destroyed)
+                            {
+                                this.StopQuest();
+                            }
+                        }
+                    }
+                }
 			}
 			catch
 			{
@@ -80,7 +81,7 @@ namespace ReconAndDiscovery.Missions
 		public void StopQuest()
 		{
 			this.active = false;
-			if (this.ThingToDestroy.Destroyed)
+			if (ThingToDestroy == null || this.ThingToDestroy.Destroyed)
 			{
 				Settlement settlement = Find.World.worldObjects.SettlementAt(this.worldTileAffected);
 				if (settlement != null && settlement.HasMap)

@@ -45,9 +45,8 @@ namespace ReconAndDiscovery
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
-			Corpse corpse = t as Corpse;
-			Job result;
-			if (corpse != null)
+            Job result;
+            if (t is Corpse corpse)
 			{
 				if (corpse.InnerPawn.Faction != Faction.OfPlayer || !corpse.InnerPawn.RaceProps.Humanlike)
 				{

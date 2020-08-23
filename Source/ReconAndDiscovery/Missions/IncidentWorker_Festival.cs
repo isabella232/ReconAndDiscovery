@@ -11,8 +11,7 @@ namespace ReconAndDiscovery.Missions
     {
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            int num;
-            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out num);
+            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out int num);
         }
 
         public List<Faction> GetAllNonPlayerFriends(Faction faction)
@@ -67,21 +66,19 @@ namespace ReconAndDiscovery.Missions
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
             bool result;
-            Faction faction;
             if ((from wo in Find.WorldObjects.AllWorldObjects
                  where wo.def == SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks
                  select wo).Count<WorldObject>() > 0)
             {
                 result = false;
             }
-            else if (!this.TryFindFaction(out faction, (Faction f) => f != Faction.OfPlayer && f.PlayerGoodwill >= 0))
+            else if (!this.TryFindFaction(out Faction faction, (Faction f) => f != Faction.OfPlayer && f.PlayerGoodwill >= 0))
             {
                 result = false;
             }
             else
             {
-                int tile;
-                if (TileFinder.TryFindNewSiteTile(out tile))
+                if (TileFinder.TryFindNewSiteTile(out int tile))
                 {
                     Site site = (Site)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Site);
                     site.Tile = tile;
@@ -90,8 +87,10 @@ namespace ReconAndDiscovery.Missions
     SiteDefOfReconAndDiscovery.RD_Festival.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
 
                     // TODO: check if this works correctly
-                    SitePart outpost = new SitePart(site, SitePartDefOf.Outpost, SitePartDefOf.Outpost.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                    outpost.hidden = true;
+                    SitePart outpost = new SitePart(site, SitePartDefOf.Outpost, SitePartDefOf.Outpost.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
                     site.parts.Add(outpost);
                     int num = 8;
                     site.GetComponent<TimeoutComp>().StartTimeout(num * 60000);

@@ -88,45 +88,44 @@ namespace ReconAndDiscovery
 			}
 			else
 			{
-				MapParent mapParent = target.WorldObject as MapParent;
-				if (mapParent != null && mapParent.HasMap)
-				{
-					Map myMap = this.parent.Map;
-					Map map = mapParent.Map;
-					Current.Game.CurrentMap = map;
-					Targeter targeter = Find.Targeter;
-					Action actionWhenFinished = delegate()
-					{
-						if (Find.Maps.Contains(myMap))
-						{
-							Current.Game.CurrentMap = myMap;
-						}
-					};
-					TargetingParameters targetParams = new TargetingParameters
-					{
-						canTargetPawns = true,
-						canTargetItems = false,
-						canTargetSelf = false,
-						canTargetLocations = false,
-						canTargetBuildings = false,
-						canTargetFires = false
-					};
-					targeter.BeginTargeting(targetParams, delegate(LocalTargetInfo x)
-					{
-						if (this.ReadyToTransport)
-						{
-							this.TryTransport(x.ToGlobalTargetInfo(map));
-						}
-					}, null, actionWhenFinished, CompTeleporter.TargeterMouseAttachment);
-					result = true;
-				}
-				else
-				{
-					
-					Messages.Message("RD_YouCannotLock".Translate(), MessageTypeDefOf.RejectInput); //"You cannot lock onto anything there."
-					result = false;
-				}
-			}
+                if (target.WorldObject is MapParent mapParent && mapParent.HasMap)
+                {
+                    Map myMap = this.parent.Map;
+                    Map map = mapParent.Map;
+                    Current.Game.CurrentMap = map;
+                    Targeter targeter = Find.Targeter;
+                    Action actionWhenFinished = delegate ()
+                    {
+                        if (Find.Maps.Contains(myMap))
+                        {
+                            Current.Game.CurrentMap = myMap;
+                        }
+                    };
+                    TargetingParameters targetParams = new TargetingParameters
+                    {
+                        canTargetPawns = true,
+                        canTargetItems = false,
+                        canTargetSelf = false,
+                        canTargetLocations = false,
+                        canTargetBuildings = false,
+                        canTargetFires = false
+                    };
+                    targeter.BeginTargeting(targetParams, delegate (LocalTargetInfo x)
+                    {
+                        if (this.ReadyToTransport)
+                        {
+                            this.TryTransport(x.ToGlobalTargetInfo(map));
+                        }
+                    }, null, actionWhenFinished, CompTeleporter.TargeterMouseAttachment);
+                    result = true;
+                }
+                else
+                {
+
+                    Messages.Message("RD_YouCannotLock".Translate(), MessageTypeDefOf.RejectInput); //"You cannot lock onto anything there."
+                    result = false;
+                }
+            }
 			return result;
 		}
 

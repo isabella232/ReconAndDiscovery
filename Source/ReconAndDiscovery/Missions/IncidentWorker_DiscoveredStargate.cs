@@ -11,9 +11,8 @@ namespace ReconAndDiscovery.Missions
 	{
 		protected override bool CanFireNowSub(IncidentParms parms)
 		{
-			int num;
-			return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out num);
-		}
+            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out int num);
+        }
 
 		protected override bool TryExecuteWorker(IncidentParms parms)
 		{
@@ -45,24 +44,30 @@ namespace ReconAndDiscovery.Missions
                 {
                     SitePart abandonedCastle = new SitePart(site, SiteDefOfReconAndDiscovery.RD_AbandonedCastle,
     SiteDefOfReconAndDiscovery.RD_AbandonedCastle.Worker.GenerateDefaultParams
-    (StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                    abandonedCastle.hidden = true;
+    (StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
                     site.AddPart(abandonedCastle);
                 }
                 else if ((double)value < 0.50)
                 {
                     SitePart abandonedColony = new SitePart(site, SiteDefOfReconAndDiscovery.RD_AbandonedColony,
 SiteDefOfReconAndDiscovery.RD_AbandonedColony.Worker.GenerateDefaultParams
-(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                    abandonedColony.hidden = true;
+(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
                     site.AddPart(abandonedColony);
                 }
                 else if ((double)value < 0.75)
                 {
                     SitePart preciousLump = new SitePart(site, SitePartDefOf.PreciousLump,
 SitePartDefOf.PreciousLump.Worker.GenerateDefaultParams
-(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                    preciousLump.hidden = true;
+(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
                     site.AddPart(preciousLump);
                 }
                 else
@@ -75,20 +80,25 @@ SitePartDefOf.PreciousLump.Worker.GenerateDefaultParams
                     site.AddPart(starGate2);
                     // TODO: check if this works correctly
                     SitePart outpost = new SitePart(site, SitePartDefOf.Outpost, SitePartDefOf.Outpost.Worker.GenerateDefaultParams
-(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                    outpost.hidden = true;
+(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
                     site.parts.Add(outpost);
                     SitePart turrets = new SitePart(site, SitePartDefOf.Turrets, SitePartDefOf.Turrets.Worker.GenerateDefaultParams
-(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-                    turrets.hidden = true;
+(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
                     site.parts.Add(turrets);
                 }
                 if (Rand.Value < 0.2f)
                 {
                     SitePart scatteredManhunters = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredManhunters, SiteDefOfReconAndDiscovery.RD_ScatteredManhunters.Worker.GenerateDefaultParams
-(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-
-                    scatteredManhunters.hidden = true;
+(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
 
                     site.parts.Add(scatteredManhunters);
                 }
@@ -96,9 +106,10 @@ SitePartDefOf.PreciousLump.Worker.GenerateDefaultParams
                 {
                     SitePart scatteredTreasure = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure,
                     SiteDefOfReconAndDiscovery.RD_ScatteredTreasure.Worker.GenerateDefaultParams
-                    (StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction));
-
-                    scatteredTreasure.hidden = true;
+                    (StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    {
+                        hidden = true
+                    };
 
                     site.parts.Add(scatteredTreasure);
                 }

@@ -33,26 +33,25 @@ namespace ReconAndDiscovery.Things
 			select t;
 			foreach (Thing thing in enumerable)
 			{
-				Corpse corpse = thing as Corpse;
-				if (corpse != null)
-				{
-					Pawn innerPawn = corpse.InnerPawn;
-					if (innerPawn == null)
-					{
-						break;
-					}
-					if (innerPawn.Dead)
-					{
-						CompOsiris.Ressurrect(innerPawn, this);
-						CompHoloEmitter comp = base.GetComp<CompHoloEmitter>();
-						if (comp.SimPawn != innerPawn)
-						{
-							comp.SimPawn = innerPawn;
-							comp.MakeValidAllowedZone();
-						}
-					}
-				}
-			}
+                if (thing is Corpse corpse)
+                {
+                    Pawn innerPawn = corpse.InnerPawn;
+                    if (innerPawn == null)
+                    {
+                        break;
+                    }
+                    if (innerPawn.Dead)
+                    {
+                        CompOsiris.Ressurrect(innerPawn, this);
+                        CompHoloEmitter comp = base.GetComp<CompHoloEmitter>();
+                        if (comp.SimPawn != innerPawn)
+                        {
+                            comp.SimPawn = innerPawn;
+                            comp.MakeValidAllowedZone();
+                        }
+                    }
+                }
+            }
 		}
 
 		public void GetChildHolders(List<IThingHolder> outChildren)

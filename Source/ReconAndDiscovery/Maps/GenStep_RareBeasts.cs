@@ -34,17 +34,16 @@ namespace ReconAndDiscovery.Maps
                 false, false, false, false, false, false, 0f, null, 1f, null, null, null, 
                 null, new float? (0f), new float?(0f), new float?(1f), new Gender?(Gender.Female), null, null);
 
-			IntVec3 intVec;
-			if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 x) => x.Standable(map) && x.Fogged(map) && GridsUtility.GetRoom(x, map, RegionType.Set_Passable).CellCount >= 4, map, out intVec))
-			{
-				Pawn pawn = PawnGenerator.GeneratePawn(request);
-				Pawn pawn2 = PawnGenerator.GeneratePawn(request2);
-				IntVec3 intVec2 = CellFinder.RandomSpawnCellForPawnNear(intVec, map, 10);
-				GenSpawn.Spawn(pawn, intVec2, map, Rot4.Random, WipeMode.Vanish, false);
-				intVec2 = CellFinder.RandomSpawnCellForPawnNear(intVec, map, 10);
-				GenSpawn.Spawn(pawn2, intVec2, map, Rot4.Random, WipeMode.Vanish, false);
-			}
-		}
+            if (RCellFinder.TryFindRandomCellNearTheCenterOfTheMapWith((IntVec3 x) => x.Standable(map) && x.Fogged(map) && GridsUtility.GetRoom(x, map, RegionType.Set_Passable).CellCount >= 4, map, out IntVec3 intVec))
+            {
+                Pawn pawn = PawnGenerator.GeneratePawn(request);
+                Pawn pawn2 = PawnGenerator.GeneratePawn(request2);
+                IntVec3 intVec2 = CellFinder.RandomSpawnCellForPawnNear(intVec, map, 10);
+                GenSpawn.Spawn(pawn, intVec2, map, Rot4.Random, WipeMode.Vanish, false);
+                intVec2 = CellFinder.RandomSpawnCellForPawnNear(intVec, map, 10);
+                GenSpawn.Spawn(pawn2, intVec2, map, Rot4.Random, WipeMode.Vanish, false);
+            }
+        }
 	}
 }
 
