@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_PeaceTalks.label>peace talks</RD_PeaceTalks.label>
   <RD_PeaceTalks.description>A venue for talks with another faction.</RD_PeaceTalks.description>
-
   <RD_PeaceTalksFaction.label>peace talks faction</RD_PeaceTalksFaction.label>
   <RD_PeaceTalksFaction.description>A faction has invited you for peace talks.</RD_PeaceTalksFaction.description>
-
-
 </LanguageData>

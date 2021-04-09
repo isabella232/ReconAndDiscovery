@@ -1,33 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <!-- Big threats -->
-
   <RD_RaidEnemyQuest.label>enemy raid</RD_RaidEnemyQuest.label>
-
   <RD_DiscoveredStargate.label>discovered stargate</RD_DiscoveredStargate.label>
   <RD_DiscoveredStargate.letterText>You have discovered another stargate on the planet!</RD_DiscoveredStargate.letterText>
   <RD_DiscoveredStargate.letterLabel>Stargate</RD_DiscoveredStargate.letterLabel>
-
   <RD_RaidStargate.label>stargate raid</RD_RaidStargate.label>
   <RD_RaidStargate.letterText>A raiding party from {0} has just come through the stargate!</RD_RaidStargate.letterText>
   <RD_RaidStargate.letterLabel>Raid</RD_RaidStargate.letterLabel>
-
   <RD_MalevolentAI.label>malevolent ai</RD_MalevolentAI.label>
   <RD_MalevolentAI.letterText>A malevolent AI has hacked your defences in support of your enemies, {0}!</RD_MalevolentAI.letterText>
   <RD_MalevolentAI.letterLabel>Defences Hacked</RD_MalevolentAI.letterLabel>
-
   <RD_RaidTeleporter.label>teleporter hack</RD_RaidTeleporter.label>
   <RD_RaidTeleporter.letterText>The mechanoids have hacked our teleporter systems!</RD_RaidTeleporter.letterText>
   <RD_RaidTeleporter.letterLabel>Teleporter Hack</RD_RaidTeleporter.letterLabel>
-
   <RD_IncidentTremors.label>tremors</RD_IncidentTremors.label>
   <RD_IncidentTremors.letterText>A geological disturbance is causing tremors in the area. The roof in some areas may collapse. While this is merely an inconvenience in artificial structures, it can be very dangerous under mountains.</RD_IncidentTremors.letterText>
   <RD_IncidentTremors.letterLabel>Tremors</RD_IncidentTremors.letterLabel>
-
   <RD_IncidentRadiation.label>radiation</RD_IncidentRadiation.label>
   <RD_IncidentRadiation.letterText>The wind has carried radioactive dust across the area. The heightened radiation levels increase the risks of severe illness even indoors, unless deep underground, enclosed in a room with a thick rock roof. You may wish to consider leaving the area until the effect has passed.</RD_IncidentRadiation.letterText>
   <RD_IncidentRadiation.letterLabel>Radioactive fallout</RD_IncidentRadiation.letterLabel>
-
-
 </LanguageData>

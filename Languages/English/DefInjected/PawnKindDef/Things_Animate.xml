@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_Devillo.label>devillo</RD_Devillo.label>
   <RD_Devillo.labelPlural>devillos</RD_Devillo.labelPlural>
   <RD_Devillo.lifeStages.0.label>devillo calf</RD_Devillo.lifeStages.0.label>
@@ -25,7 +24,6 @@
   <RD_Devillo.labelMalePlural>male devillos</RD_Devillo.labelMalePlural>
   <RD_Devillo.labelFemale>female devillo</RD_Devillo.labelFemale>
   <RD_Devillo.labelFemalePlural>female devillos</RD_Devillo.labelFemalePlural>
-
   <RD_Nitralope.label>nitralope</RD_Nitralope.label>
   <RD_Nitralope.labelPlural>nitralopes</RD_Nitralope.labelPlural>
   <RD_Nitralope.lifeStages.0.label>nitralope calf</RD_Nitralope.lifeStages.0.label>
@@ -50,6 +48,4 @@
   <RD_Nitralope.labelMalePlural>male nitralopes</RD_Nitralope.labelMalePlural>
   <RD_Nitralope.labelFemale>female nitralope</RD_Nitralope.labelFemale>
   <RD_Nitralope.labelFemalePlural>female nitralopes</RD_Nitralope.labelFemalePlural>
-
-
 </LanguageData>

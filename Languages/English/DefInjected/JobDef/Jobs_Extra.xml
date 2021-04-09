@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_UseComputer.reportString>using computer.</RD_UseComputer.reportString>
   <RD_TakeToOsirisCasket.reportString>Storing body in casket.</RD_TakeToOsirisCasket.reportString>
   <RD_MandatoryMilk.reportString>carefully milking TargetA.</RD_MandatoryMilk.reportString>
@@ -13,6 +12,4 @@
   <RD_Negotiate.reportString>Negotiating.</RD_Negotiate.reportString>
   <RD_DiscoverStargates.reportString>Searching for stargates.</RD_DiscoverStargates.reportString>
   <RD_TravelThroughStargate.reportString>Entering Stargate.</RD_TravelThroughStargate.reportString>
-
-
 </LanguageData>

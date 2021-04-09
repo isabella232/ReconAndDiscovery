@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/TraitDef[defName = "RD_Holographic"]</xpath>
+    <value>
+      <li Class="SyrTraitValue.TraitValueExtension">
+        <traitValues>
+          <li>20</li>
+        </traitValues>
+      </li>
+    </value>
+  </Operation>
+</Patch>

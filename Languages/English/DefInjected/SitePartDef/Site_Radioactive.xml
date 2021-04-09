@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_SiteRadiationQuest.label>Source of radioactive dust</RD_SiteRadiationQuest.label>
   <RD_SiteRadiationQuest.description>The source of the radioactive dust.</RD_SiteRadiationQuest.description>
-
   <RD_SitePart_RadioactiveDust.label>radioactive dust</RD_SitePart_RadioactiveDust.label>
   <RD_SitePart_RadioactiveDust.description>Radioactive dust!</RD_SitePart_RadioactiveDust.description>
-
-
 </LanguageData>

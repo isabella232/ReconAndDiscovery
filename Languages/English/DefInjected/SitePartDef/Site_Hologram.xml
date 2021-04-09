@@ -1,14 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_AbandonedColony.label>abandoned colony</RD_AbandonedColony.label>
   <RD_AbandonedColony.description>An abandoned colony.</RD_AbandonedColony.description>
-
   <RD_HoloDisk.label>holodisk</RD_HoloDisk.label>
   <RD_HoloDisk.description>There is a holodisk here.</RD_HoloDisk.description>
-
   <RD_Stargate.label>stargate</RD_Stargate.label>
   <RD_Stargate.description>Thehis site contains a stargate.</RD_Stargate.description>
-
-
 </LanguageData>

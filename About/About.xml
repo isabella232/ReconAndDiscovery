@@ -9,35 +9,34 @@
     <li>1.2</li>
   </supportedVersions>
   <modDependencies />
-  <loadAfter />
-  <description>Update of SeveralPuffins mod.
-
-[img]https://raw.githubusercontent.com/emipa606/RimWorld-Wrapper/master/Notice.png[/img]
-
-[img]https://i.imgur.com/GYswkZ7.png[/img]
-
-Support-chat:
-https://invite.gg/mlie
-
-Non-steam version:
-https://github.com/emipa606/ReconAndDiscovery
+  <loadAfter>
+    <li>syrchalis.traitvalue</li>
+  </loadAfter>
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of SeveralPuffins mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=935948526
 
 - Almost all of the update-work done by Taranchuk
-
 - The deflector was thrown out of mod due to performance issues
-  RT Solar Flare Shield can do the same thing
-  
+  RT Solar Flare Shield can do the same thing  
 - Mote for the negotiator has been replaced by a permanent question mark
-
 - Workgivers have been optimized
-
 - Strings opened for translation
-
 - New new icons for quest sites, provided by IceMaverick
-
 - Harmony and Hugslib dependencies removed
+- Added settings for incident baseChances
+- Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814][SYR] Trait Value[/url]
 
---- Original Description ---
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+
+[table]
+	[tr]
+		[td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+		[td][url=https://github.com/emipa606/ReconAndDiscovery][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+	[/tr]
+[/table]
+	
+[img]https://i.imgur.com/NOW7jU1.png[/img]
 
 It's become a big ol' world out there since A16, when colonists first noticed that objects existed at more than 1km away, but it's still a little sparse on this RimWorld. Recon and Discovery introduces some big risk, big reward missions to tempt you shut-ins to go for a walk in the big wide open!
 
@@ -101,6 +100,17 @@ Malevolent AI: During a raid, a distant AI may hack your defenses and turn them 
 Teleporter hack: Mechanoids, with their advanced understanding of computer systems, may hack your teleporter. Be wary of this Trojan horse!
 
 Stargate raids: A stargate allows you to jump into the heart of another location, but now it leaves you open to someone else doing the same with you.
-	
-  </description>
+
+
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
 </ModMetaData>
+

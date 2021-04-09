@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_TradeFair.label>tradefair</RD_TradeFair.label>
   <RD_TradeFair.letterText>{0} are hosting a trade fair. Your people are invited to attend.</RD_TradeFair.letterText>
   <RD_TradeFair.letterLabel>Trade Fair</RD_TradeFair.letterLabel>
-
-
 </LanguageData>

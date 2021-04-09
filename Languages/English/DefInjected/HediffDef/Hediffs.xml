@@ -1,23 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_BattlePrayer.label>Battle prayer</RD_BattlePrayer.label>
   <RD_BattlePrayer.description>Battle prayer</RD_BattlePrayer.description>
-
   <RD_RadiationSickness.label>radiation sickness</RD_RadiationSickness.label>
   <RD_RadiationSickness.description>radiation sickness</RD_RadiationSickness.description>
-
   <RD_PsychicAttack.label>psychic interference</RD_PsychicAttack.label>
   <RD_PsychicAttack.description>psychic interference</RD_PsychicAttack.description>
-
   <RD_Anaphylaxis.label>teleport anaphylaxis</RD_Anaphylaxis.label>
   <RD_Anaphylaxis.description>teleport anaphylaxis</RD_Anaphylaxis.description>
   <RD_Anaphylaxis.stages.0.label>painful</RD_Anaphylaxis.stages.0.label>
   <RD_Anaphylaxis.stages.1.label>debilitating</RD_Anaphylaxis.stages.1.label>
   <RD_Anaphylaxis.stages.2.label>fatal</RD_Anaphylaxis.stages.2.label>
-
   <RD_Neuro-optimised.label>neuro-optimised</RD_Neuro-optimised.label>
   <RD_Neuro-optimised.description>neuro-optimised</RD_Neuro-optimised.description>
-
-
 </LanguageData>

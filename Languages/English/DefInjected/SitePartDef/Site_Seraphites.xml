@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <RD_SeraphitesQuest.label>Abandoned lab</RD_SeraphitesQuest.label>
   <RD_SeraphitesQuest.description>The rumoured location of the luciferium cure.</RD_SeraphitesQuest.description>
-
   <RD_SitePart_Computer.label>computer</RD_SitePart_Computer.label>
   <RD_SitePart_Computer.description>A computer!</RD_SitePart_Computer.description>
-
-
 </LanguageData>
