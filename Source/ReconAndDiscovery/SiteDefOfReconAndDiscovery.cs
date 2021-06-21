@@ -1,14 +1,11 @@
-﻿using System;
-using RimWorld;
-using RimWorld.Planet;
+﻿using RimWorld;
 
 namespace ReconAndDiscovery
 {
-	[DefOf]
-	public static class SiteDefOfReconAndDiscovery
-	{
-
-		public static SitePartDef RD_ScatteredTreasure;
+    [DefOf]
+    public static class SiteDefOfReconAndDiscovery
+    {
+        public static SitePartDef RD_ScatteredTreasure;
 
         public static SitePartDef RD_ScatteredManhunters;
 
@@ -38,11 +35,11 @@ namespace ReconAndDiscovery
 
         public static SitePartDef RD_SitePart_RadioactiveDust;
 
-		public static WorldObjectDef RD_Adventure;
+        public static WorldObjectDef RD_Adventure;
 
         public static WorldObjectDef RD_AdventureMedical;
 
-		public static WorldObjectDef RD_AdventurePeaceTalks;
+        public static WorldObjectDef RD_AdventurePeaceTalks;
 
         public static WorldObjectDef RD_AdventureDestroyThing;
 
@@ -71,4 +68,3 @@ namespace ReconAndDiscovery
         public static SitePartDef RD_MuffaloMigration;
     }
 }
-

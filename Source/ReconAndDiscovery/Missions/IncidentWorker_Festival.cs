@@ -11,105 +11,101 @@ namespace ReconAndDiscovery.Missions
     {
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out int num);
+            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out _);
         }
 
         public List<Faction> GetAllNonPlayerFriends(Faction faction)
         {
-            List<Faction> list = Find.FactionManager.AllFactionsVisible.ToList<Faction>();
+            var list = Find.FactionManager.AllFactionsVisible.ToList();
             if (list.Contains(Faction.OfPlayer))
             {
                 list.Remove(Faction.OfPlayer);
             }
+
             return (from f in list
-                    where faction.GoodwillWith(f) > 10f
-                    select f).ToList<Faction>();
+                where faction.GoodwillWith(f) > 10f
+                select f).ToList();
         }
 
         public int FriendsCount(Faction faction)
         {
-            List<Faction> list = Find.FactionManager.AllFactionsVisible.ToList<Faction>();
+            var list = Find.FactionManager.AllFactionsVisible.ToList();
             if (list.Contains(faction))
             {
                 list.Remove(faction);
             }
+
             list = (from f in list
-                    where faction.GoodwillWith(f) > 10f
-                    select f).ToList<Faction>();
-            return list.Count<Faction>();
+                where faction.GoodwillWith(f) > 10f
+                select f).ToList();
+            return list.Count;
         }
 
-        public bool TryFindFaction(out Faction faction, Predicate<Faction> validator)
+        private bool TryFindFaction(out Faction faction, Predicate<Faction> validator)
         {
             faction = null;
-            List<Faction> list = Find.FactionManager.AllFactionsVisible.ToList<Faction>();
+            var list = Find.FactionManager.AllFactionsVisible.ToList();
             if (list.Contains(Faction.OfPlayer))
             {
                 list.Remove(Faction.OfPlayer);
             }
+
             list = (from f in list
-                    where validator(f)
-                    select f).ToList<Faction>();
+                where validator(f)
+                select f).ToList();
             bool result;
-            if (list.Count<Faction>() > 0)
+            if (list.Any())
             {
-                faction = list.RandomElement<Faction>();
+                faction = list.RandomElement();
                 result = true;
             }
             else
             {
                 result = false;
             }
+
             return result;
         }
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            bool result;
             if ((from wo in Find.WorldObjects.AllWorldObjects
-                 where wo.def == SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks
-                 select wo).Count<WorldObject>() > 0)
+                where wo.def == SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks
+                select wo).Any())
             {
-                result = false;
+                return false;
             }
-            else if (!this.TryFindFaction(out Faction faction, (Faction f) => f != Faction.OfPlayer && f.PlayerGoodwill >= 0))
-            {
-                result = false;
-            }
-            else
-            {
-                if (TileFinder.TryFindNewSiteTile(out int tile))
-                {
-                    Site site = (Site)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Site);
-                    site.Tile = tile;
-                    site.SetFaction(faction);
-                    site.AddPart(new SitePart(site, SiteDefOfReconAndDiscovery.RD_Festival,
-    SiteDefOfReconAndDiscovery.RD_Festival.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
 
-                    // TODO: check if this works correctly
-                    SitePart outpost = new SitePart(site, SitePartDefOf.Outpost, SitePartDefOf.Outpost.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
-                    {
-                        hidden = true
-                    };
-                    site.parts.Add(outpost);
-                    int num = 8;
-                    site.GetComponent<TimeoutComp>().StartTimeout(num * 60000);
-                    base.SendStandardLetter(parms, site, new NamedArgument[]
-                    {
-                        faction.Name
-                    });
-                    Find.WorldObjects.Add(site);
-                    result = true;
-                }
-                else
-                {
-                    result = false;
-                }
+            if (!TryFindFaction(out var faction, f => f != Faction.OfPlayer && f.PlayerGoodwill >= 0))
+            {
+                return false;
             }
-            return result;
+
+            if (!TileFinder.TryFindNewSiteTile(out var tile))
+            {
+                return false;
+            }
+
+            var site = (Site) WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Site);
+            site.Tile = tile;
+            site.SetFaction(faction);
+            site.AddPart(new SitePart(site, SiteDefOfReconAndDiscovery.RD_Festival,
+                SiteDefOfReconAndDiscovery.RD_Festival.Worker.GenerateDefaultParams(
+                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
+
+            // TODO: check if this works correctly
+            var outpost = new SitePart(site, SitePartDefOf.Outpost,
+                SitePartDefOf.Outpost.Worker.GenerateDefaultParams(
+                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+            {
+                hidden = true
+            };
+            site.parts.Add(outpost);
+            var num = 8;
+            site.GetComponent<TimeoutComp>().StartTimeout(num * 60000);
+            SendStandardLetter(parms, site, faction.Name);
+            Find.WorldObjects.Add(site);
+            return true;
         }
     }
 }
-
- 
-

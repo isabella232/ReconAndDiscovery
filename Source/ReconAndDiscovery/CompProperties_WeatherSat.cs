@@ -1,16 +1,14 @@
-﻿using System;
-using Verse;
+﻿using Verse;
 
 namespace ReconAndDiscovery
 {
-	public class CompProperties_WeatherSat : CompProperties
-	{
-		public CompProperties_WeatherSat()
-		{
-			this.compClass = typeof(CompWeatherSat);
-		}
+    public class CompProperties_WeatherSat : CompProperties
+    {
+        public float tickCharge = 0.5f;
 
-		public float tickCharge = 0.5f;
-	}
+        public CompProperties_WeatherSat()
+        {
+            compClass = typeof(CompWeatherSat);
+        }
+    }
 }
-

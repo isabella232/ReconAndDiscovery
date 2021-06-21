@@ -4,40 +4,41 @@ using Verse;
 
 namespace ReconAndDiscovery.Triggers
 {
-	public class ActivatedActionDef : Def
-	{
-		public ActivatedAction ActivatedAction
-		{
-			get
-			{
-				if (this.actionObject == null)
-				{
-					this.actionObject = (ActivatedAction)Activator.CreateInstance(this.activatedActionClass);
-					this.actionObject.def = this;
-				}
-				return this.actionObject;
-			}
-		}
+    public class ActivatedActionDef : Def
+    {
+        public readonly string dialogText = "";
 
-		public IntRange numThingsToSpawn;
+        public readonly int effectRadius = 0;
 
-		public IntRange spawnedThingStackSize;
+        public readonly bool hasDialog = false;
 
-		public List<ThingDef> spawnedThings = new List<ThingDef>();
+        public readonly List<ThingDef> spawnedThings = new List<ThingDef>();
+        private ActivatedAction actionObject;
 
-		public IntRange numPawnsToSpawn;
+        private Type activatedActionClass;
 
-		public List<PawnKindDef> pawnKinds;
+        public IntRange numPawnsToSpawn;
 
-		public bool hasDialog = false;
+        public IntRange numThingsToSpawn;
 
-		public string dialogText = "";
+        public List<PawnKindDef> pawnKinds;
 
-		public Type activatedActionClass;
+        public IntRange spawnedThingStackSize;
 
-		public int effectRadius = 0;
+        public ActivatedAction ActivatedAction
+        {
+            get
+            {
+                if (actionObject != null)
+                {
+                    return actionObject;
+                }
 
-		private ActivatedAction actionObject;
-	}
+                actionObject = (ActivatedAction) Activator.CreateInstance(activatedActionClass);
+                actionObject.def = this;
+
+                return actionObject;
+            }
+        }
+    }
 }
-

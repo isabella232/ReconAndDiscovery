@@ -1,116 +1,128 @@
-﻿using System;
-using RimWorld;
-using RimWorld.Planet;
+﻿using RimWorld.Planet;
 using Verse;
 
 namespace ReconAndDiscovery.Missions
 {
-	public class QuestComp_DestroyThing : WorldObjectComp
-	{
-		public Thing ThingToDestroy
-		{
-			get
-			{
-				if (this.thingToDestroy == null)
-				{
-					if (this.targetDef == null)
-					{
-						return null;
-					}
-                    if (this.parent is MapParent mapParent && mapParent.HasMap)
-                    {
-						if (mapParent.Map.listerThings.ThingsOfDef(this.targetDef).Count > 0)
-							this.thingToDestroy = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).RandomElement<Thing>();
-						else
-							return null;
-                    }
+    public class QuestComp_DestroyThing : WorldObjectComp
+    {
+        private bool active;
+
+        public GameConditionDef gameConditionCaused;
+
+        private ThingDef targetDef;
+
+        private Thing thingToDestroy;
+
+        public int worldTileAffected;
+
+        private Thing ThingToDestroy
+        {
+            get
+            {
+                if (thingToDestroy != null)
+                {
+                    return thingToDestroy;
                 }
-				return this.thingToDestroy;
-			}
-		}
 
-		public bool Active
-		{
-			get
-			{
-				return this.active;
-			}
-		}
-
-		public override void CompTick()
-		{
-			base.CompTick();
-			try
-			{
-				if (this.active)
-				{
-                    if (this.parent is MapParent mapParent && mapParent.Map != null)
-                    {
-                        if (this.ThingToDestroy != null)
-                        {
-                            if (this.ThingToDestroy.Destroyed)
-                            {
-                                this.StopQuest();
-                            }
-                        }
-                    }
+                if (targetDef == null)
+                {
+                    return null;
                 }
-			}
-			catch
-			{
-				this.StopQuest();
-			}
-		}
 
-		public override void PostExposeData()
-		{
-			base.PostExposeData();
-			Scribe_Values.Look<bool>(ref this.active, "active", false, false);
-			Scribe_Values.Look<int>(ref this.worldTileAffected, "worldTileAffected", 0, false);
-			Scribe_Defs.Look<GameConditionDef>(ref this.gameConditionCaused, "gameConditionCaused");
-			Scribe_Defs.Look<ThingDef>(ref this.targetDef, "targetDef");
-			Scribe_References.Look<Thing>(ref this.thingToDestroy, "thingToDestroy", false);
-		}
+                if (parent is not MapParent {HasMap: true} mapParent)
+                {
+                    return thingToDestroy;
+                }
 
-		public void StartQuest(ThingDef targetDef)
-		{
-			this.targetDef = targetDef;
-			this.active = true;
-		}
+                if (mapParent.Map.listerThings.ThingsOfDef(targetDef).Count > 0)
+                {
+                    thingToDestroy = mapParent.Map.listerThings.ThingsOfDef(targetDef).RandomElement();
+                }
+                else
+                {
+                    return null;
+                }
 
-		public void StopQuest()
-		{
-			this.active = false;
-			if (ThingToDestroy == null || this.ThingToDestroy.Destroyed)
-			{
-				Settlement settlement = Find.World.worldObjects.SettlementAt(this.worldTileAffected);
-				if (settlement != null && settlement.HasMap)
-				{
-					Log.Message(string.Format("Found player base named {0}", settlement.TraderName));
-					GameConditionManager gameConditionManager = settlement.Map.gameConditionManager;
-					if (gameConditionManager.ConditionIsActive(this.gameConditionCaused))
-					{
-						gameConditionManager.ActiveConditions.Remove(gameConditionManager.GetActiveCondition(this.gameConditionCaused));
-					}
-				}
-			}
-		}
+                return thingToDestroy;
+            }
+        }
 
-		public override void PostPostRemove()
-		{
-			this.StopQuest(); 
-			base.PostPostRemove();
-		}
+        public bool Active => active;
 
-		private bool active;
+        public override void CompTick()
+        {
+            base.CompTick();
+            try
+            {
+                if (!active)
+                {
+                    return;
+                }
 
-		public int worldTileAffected;
+                if (parent is not MapParent mapParent || mapParent.Map == null)
+                {
+                    return;
+                }
 
-		public GameConditionDef gameConditionCaused;
+                if (ThingToDestroy == null)
+                {
+                    return;
+                }
 
-		private Thing thingToDestroy;
+                if (ThingToDestroy.Destroyed)
+                {
+                    StopQuest();
+                }
+            }
+            catch
+            {
+                StopQuest();
+            }
+        }
 
-		private ThingDef targetDef;
-	}
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref active, "active");
+            Scribe_Values.Look(ref worldTileAffected, "worldTileAffected");
+            Scribe_Defs.Look(ref gameConditionCaused, "gameConditionCaused");
+            Scribe_Defs.Look(ref targetDef, "targetDef");
+            Scribe_References.Look(ref thingToDestroy, "thingToDestroy");
+        }
+
+        public void StartQuest(ThingDef thingDef)
+        {
+            targetDef = thingDef;
+            active = true;
+        }
+
+        private void StopQuest()
+        {
+            active = false;
+            if (ThingToDestroy != null && !ThingToDestroy.Destroyed)
+            {
+                return;
+            }
+
+            var settlement = Find.World.worldObjects.SettlementAt(worldTileAffected);
+            if (settlement == null || !settlement.HasMap)
+            {
+                return;
+            }
+
+            Log.Message($"Found player base named {settlement.TraderName}");
+            var gameConditionManager = settlement.Map.gameConditionManager;
+            if (gameConditionManager.ConditionIsActive(gameConditionCaused))
+            {
+                gameConditionManager.ActiveConditions.Remove(
+                    gameConditionManager.GetActiveCondition(gameConditionCaused));
+            }
+        }
+
+        public override void PostPostRemove()
+        {
+            StopQuest();
+            base.PostPostRemove();
+        }
+    }
 }
-

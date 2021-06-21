@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-using RimWorld.Planet;
-using UnityEngine;
+﻿using RimWorld.Planet;
 using Verse;
 
 namespace ExpandedIncidents.Settings
@@ -16,7 +13,7 @@ namespace ExpandedIncidents.Settings
         public override void FinalizeInit()
         {
             base.FinalizeInit();
-            Log.Message("Recon And Discovery - Settings loaded", false);
+            Log.Message("Recon And Discovery - Settings loaded");
             RaD_ModSettings.ChangeDefPost();
         }
     }

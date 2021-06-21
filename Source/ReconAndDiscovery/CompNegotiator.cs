@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -11,18 +10,21 @@ namespace ReconAndDiscovery
     [StaticConstructorOnStartup]
     public class CompNegotiator : ThingComp
     {
+        private static readonly Material QuestionMarkMat =
+            MaterialPool.MatFrom("UI/Overlays/QuestionMark", ShaderDatabase.MetaOverlay);
+
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            List<FloatMenuOption> list = base.CompFloatMenuOptions(selPawn).ToList<FloatMenuOption>();
-            FloatMenuOption item = new FloatMenuOption("RD_Negotiate".Translate(), delegate ()
+            var list = base.CompFloatMenuOptions(selPawn).ToList();
+            var item = new FloatMenuOption("RD_Negotiate".Translate(), delegate
             {
-                Job job = new Job(JobDefOfReconAndDiscovery.RD_Negotiate)
+                var job = new Job(JobDefOfReconAndDiscovery.RD_Negotiate)
                 {
-                    targetA = this.parent,
+                    targetA = parent,
                     playerForced = true
                 };
-                selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-            }, MenuOptionPriority.Default, null, null, 0f, null, null);
+                selPawn.jobs.TryTakeOrderedJob(job);
+            });
             list.Add(item);
             return list;
         }
@@ -33,30 +35,30 @@ namespace ReconAndDiscovery
             {
                 return;
             }
-            Vector3 drawPos = t.DrawPos;
-            drawPos.y = Altitudes.AltitudeFor(AltitudeLayer.MetaOverlays) + 0.28125f;
+
+            var drawPos = t.DrawPos;
+            drawPos.y = AltitudeLayer.MetaOverlays.AltitudeFor() + 0.28125f;
             if (t is Pawn)
             {
-                drawPos.x += (float)t.def.size.x - 1f;
-                drawPos.z += (float)t.def.size.z + 0.2f;
+                drawPos.x += t.def.size.x - 1f;
+                drawPos.z += t.def.size.z + 0.2f;
             }
+
             RenderPulsingOverlayQuest(t, QuestionMarkMat, drawPos, MeshPool.plane05);
         }
 
         private static void RenderPulsingOverlayQuest(Thing thing, Material mat, Vector3 drawPos, Mesh mesh)
         {
-            float num = ((float)Math.Sin((double)((Time.realtimeSinceStartup + 397f * (float)(thing.thingIDNumber % 571)) * 4f)) + 1f) * 0.5f;
-            num = 0.3f + num * 0.7f;
-            Material material = FadedMaterialPool.FadedVersionOf(mat, num);
+            var num = ((float) Math.Sin((Time.realtimeSinceStartup + (397f * (thing.thingIDNumber % 571))) * 4f) + 1f) *
+                      0.5f;
+            num = 0.3f + (num * 0.7f);
+            var material = FadedMaterialPool.FadedVersionOf(mat, num);
             Graphics.DrawMesh(mesh, drawPos, Quaternion.identity, material, 0);
         }
 
-        private static readonly Material QuestionMarkMat = MaterialPool.MatFrom("UI/Overlays/QuestionMark", ShaderDatabase.MetaOverlay);
-
         public override void CompTick()
         {
-            RenderExclamationPointOverlay(this.parent);
+            RenderExclamationPointOverlay(parent);
         }
     }
 }
-

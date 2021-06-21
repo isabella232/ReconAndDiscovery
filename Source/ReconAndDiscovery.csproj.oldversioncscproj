@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7433D26A-FFD9-4C4C-ADBB-030ED71AFF95}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReconAndDiscovery</RootNamespace>
+    <AssemblyName>ReconAndDiscovery</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionDefOfReconAndDiscovery.cs" />
+    <Compile Include="AdventureDef.cs" />
+    <Compile Include="AdventureDetectionType.cs" />
+    <Compile Include="AdventureIDManager.cs" />
+    <Compile Include="AdventuresUtility.cs" />
+    <Compile Include="AdventureWorker.cs" />
+    <Compile Include="Alert_OverfullNitrolope.cs" />
+    <Compile Include="CompComputerTerminal.cs" />
+    <Compile Include="CompHoloEmitter.cs" />
+    <Compile Include="CompMandatoryMilkable.cs" />
+    <Compile Include="CompNegotiator.cs" />
+    <Compile Include="CompOsiris.cs" />
+    <Compile Include="CompProperties_ComputerTerminal.cs" />
+    <Compile Include="CompProperties_HoloEmitter.cs" />
+    <Compile Include="CompProperties_MandatoryMilkable.cs" />
+    <Compile Include="CompProperties_Osiris.cs" />
+    <Compile Include="CompProperties_PsionicEmanator.cs" />
+    <Compile Include="CompProperties_Stargate.cs" />
+    <Compile Include="CompProperties_Teleporter.cs" />
+    <Compile Include="CompProperties_WeatherSat.cs" />
+    <Compile Include="CompPsionicEmanator.cs" />
+    <Compile Include="CompStargate.cs" />
+    <Compile Include="CompTeleporter.cs" />
+    <Compile Include="CompWeatherSat.cs" />
+    <Compile Include="EventDistanceType.cs" />
+    <Compile Include="GameCondition_Radiation.cs" />
+    <Compile Include="GameCondition_TargetedStorm.cs" />
+    <Compile Include="GameCondition_Tremors.cs" />
+    <Compile Include="GenStepDefOfReconAndDiscovery.cs" />
+    <Compile Include="IncidentWorker_MalevolentAI.cs" />
+    <Compile Include="IncidentWorker_RaidStargate.cs" />
+    <Compile Include="IncidentWorker_RaidTeleporter.cs" />
+    <Compile Include="ITab_Scyther_Social.cs" />
+    <Compile Include="JobDefOfReconAndDiscovery.cs" />
+    <Compile Include="JobDriver_ActivateOsirisCasket.cs" />
+    <Compile Include="JobDriver_BattlePrayer.cs" />
+    <Compile Include="JobDriver_DiscoverStargates.cs" />
+    <Compile Include="JobDriver_LayDown_Scyther.cs" />
+    <Compile Include="JobDriver_LoadIntoEmitter.cs" />
+    <Compile Include="JobDriver_MandatoryMilk.cs" />
+    <Compile Include="JobDriver_Negotiate.cs" />
+    <Compile Include="JobDriver_PrayAtObject.cs" />
+    <Compile Include="JobDriver_SacrificeAtAltar.cs" />
+    <Compile Include="JobDriver_ScanAtEmitter.cs" />
+    <Compile Include="JobDriver_TakeBodyToOsirisCasket.cs" />
+    <Compile Include="JobDriver_TravelThroughStargate.cs" />
+    <Compile Include="JobDriver_UseComputer.cs" />
+    <Compile Include="JobGiver_MechDowned.cs" />
+    <Compile Include="Maps\GenStep_AbandonedLab.cs" />
+    <Compile Include="Maps\GenStep_AdventureGenerator.cs" />
+    <Compile Include="Maps\GenStep_CrashedShip.cs" />
+    <Compile Include="Maps\GenStep_EnemyRaidOnArrival.cs" />
+    <Compile Include="Maps\GenStep_MechanoidForces.cs" />
+    <Compile Include="Maps\GenStep_MilitaryBase.cs" />
+    <Compile Include="Maps\GenStep_OldCastle.cs" />
+    <Compile Include="Maps\GenStep_RareBeasts.cs" />
+    <Compile Include="Maps\GenStep_ScatteredManhunters.cs" />
+    <Compile Include="Maps\GenStep_ScatteredTreasure.cs" />
+    <Compile Include="Maps\GenStep_ScatterFaction.cs" />
+    <Compile Include="Maps\GenStep_ThirdPartyRaid.cs" />
+    <Compile Include="Maps\MapGenUtility.cs" />
+    <Compile Include="Maps\SitePartWorker_Computer.cs" />
+    <Compile Include="Maps\SitePartWorker_EnemyRaidOnArrival.cs" />
+    <Compile Include="Maps\SitePartWorker_Generator.cs" />
+    <Compile Include="Maps\SitePartWorker_HoloDisk.cs" />
+    <Compile Include="Maps\SitePartWorker_MedicalEmergency.cs" />
+    <Compile Include="Maps\SitePartWorker_Osiris.cs" />
+    <Compile Include="Maps\SitePartWorker_PeaceTalksFaction.cs" />
+    <Compile Include="Maps\SitePartWorker_PsionicEmanator.cs" />
+    <Compile Include="Maps\SitePartWorker_RadioactiveDust.cs" />
+    <Compile Include="Maps\SitePartWorker_Stargate.cs" />
+    <Compile Include="Maps\SitePartWorker_WeatherSat.cs" />
+    <Compile Include="Maps\SymbolResolver_AbandonedLab.cs" />
+    <Compile Include="Maps\SymbolResolver_CrashedShip.cs" />
+    <Compile Include="Maps\SymbolResolver_EdgeFence.cs" />
+    <Compile Include="Maps\SymbolResolver_EdgeShields.cs" />
+    <Compile Include="Maps\SymbolResolver_InsertFurnishing.cs" />
+    <Compile Include="Maps\SymbolResolver_MakeMainAdventureTrigger.cs" />
+    <Compile Include="Maps\SymbolResolver_NestedRoomMaze.cs" />
+    <Compile Include="Maps\SymbolResolver_OldCastle.cs" />
+    <Compile Include="Maps\SymbolResolver_OldMilitaryBase.cs" />
+    <Compile Include="Maps\SymbolResolver_PathOfDestruction.cs" />
+    <Compile Include="Maps\SymbolResolver_PlaceTrigger.cs" />
+    <Compile Include="Maps\SymbolResolver_RoomWithDoor.cs" />
+    <Compile Include="Maps\SymbolResolver_TriangularRoom.cs" />
+    <Compile Include="Maps\SymbolResolver_WallDoor.cs" />
+    <Compile Include="Maps\SymbolResolver_WireOutline.cs" />
+    <Compile Include="Missions\Adventure_ReprogrammedMechanoid.cs" />
+    <Compile Include="Missions\IncidentWorker_AbandonedColony.cs" />
+    <Compile Include="Missions\IncidentWorker_CrashedShip.cs" />
+    <Compile Include="Missions\IncidentWorker_DiscoveredStargate.cs" />
+    <Compile Include="Missions\IncidentWorker_FaultyGenerator.cs" />
+    <Compile Include="Missions\IncidentWorker_Festival.cs" />
+    <Compile Include="Missions\IncidentWorker_MuffaloHerd.cs" />
+    <Compile Include="Missions\IncidentWorker_MuffaloMassInsanity.cs" />
+    <Compile Include="Missions\IncidentWorker_OsirisCasket.cs" />
+    <Compile Include="Missions\IncidentWorker_PeaceTalks.cs" />
+    <Compile Include="Missions\IncidentWorker_QuestRadiation.cs" />
+    <Compile Include="Missions\IncidentWorker_RaidEnemyQuest.cs" />
+    <Compile Include="Missions\IncidentWorker_SeraphitesQuest.cs" />
+    <Compile Include="Missions\IncidentWorker_WarIdol.cs" />
+    <Compile Include="Missions\QuestComp_CountThings.cs" />
+    <Compile Include="Missions\QuestComp_DestroyThing.cs" />
+    <Compile Include="Missions\QuestComp_MedicalEmergency.cs" />
+    <Compile Include="Missions\QuestComp_PeaceTalks.cs" />
+    <Compile Include="Missions\SitePartWorker_Festival.cs" />
+    <Compile Include="Missions\SitePartWorker_MuffaloHerd.cs" />
+    <Compile Include="Missions\WorldObjectCompProperties_CountThings.cs" />
+    <Compile Include="Missions\WorldObjectCompProperties_DestroyThing.cs" />
+    <Compile Include="Missions\WorldObjectCompProperties_MedicalEmergency.cs" />
+    <Compile Include="Missions\WorldObjectCompProperties_PeaceTalks.cs" />
+    <Compile Include="OsirisCasket.cs" />
+    <Compile Include="Predicate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomStructure.cs" />
+    <Compile Include="Settings\RaD_Mod.cs" />
+    <Compile Include="Settings\RaD_ModSettings.cs" />
+    <Compile Include="Settings\WorldComp.cs" />
+    <Compile Include="SiteDefOfReconAndDiscovery.cs" />
+    <Compile Include="ThingDefOfReconAndDiscovery.cs" />
+    <Compile Include="Things\HediffCompProperties_Seraphites.cs" />
+    <Compile Include="Things\HediffComp_Seraphites.cs" />
+    <Compile Include="Things\HoloEmitter.cs" />
+    <Compile Include="Things\Teleporter.cs" />
+    <Compile Include="Triggers\ActionTrigger.cs" />
+    <Compile Include="Triggers\ActivatedAction.cs" />
+    <Compile Include="Triggers\ActivatedActionDef.cs" />
+    <Compile Include="Triggers\ActivatedAction_LuciferiumGas.cs" />
+    <Compile Include="Triggers\ActivatedAction_PsionicLandmine.cs" />
+    <Compile Include="Triggers\ActivatedAction_ReprogrammedScyther.cs" />
+    <Compile Include="Triggers\ActivatedAction_Seraphites.cs" />
+    <Compile Include="Triggers\PawnTalentUtility.cs" />
+    <Compile Include="Triggers\RectActionTrigger.cs" />
+    <Compile Include="WorkGiver_DiscoverStargates.cs" />
+    <Compile Include="WorkGiver_LoadIntoEmitter.cs" />
+    <Compile Include="WorkGiver_MandatoryMilk.cs" />
+    <Compile Include="WorkGiver_PrayAtObject.cs" />
+    <Compile Include="WorkGiver_PsychicPrayer.cs" />
+    <Compile Include="WorkGiver_Sacrifice.cs" />
+    <Compile Include="WorkGiver_ScanAtEmitter.cs" />
+    <Compile Include="WorkGiver_TakeToOsirisCasket.cs" />
+    <Compile Include="WorldAdventure.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

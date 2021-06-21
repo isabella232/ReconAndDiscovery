@@ -5,50 +5,46 @@ using Verse;
 
 namespace ReconAndDiscovery
 {
-	public class ITab_Scyther_Social : ITab
-	{
-		public ITab_Scyther_Social()
-		{
-			this.size = new Vector2(540f, 510f);
-			this.labelKey = "TabSocial".Translate();
-			this.tutorTag = "RD_Social".Translate();
-		}
+    public class ITab_Scyther_Social : ITab
+    {
+        public const float Width = 540f;
 
-		public override bool IsVisible
-		{
-			get
-			{
-				return this.SelPawnForSocialInfo.RaceProps.IsMechanoid && this.SelPawnForSocialInfo.RaceProps.intelligence == Intelligence.Humanlike;
-			}
-		}
+        public ITab_Scyther_Social()
+        {
+            size = new Vector2(540f, 510f);
+            labelKey = "TabSocial".Translate();
+            tutorTag = "RD_Social".Translate();
+        }
 
-		private Pawn SelPawnForSocialInfo
-		{
-			get
-			{
-				Pawn result;
-				if (base.SelPawn != null)
-				{
-					result = base.SelPawn;
-				}
-				else
-				{
-                    if (!(base.SelThing is Corpse corpse))
+        public override bool IsVisible => SelPawnForSocialInfo.RaceProps.IsMechanoid &&
+                                          SelPawnForSocialInfo.RaceProps.intelligence == Intelligence.Humanlike;
+
+        private Pawn SelPawnForSocialInfo
+        {
+            get
+            {
+                Pawn result;
+                if (SelPawn != null)
+                {
+                    result = SelPawn;
+                }
+                else
+                {
+                    if (!(SelThing is Corpse corpse))
                     {
-                        throw new InvalidOperationException("Social tab on non-pawn non-corpse " + base.SelThing);
+                        throw new InvalidOperationException("Social tab on non-pawn non-corpse " + SelThing);
                     }
+
                     result = corpse.InnerPawn;
-				}
-				return result;
-			}
-		}
+                }
 
-		protected override void FillTab()
-		{
-			SocialCardUtility.DrawSocialCard(new Rect(0f, 0f, this.size.x, this.size.y), this.SelPawnForSocialInfo);
-		}
+                return result;
+            }
+        }
 
-		public const float Width = 540f;
-	}
+        protected override void FillTab()
+        {
+            SocialCardUtility.DrawSocialCard(new Rect(0f, 0f, size.x, size.y), SelPawnForSocialInfo);
+        }
+    }
 }
-

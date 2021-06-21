@@ -1,69 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
 namespace ReconAndDiscovery.Triggers
 {
-	public class ActionTrigger : Thing
-	{
-		public virtual ICollection<IntVec3> Cells
-		{
-			get
-			{
-				return this.cells;
-			}
-		}
+    public class ActionTrigger : Thing
+    {
+        public ActivatedActionDef actionDef;
 
-		protected void ActivatedBy(Pawn p)
-		{
-			if (this.actionDef.ActivatedAction.TryAction(p, base.Map, this))
-			{
-				if (!base.Destroyed)
-				{
-					this.Destroy(DestroyMode.Vanish);
-				}
-			}
-		}
+        public virtual ICollection<IntVec3> Cells { get; } = new List<IntVec3>();
 
-		public override void ExposeData()
-		{
-			Scribe_Defs.Look<ActivatedActionDef>(ref this.actionDef, "actionDef");
-			base.ExposeData();
-		}
+        private void ActivatedBy(Pawn p)
+        {
+            if (!actionDef.ActivatedAction.TryAction(p, Map, this))
+            {
+                return;
+            }
 
-		public override void Tick()
-		{
-			Pawn pawn = null;
-			if (this.IsHashIntervalTick(20))
-			{
-				Map map = base.Map;
-				foreach (IntVec3 c in this.Cells)
-				{
-					List<Thing> thingList = c.GetThingList(map);
-					for (int i = 0; i < thingList.Count; i++)
-					{
-						if (thingList[i].def.category == ThingCategory.Pawn && thingList[i].def.race.intelligence == Intelligence.Humanlike && thingList[i].Faction == Faction.OfPlayer)
-						{
-							pawn = (thingList[i] as Pawn);
-							break;
-						}
-					}
-					if (pawn != null)
-					{
-						break;
-					}
-				}
-				if (pawn != null)
-				{
-					this.ActivatedBy(pawn);
-				}
-			}
-		}
+            if (!Destroyed)
+            {
+                Destroy();
+            }
+        }
 
-		public ActivatedActionDef actionDef;
+        public override void ExposeData()
+        {
+            Scribe_Defs.Look(ref actionDef, "actionDef");
+            base.ExposeData();
+        }
 
-		private ICollection<IntVec3> cells = new List<IntVec3>();
-	}
+        public override void Tick()
+        {
+            Pawn pawn = null;
+            if (!this.IsHashIntervalTick(20))
+            {
+                return;
+            }
+
+            var map = Map;
+            foreach (var c in Cells)
+            {
+                var thingList = c.GetThingList(map);
+                foreach (var thing in thingList)
+                {
+                    if (thing.def.category != ThingCategory.Pawn ||
+                        thing.def.race.intelligence != Intelligence.Humanlike || thing.Faction != Faction.OfPlayer)
+                    {
+                        continue;
+                    }
+
+                    pawn = thing as Pawn;
+                    break;
+                }
+
+                if (pawn != null)
+                {
+                    break;
+                }
+            }
+
+            if (pawn != null)
+            {
+                ActivatedBy(pawn);
+            }
+        }
+    }
 }
-

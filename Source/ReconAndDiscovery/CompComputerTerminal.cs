@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ReconAndDiscovery.Triggers;
 using RimWorld;
@@ -8,33 +7,31 @@ using Verse.AI;
 
 namespace ReconAndDiscovery
 {
-	public class CompComputerTerminal : ThingComp
-	{
-		public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
-		{
-			List<FloatMenuOption> list = base.CompFloatMenuOptions(selPawn).ToList<FloatMenuOption>();
-			if (this.actionDef != null && this.parent.GetComp<CompPowerTrader>().PowerOn)
-			{
-                list.Add(new FloatMenuOption("RD_UseComputer".Translate(), delegate ()
-                    {
-                        selPawn.jobs.TryTakeOrderedJob(this.UseComputerJob(), JobTag.Misc);
-                    }));
-			}
-			return list;
-		}
+    public class CompComputerTerminal : ThingComp
+    {
+        public ActivatedActionDef actionDef;
 
-		public Job UseComputerJob()
-		{
-			return new Job(JobDefOfReconAndDiscovery.RD_UseComputer, this.parent);
-		}
+        public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
+        {
+            var list = base.CompFloatMenuOptions(selPawn).ToList();
+            if (actionDef != null && parent.GetComp<CompPowerTrader>().PowerOn)
+            {
+                list.Add(new FloatMenuOption("RD_UseComputer".Translate(),
+                    delegate { selPawn.jobs.TryTakeOrderedJob(UseComputerJob()); }));
+            }
 
-		public override void PostExposeData()
-		{
-			base.PostExposeData();
-			Scribe_Defs.Look<ActivatedActionDef>(ref this.actionDef, "actionDef");
-		}
+            return list;
+        }
 
-		public ActivatedActionDef actionDef;
-	}
+        private Job UseComputerJob()
+        {
+            return new Job(JobDefOfReconAndDiscovery.RD_UseComputer, parent);
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Defs.Look(ref actionDef, "actionDef");
+        }
+    }
 }
-

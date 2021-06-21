@@ -1,16 +1,14 @@
-﻿using System;
-using Verse;
+﻿using Verse;
 
 namespace ReconAndDiscovery
 {
-	public class CompProperties_Teleporter : CompProperties
-	{
-		public CompProperties_Teleporter()
-		{
-			this.compClass = typeof(CompTeleporter);
-		}
+    public class CompProperties_Teleporter : CompProperties
+    {
+        public float tickCharge = 0.005f;
 
-		public float tickCharge = 0.005f;
-	}
+        public CompProperties_Teleporter()
+        {
+            compClass = typeof(CompTeleporter);
+        }
+    }
 }
-

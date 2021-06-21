@@ -1,16 +1,14 @@
-﻿using System;
-using Verse;
+﻿using Verse;
 
 namespace ReconAndDiscovery
 {
-	public class CompProperties_HoloEmitter : CompProperties
-	{
-		public CompProperties_HoloEmitter()
-		{
-			this.compClass = typeof(CompHoloEmitter);
-		}
+    public class CompProperties_HoloEmitter : CompProperties
+    {
+        public float tickCharge = 0.5f;
 
-		public float tickCharge = 0.5f;
-	}
+        public CompProperties_HoloEmitter()
+        {
+            compClass = typeof(CompHoloEmitter);
+        }
+    }
 }
-

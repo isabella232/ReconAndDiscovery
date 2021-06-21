@@ -1,31 +1,26 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 using RimWorld.BaseGen;
 using Verse;
 
 namespace ReconAndDiscovery.Maps
 {
-	public class SymbolResolver_WireOutline : SymbolResolver
-	{
-		public override bool CanResolve(ResolveParams rp)
-		{
-			return base.CanResolve(rp);
-		}
+    public class SymbolResolver_WireOutline : SymbolResolver
+    {
+        public override void Resolve(ResolveParams rp)
+        {
+            var chanceToSkipWallBlock = rp.chanceToSkipWallBlock;
+            var chance = chanceToSkipWallBlock ?? 0f;
+            foreach (var loc in rp.rect.EdgeCells)
+            {
+                if (Rand.Chance(chance))
+                {
+                    continue;
+                }
 
-		public override void Resolve(ResolveParams rp)
-		{
-			float? chanceToSkipWallBlock = rp.chanceToSkipWallBlock;
-			float chance = (chanceToSkipWallBlock == null) ? 0f : chanceToSkipWallBlock.Value;
-			foreach (IntVec3 loc in rp.rect.EdgeCells)
-			{
-				if (!Rand.Chance(chance))
-				{
-					ThingDef powerConduit = ThingDefOf.PowerConduit;
-					Thing newThing = ThingMaker.MakeThing(powerConduit, null);
-					GenSpawn.Spawn(newThing, loc, BaseGen.globalSettings.map);
-				}
-			}
-		}
-	}
+                var powerConduit = ThingDefOf.PowerConduit;
+                var newThing = ThingMaker.MakeThing(powerConduit);
+                GenSpawn.Spawn(newThing, loc, BaseGen.globalSettings.map);
+            }
+        }
+    }
 }
-

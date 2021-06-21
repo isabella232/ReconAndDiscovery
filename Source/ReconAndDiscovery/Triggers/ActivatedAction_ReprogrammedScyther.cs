@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace ReconAndDiscovery.Triggers
+﻿namespace ReconAndDiscovery.Triggers
 {
-	public class ActivatedAction_ReprogrammedScyther : ActivatedAction
-	{
-	}
+    public class ActivatedAction_ReprogrammedScyther : ActivatedAction
+    {
+    }
 }
-

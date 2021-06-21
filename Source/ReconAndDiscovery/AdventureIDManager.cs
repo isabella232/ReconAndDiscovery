@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace ReconAndDiscovery
+﻿namespace ReconAndDiscovery
 {
-	public class AdventureIDManager
-	{
-	}
+    public class AdventureIDManager
+    {
+    }
 }
-

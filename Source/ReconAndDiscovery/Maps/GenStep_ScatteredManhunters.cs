@@ -1,48 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
 namespace ReconAndDiscovery.Maps
 {
-	public class GenStep_ScatteredManhunters : GenStep
-	{
-        public override int SeedPart
-        {
-            get
-            {
-                return 349640110;
-            }
-        }
+    public class GenStep_ScatteredManhunters : GenStep
+    {
+        private FloatRange pointsRange = new FloatRange(250f, 700f);
+
+        public override int SeedPart => 349640110;
+
         public override void Generate(Map map, GenStepParams parms)
-		{
-			float num = this.pointsRange.RandomInRange;
-			List<Pawn> list = new List<Pawn>();
-			for (int i = 0; i < 50; i++)
-			{
-                if (!ManhunterPackIncidentUtility.TryFindManhunterAnimalKind(this.pointsRange.RandomInRange, map.Tile, out PawnKindDef pawnKindDef))
+        {
+            var num = pointsRange.RandomInRange;
+            var list = new List<Pawn>();
+            for (var i = 0; i < 50; i++)
+            {
+                if (!ManhunterPackIncidentUtility.TryFindManhunterAnimalKind(pointsRange.RandomInRange, map.Tile,
+                    out var pawnKindDef))
                 {
                     return;
                 }
-                list.Add(PawnGenerator.GeneratePawn(pawnKindDef, null));
-				num -= pawnKindDef.combatPower;
-				if (num <= 0f)
-				{
-					break;
-				}
-			}
-			for (int j = 0; j < list.Count; j++)
-			{
-                if (CellFinderLoose.TryGetRandomCellWith((IntVec3 x) => x.Standable(map) && x.Fogged(map) && GridsUtility.GetRoom(x, map, RegionType.Set_Passable).CellCount >= 4, map, 1000, out IntVec3 intVec))
+
+                list.Add(PawnGenerator.GeneratePawn(pawnKindDef));
+                num -= pawnKindDef.combatPower;
+                if (num <= 0f)
                 {
-                    IntVec3 intVec2 = CellFinder.RandomSpawnCellForPawnNear(intVec, map, 10);
-                    GenSpawn.Spawn(list[j], intVec2, map, Rot4.Random, WipeMode.Vanish, false);
-                    list[j].mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.ManhunterPermanent, null, false, false, null);
+                    break;
                 }
             }
-		}
 
-		public FloatRange pointsRange = new FloatRange(250f, 700f);
-	}
+            foreach (var newThing in list)
+            {
+                if (!CellFinderLoose.TryGetRandomCellWith(
+                    x => x.Standable(map) && x.Fogged(map) && x.GetRoom(map).CellCount >= 4, map, 1000, out var intVec))
+                {
+                    continue;
+                }
+
+                var intVec2 = CellFinder.RandomSpawnCellForPawnNear(intVec, map, 10);
+                GenSpawn.Spawn(newThing, intVec2, map, Rot4.Random);
+                newThing.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.ManhunterPermanent);
+            }
+        }
+    }
 }
-

@@ -1,13 +1,12 @@
-﻿using System;
-using ReconAndDiscovery.Triggers;
+﻿using ReconAndDiscovery.Triggers;
 using RimWorld;
 
 namespace ReconAndDiscovery
 {
-	[DefOf]
-	public static class ActionDefOfReconAndDiscovery
-	{
-		public static ActivatedActionDef RD_BaseActivatedAction;
+    [DefOf]
+    public static class ActionDefOfReconAndDiscovery
+    {
+        public static ActivatedActionDef RD_BaseActivatedAction;
 
         public static ActivatedActionDef RD_LuciferiumGas;
 
@@ -19,7 +18,6 @@ namespace ReconAndDiscovery
 
         public static ActivatedActionDef RD_SmallSilver;
 
-		public static ActivatedActionDef RD_ActionSeraphites;
-	}
+        public static ActivatedActionDef RD_ActionSeraphites;
+    }
 }
-

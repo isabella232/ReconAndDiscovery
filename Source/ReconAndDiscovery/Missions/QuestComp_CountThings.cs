@@ -1,117 +1,120 @@
-﻿using System;
-using System.Linq;
-using RimWorld;
-using RimWorld.Planet;
+﻿using RimWorld.Planet;
 using Verse;
 
 namespace ReconAndDiscovery.Missions
 {
-	public class QuestComp_CountThings : WorldObjectComp
-	{
-		public bool Active
-		{
-			get
-			{
-				return this.active;
-			}
-		}
+    public class QuestComp_CountThings : WorldObjectComp
+    {
+        private bool active;
 
-		public override void CompTick()
-		{
-			base.CompTick();
-			try
-			{
-				if (this.active)
-				{
-                    if (this.parent is MapParent mapParent && mapParent.Map != null)
-                    {
-                        int num = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).Count<Thing>();
-                        if (num > this.targetNumber)
-                        {
-                            if (this.ticksHeld > this.ticksTarget)
-                            {
-                                this.StopQuest();
-                            }
-                            else
-                            {
-                                this.ticksHeld++;
-                            }
-                        }
-                        else
-                        {
-                            this.ticksHeld = 0;
-                        }
-                    }
-                }
-			}
-			catch
-			{
-				this.StopQuest();
-			}
-		}
+        public GameConditionDef gameConditionCaused;
 
-		public override void PostExposeData()
-		{
-			base.PostExposeData();
-			Scribe_Values.Look<bool>(ref this.active, "active", false, false);
-			Scribe_Values.Look<int>(ref this.worldTileAffected, "worldTileAffected", 0, false);
-			Scribe_Defs.Look<GameConditionDef>(ref this.gameConditionCaused, "gameConditionCaused");
-			Scribe_Defs.Look<ThingDef>(ref this.targetDef, "targetDef");
-			Scribe_Values.Look<int>(ref this.targetNumber, "targetNumber", 0, false);
-			Scribe_Values.Look<int>(ref this.ticksHeld, "ticksHeld", 0, false);
-			Scribe_Values.Look<int>(ref this.ticksTarget, "tickTarget", 0, false);
-		}
+        private ThingDef targetDef;
 
-		public void StartQuest(ThingDef targetDef)
-		{
-			this.targetDef = targetDef;
-			this.active = true;
-		}
+        public int targetNumber;
 
-		public void StopQuest()
-		{
-			this.active = false;
-            if (this.parent is MapParent mapParent && mapParent.Map != null)
+        public int ticksHeld;
+
+        public int ticksTarget;
+
+        public int worldTileAffected;
+
+        public bool Active => active;
+
+        public override void CompTick()
+        {
+            base.CompTick();
+            try
             {
-                int num = mapParent.Map.listerThings.ThingsOfDef(this.targetDef).Count<Thing>();
-                if (num > this.targetNumber && this.ticksHeld > this.ticksTarget)
+                if (!active)
                 {
-                    if (mapParent.Map.gameConditionManager.ConditionIsActive(this.gameConditionCaused))
+                    return;
+                }
+
+                if (parent is not MapParent mapParent || mapParent.Map == null)
+                {
+                    return;
+                }
+
+                var num = mapParent.Map.listerThings.ThingsOfDef(targetDef).Count;
+                if (num > targetNumber)
+                {
+                    if (ticksHeld > ticksTarget)
                     {
-                        mapParent.Map.gameConditionManager.ActiveConditions.Remove(mapParent.Map.gameConditionManager.GetActiveCondition(this.gameConditionCaused));
+                        StopQuest();
                     }
-                    Settlement settlement = Find.World.worldObjects.SettlementAt(this.worldTileAffected);
-                    if (settlement != null && settlement.HasMap)
+                    else
                     {
-                        GameConditionManager gameConditionManager = settlement.Map.gameConditionManager;
-                        if (gameConditionManager.ConditionIsActive(this.gameConditionCaused))
-                        {
-                            gameConditionManager.ActiveConditions.Remove(gameConditionManager.GetActiveCondition(this.gameConditionCaused));
-                        }
+                        ticksHeld++;
                     }
                 }
+                else
+                {
+                    ticksHeld = 0;
+                }
+            }
+            catch
+            {
+                StopQuest();
             }
         }
 
-		public override void PostPostRemove()
-		{
-			this.StopQuest();
-			base.PostPostRemove();
-		}
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref active, "active");
+            Scribe_Values.Look(ref worldTileAffected, "worldTileAffected");
+            Scribe_Defs.Look(ref gameConditionCaused, "gameConditionCaused");
+            Scribe_Defs.Look(ref targetDef, "targetDef");
+            Scribe_Values.Look(ref targetNumber, "targetNumber");
+            Scribe_Values.Look(ref ticksHeld, "ticksHeld");
+            Scribe_Values.Look(ref ticksTarget, "tickTarget");
+        }
 
-		private bool active;
+        public void StartQuest(ThingDef thingDef)
+        {
+            targetDef = thingDef;
+            active = true;
+        }
 
-		public int worldTileAffected;
+        private void StopQuest()
+        {
+            active = false;
+            if (parent is not MapParent mapParent || mapParent.Map == null)
+            {
+                return;
+            }
 
-		public int targetNumber;
+            var num = mapParent.Map.listerThings.ThingsOfDef(targetDef).Count;
+            if (num <= targetNumber || ticksHeld <= ticksTarget)
+            {
+                return;
+            }
 
-		public int ticksHeld;
+            if (mapParent.Map.gameConditionManager.ConditionIsActive(gameConditionCaused))
+            {
+                mapParent.Map.gameConditionManager.ActiveConditions.Remove(
+                    mapParent.Map.gameConditionManager.GetActiveCondition(gameConditionCaused));
+            }
 
-		public int ticksTarget;
+            var settlement = Find.World.worldObjects.SettlementAt(worldTileAffected);
+            if (settlement == null || !settlement.HasMap)
+            {
+                return;
+            }
 
-		public GameConditionDef gameConditionCaused;
+            var gameConditionManager = settlement.Map.gameConditionManager;
+            if (gameConditionManager.ConditionIsActive(gameConditionCaused))
+            {
+                gameConditionManager.ActiveConditions.Remove(
+                    gameConditionManager.GetActiveCondition(gameConditionCaused));
+            }
+        }
 
-		private ThingDef targetDef;
-	}
+        public override void PostPostRemove()
+        {
+            StopQuest();
+            base.PostPostRemove();
+        }
+    }
 }
-

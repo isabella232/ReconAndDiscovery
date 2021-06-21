@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -8,175 +7,174 @@ namespace ReconAndDiscovery.Missions
 {
     public class QuestComp_PeaceTalks : WorldObjectComp
     {
+        private bool active;
+
+        private int facOriginalRelationship;
+
+        private Pawn negotiator;
+
+        private float relationsImprovement;
+
+        private Faction requestingFaction;
+
         public Pawn Negotiator
         {
             get
             {
-                if (this.negotiator == null)
+                if (negotiator != null)
                 {
-                    if (this.parent is MapParent mapParent && mapParent.Map != null)
-                    {
-                        this.negotiator = (from p in mapParent.Map.mapPawns.AllPawnsSpawned
-                                           where p.Faction == this.requestingFaction
-                                           select p).RandomElement<Pawn>();
-                    }
+                    return negotiator;
                 }
-                return this.negotiator;
+
+                if (parent is MapParent {Map: { }} mapParent)
+                {
+                    negotiator = (from p in mapParent.Map.mapPawns.AllPawnsSpawned
+                        where p.Faction == requestingFaction
+                        select p).RandomElement();
+                }
+
+                return negotiator;
             }
-            set
-            {
-                this.negotiator = value;
-            }
+            set => negotiator = value;
         }
 
-        public bool Active
-        {
-            get
-            {
-                return this.active;
-            }
-        }
+        public bool Active => active;
 
         public override void CompTick()
         {
             base.CompTick();
             try
             {
-                if (this.active)
+                if (!active)
                 {
-                    if (this.parent is MapParent mapParent && mapParent.Map != null)
-                    {
-                        if (this.Negotiator != null && this.Negotiator.Spawned)
-                        {
-                            this.Negotiator.mindState.wantsToTradeWithColony = true;
-                            if (this.Negotiator.GetComp<CompNegotiator>() == null)
-                            {
-                                ThingComp thingComp = new CompNegotiator
-                                {
-                                    parent = this.Negotiator
-                                };
-                                this.Negotiator.AllComps.Add(thingComp);
-                            }
-                        }
-                    }
+                    return;
                 }
+
+                if (parent is not MapParent mapParent || mapParent.Map == null)
+                {
+                    return;
+                }
+
+                if (Negotiator == null || !Negotiator.Spawned)
+                {
+                    return;
+                }
+
+                Negotiator.mindState.wantsToTradeWithColony = true;
+                if (Negotiator.GetComp<CompNegotiator>() != null)
+                {
+                    return;
+                }
+
+                ThingComp thingComp = new CompNegotiator
+                {
+                    parent = Negotiator
+                };
+                Negotiator.AllComps.Add(thingComp);
             }
             catch
             {
-                this.StopQuest();
+                StopQuest();
             }
         }
 
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look<bool>(ref this.active, "active", false, false);
-            Scribe_Values.Look<int>(ref this.facOriginalRelationship, "facOriginalRelationship", 0, false);
-            Scribe_Values.Look<float>(ref this.relationsImprovement, "relationsImprovement", 0f, false);
-            Scribe_References.Look<Faction>(ref this.requestingFaction, "requestingFaction", false);
-            Scribe_References.Look<Pawn>(ref this.negotiator, "negotiator", false);
+            Scribe_Values.Look(ref active, "active");
+            Scribe_Values.Look(ref facOriginalRelationship, "facOriginalRelationship");
+            Scribe_Values.Look(ref relationsImprovement, "relationsImprovement");
+            Scribe_References.Look(ref requestingFaction, "requestingFaction");
+            Scribe_References.Look(ref negotiator, "negotiator");
         }
 
         public void ResolveNegotiations(Pawn playerNegotiator, Pawn otherNegotiator)
         {
             if (Rand.Chance(0.95f))
             {
-                QualityCategory qualityCategory = QualityUtility.GenerateQualityCreatedByPawn(playerNegotiator.skills.GetSkill(SkillDefOf.Social).Level, false);
-                int num = 0;
-                string text = "";
+                var qualityCategory =
+                    QualityUtility.GenerateQualityCreatedByPawn(
+                        playerNegotiator.skills.GetSkill(SkillDefOf.Social).Level, false);
+                var num = 0;
+                var text = "";
                 switch (qualityCategory)
                 {
                     case QualityCategory.Awful:
                         num = -5;
-                        text = TranslatorFormattedStringExtensions.Translate("RD_DiplomacyAwful", playerNegotiator.Label, this.requestingFaction.Name, num); //"The flailing diplomatic "strategy" of {0} seemed chiefly to involve wild swings between aggression and panic, peppered liberally with lewd insults involving the negotiator for {1}'s antecedents. Your already strained relations have, understandably, worsened ({2} to relations).";
+                        text = "RD_DiplomacyAwful".Translate(playerNegotiator.Label, requestingFaction.Name,
+                            num); //"The flailing diplomatic "strategy" of {0} seemed chiefly to involve wild swings between aggression and panic, peppered liberally with lewd insults involving the negotiator for {1}'s antecedents. Your already strained relations have, understandably, worsened ({2} to relations).";
                         break;
                     case QualityCategory.Poor:
                         num = -1;
-                        text = TranslatorFormattedStringExtensions.Translate("RD_DiplomacyPoor" //"The chief negotiation tactic employed by {0} seemed to be staring bored at the wall. This did little to diffuse tensions and engender a feeling of respect ({2} to relations))";
-, playerNegotiator.Label, this.requestingFaction.Name, num);
+                        text = "RD_DiplomacyPoor".Translate(playerNegotiator.Label, requestingFaction.Name, num);
                         break;
                     case QualityCategory.Normal:
                     case QualityCategory.Good:
                         num = 8;
-                        text = TranslatorFormattedStringExtensions.Translate("RD_DiplomacyNormalGood" //"{0}'s negotiation adequately dealt with some minor disputes you have with {1}. Your relations have improved by {2}.";
-
-    , playerNegotiator.Label, this.requestingFaction.Name, num);
+                        text = "RD_DiplomacyNormalGood".Translate(playerNegotiator.Label, requestingFaction.Name, num);
                         break;
                     case QualityCategory.Excellent:
                         num = 16;
-                        text = TranslatorFormattedStringExtensions.Translate("RD_DiplomacyExcellent" //"{0}'s easy, but unyielding manner dealt well with a number of the negotiator for {1}'s concerns. Your relations have improved by {2}";
-
-    , playerNegotiator.Label, this.requestingFaction.Name, num);
+                        text = "RD_DiplomacyExcellent".Translate(playerNegotiator.Label, requestingFaction.Name, num);
                         break;
                     case QualityCategory.Masterwork:
                     case QualityCategory.Legendary:
                         num = 32;
-                        text = TranslatorFormattedStringExtensions.Translate("RD_DiplomacyMasterWorkLegendary" //"{0} made diplomacy look as easy as breathing, with an almost magical ability to make {1}'s negotiator see your perspective. Your relations have undergone a substantial improvement of {2}.";
-
-    , playerNegotiator.Label, this.requestingFaction.Name, num);
+                        text = "RD_DiplomacyMasterWorkLegendary".Translate(playerNegotiator.Label,
+                            requestingFaction.Name, num);
                         break;
                 }
-                DiaNode diaNode = new DiaNode(text);
-                DiaOption diaOption = new DiaOption("OK".Translate())
+
+                var diaNode = new DiaNode(text);
+                var diaOption = new DiaOption("OK".Translate())
                 {
                     resolveTree = true
                 };
                 diaNode.options.Add(diaOption);
-                Dialog_NodeTree window = new Dialog_NodeTree(diaNode, false, false, null);
+                var window = new Dialog_NodeTree(diaNode);
                 Find.WindowStack.Add(window);
-                this.facOriginalRelationship += num;
-                this.active = false;
-                ThingComp comp = this.Negotiator.GetComp<CompNegotiator>();
+                facOriginalRelationship += num;
+                active = false;
+                ThingComp comp = Negotiator.GetComp<CompNegotiator>();
                 if (comp != null)
                 {
-                    this.Negotiator.AllComps.Remove(comp);
+                    Negotiator.AllComps.Remove(comp);
                 }
             }
             else
             {
-                DiaNode diaNode2 = new DiaNode("RD_NegotiationsTrap".Translate()); //"The negotiations are a trap!"
-                DiaOption diaOption2 = new DiaOption("OK".Translate())
+                var diaNode2 = new DiaNode("RD_NegotiationsTrap".Translate()); //"The negotiations are a trap!"
+                var diaOption2 = new DiaOption("OK".Translate())
                 {
                     resolveTree = true
                 };
                 diaNode2.options.Add(diaOption2);
-                Dialog_NodeTree window2 = new Dialog_NodeTree(diaNode2, false, false, null);
+                var window2 = new Dialog_NodeTree(diaNode2);
                 Find.WindowStack.Add(window2);
-                this.requestingFaction.TryAffectGoodwillWith(Faction.OfPlayer, -101);
+                requestingFaction.TryAffectGoodwillWith(Faction.OfPlayer, -101);
             }
         }
 
         public void StartQuest(Faction faction)
         {
-            this.active = true;
-            this.requestingFaction = faction;
-            this.facOriginalRelationship = (int)faction.PlayerGoodwill;
-            this.requestingFaction.TryAffectGoodwillWith(Faction.OfPlayer, 1 - faction.PlayerGoodwill);
+            active = true;
+            requestingFaction = faction;
+            facOriginalRelationship = faction.PlayerGoodwill;
+            requestingFaction.TryAffectGoodwillWith(Faction.OfPlayer, 1 - faction.PlayerGoodwill);
         }
 
-        public void StopQuest()
+        private void StopQuest()
         {
-            this.active = false;
-            float num = this.requestingFaction.PlayerGoodwill - (float)this.facOriginalRelationship;
-            this.requestingFaction.TryAffectGoodwillWith(Faction.OfPlayer, this.facOriginalRelationship);
-            this.requestingFaction = null;
+            active = false;
+            var num = requestingFaction.PlayerGoodwill - facOriginalRelationship;
+            requestingFaction.TryAffectGoodwillWith(Faction.OfPlayer, num);
+            requestingFaction = null;
         }
 
         public override void PostPostRemove()
         {
-            this.StopQuest();
+            StopQuest();
             base.PostPostRemove();
         }
-
-        private bool active;
-
-        public int facOriginalRelationship;
-
-        public float relationsImprovement;
-
-        public Faction requestingFaction;
-
-        private Pawn negotiator;
     }
 }
-

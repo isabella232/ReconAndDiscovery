@@ -1,25 +1,18 @@
-﻿using System;
-using ReconAndDiscovery.Triggers;
+﻿using ReconAndDiscovery.Triggers;
 using RimWorld.BaseGen;
 using Verse;
 
 namespace ReconAndDiscovery.Maps
 {
-	public class SymbolResolver_PlaceTrigger : SymbolResolver
-	{
-		public override bool CanResolve(ResolveParams rp)
-		{
-			return base.CanResolve(rp);
-		}
-
-		public override void Resolve(ResolveParams rp)
-		{
-			Map map = BaseGen.globalSettings.map;
-            if (rp.TryGetCustom<RectActionTrigger>("trigger", out RectActionTrigger rectActionTrigger))
+    public class SymbolResolver_PlaceTrigger : SymbolResolver
+    {
+        public override void Resolve(ResolveParams rp)
+        {
+            var map = BaseGen.globalSettings.map;
+            if (rp.TryGetCustom("trigger", out RectActionTrigger rectActionTrigger))
             {
                 GenSpawn.Spawn(rectActionTrigger, rectActionTrigger.Rect.CenterCell, map);
             }
         }
-	}
+    }
 }
-

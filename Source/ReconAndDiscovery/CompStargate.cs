@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ReconAndDiscovery.Maps;
 using RimWorld;
@@ -10,131 +9,139 @@ using Verse.AI;
 
 namespace ReconAndDiscovery
 {
-	[StaticConstructorOnStartup]
-	public class CompStargate : ThingComp
-	{
-		public Thing LinkedGate
-		{
-			get
-			{
-				Thing result;
-				if (this.link == null || !this.link.Spawned || this.link.Destroyed)
-				{
-					result = null;
-				}
-				else
-				{
-					result = this.link;
-				}
-				return result;
-			}
-		}
+    [StaticConstructorOnStartup]
+    public class CompStargate : ThingComp
+    {
+        private static readonly Texture2D teleSym = ContentFinder<Texture2D>.Get("UI/StargateSymbol");
 
-		public Site LinkedSite
-		{
-			get
-			{
-				Site result;
-				if (this.linkedSite == null || this.linkedSite.Tile == -1 || !Find.WorldObjects.AnyMapParentAt(this.linkedSite.Tile))
-				{
-					result = null;
-				}
-				else
-				{
-					result = this.linkedSite;
-				}
-				return result;
-			}
-		}
+        private Thing link;
 
-		public override void PostDestroy(DestroyMode mode, Map previousMap)
-		{
-			base.PostDestroy(mode, previousMap);
-			if (mode == DestroyMode.Deconstruct)
-			{
-				GenSpawn.Spawn(ThingDef.Named("RD_ExoticMatter"), this.parent.Position, previousMap);
-			}
-		}
+        private Site linkedSite;
 
-		public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
-		{
-			List<FloatMenuOption> list = new List<FloatMenuOption>();
-			if ((this.link != null && !this.link.Destroyed && this.link.Spawned) || this.linkedSite != null)
-			{
-				list.Add(new FloatMenuOption("RD_TravelToTargetGate".Translate(), delegate()
-					{
-                        Job job = new Job(JobDefOfReconAndDiscovery.RD_TravelThroughStargate, this.parent)
+        private Thing LinkedGate
+        {
+            get
+            {
+                Thing result;
+                if (link == null || !link.Spawned || link.Destroyed)
+                {
+                    result = null;
+                }
+                else
+                {
+                    result = link;
+                }
+
+                return result;
+            }
+        }
+
+        private Site LinkedSite
+        {
+            get
+            {
+                Site result;
+                if (linkedSite == null || linkedSite.Tile == -1 || !Find.WorldObjects.AnyMapParentAt(linkedSite.Tile))
+                {
+                    result = null;
+                }
+                else
+                {
+                    result = linkedSite;
+                }
+
+                return result;
+            }
+        }
+
+        public override void PostDestroy(DestroyMode mode, Map previousMap)
+        {
+            base.PostDestroy(mode, previousMap);
+            if (mode == DestroyMode.Deconstruct)
+            {
+                GenSpawn.Spawn(ThingDef.Named("RD_ExoticMatter"), parent.Position, previousMap);
+            }
+        }
+
+        public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
+        {
+            var list = new List<FloatMenuOption>();
+            if (link != null && !link.Destroyed && link.Spawned || linkedSite != null)
+            {
+                list.Add(new FloatMenuOption("RD_TravelToTargetGate".Translate(), delegate
+                    {
+                        var job = new Job(JobDefOfReconAndDiscovery.RD_TravelThroughStargate, parent)
                         {
                             playerForced = true
                         };
-                        selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-					}
-				));
-			}
-			return list;
-		}
+                        selPawn.jobs.TryTakeOrderedJob(job);
+                    }
+                ));
+            }
 
-		public override IEnumerable<Gizmo> CompGetGizmosExtra()
-		{
-			yield return this.LinkCommand();
-			yield break;
-		}
+            return list;
+        }
 
-		public Command LinkCommand()
-		{
-			return new Command_Action
-			{
-				defaultLabel = "RD_LinkGate".Translate(), //"Link a gate."
-				defaultDesc = "RD_LinkGateDesc".Translate(), //"Link this gate to another."
-				icon = CompStargate.teleSym,
-				action = delegate()
-				{
-					this.StartChoosingTarget();
-				}
-			};
-		}
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {
+            yield return LinkCommand();
+        }
 
-		private void StartChoosingTarget()
-		{
-			CameraJumper.TryJump(CameraJumper.GetWorldTarget(this.parent));
-			Find.WorldSelector.ClearSelection();
-			int tile = this.parent.Map.Tile;
-			Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(this.ChoseWorldTarget), true, null, true, null, null);
-		}
+        private Command LinkCommand()
+        {
+            return new Command_Action
+            {
+                defaultLabel = "RD_LinkGate".Translate(), //"Link a gate."
+                defaultDesc = "RD_LinkGateDesc".Translate(), //"Link this gate to another."
+                icon = teleSym,
+                action = StartChoosingTarget
+            };
+        }
 
-		private bool ChoseWorldTarget(GlobalTargetInfo target)
-		{
-			bool result;
-			if (!target.IsValid)
-			{
-				Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), MessageTypeDefOf.RejectInput);
-				result = false;
-			}
-			else
-			{
+        private void StartChoosingTarget()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(parent));
+            Find.WorldSelector.ClearSelection();
+            var tile = parent.Map.Tile;
+            Find.WorldTargeter.BeginTargeting_NewTemp(ChoseWorldTarget, true, null, true);
+        }
+
+        private bool ChoseWorldTarget(GlobalTargetInfo target)
+        {
+            bool result;
+            if (!target.IsValid)
+            {
+                Messages.Message("MessageTransportPodsDestinationIsInvalid".Translate(), MessageTypeDefOf.RejectInput);
+                result = false;
+            }
+            else
+            {
                 if (target.WorldObject is MapParent mapParent)
                 {
                     if (mapParent.HasMap)
                     {
-                        Map map = this.parent.Map;
-                        Map map2 = mapParent.Map;
-                        Current.Game.CurrentMap = map2;
-                        if (map2.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate")).Count<Thing>() > 0)
+                        var sourceMap = parent.Map;
+                        var targetMap = mapParent.Map;
+                        Current.Game.CurrentMap = targetMap;
+                        if (targetMap.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate")).Any())
                         {
-                            this.MakeLink(map2.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate")).FirstOrDefault<Thing>());
+                            MakeLink(targetMap.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate"))
+                                .FirstOrDefault());
                             result = true;
                         }
                         else
                         {
-                            Messages.Message("RD_StargateNoEvidence".Translate(), MessageTypeDefOf.RejectInput); // "There is no evidence of a stargate there."
+                            Messages.Message("RD_StargateNoEvidence".Translate(),
+                                MessageTypeDefOf.RejectInput); // "There is no evidence of a stargate there."
                             result = false;
                         }
                     }
                     else
                     {
-                        if (mapParent is Site site && site.parts.Select(x => x.def).Contains(SiteDefOfReconAndDiscovery.RD_Stargate))
+                        if (mapParent is Site site && site.parts.Select(x => x.def)
+                            .Contains(SiteDefOfReconAndDiscovery.RD_Stargate))
                         {
-                            this.MakeLink(site);
+                            MakeLink(site);
                             result = true;
                         }
                         else
@@ -150,117 +157,122 @@ namespace ReconAndDiscovery
                     result = false;
                 }
             }
-			return result;
-		}
 
-		public void MakeLink(Thing stargate)
-		{
-			this.link = null;
-			this.linkedSite = null;
-			this.link = stargate;
-			Messages.Message("RD_StargateLinked".Translate(), MessageTypeDefOf.PositiveEvent); // "Stargate linked to destination."
-		}
+            return result;
+        }
 
-		public void MakeLink(Site stargateSite)
-		{
-			this.link = null;
-			this.linkedSite = null;
-			this.linkedSite = stargateSite;
-			Messages.Message("RD_StargateLinked".Translate(), MessageTypeDefOf.PositiveEvent);
-		}
+        private void MakeLink(Thing stargate)
+        {
+            link = null;
+            linkedSite = null;
+            link = stargate;
+            Messages.Message("RD_StargateLinked".Translate(),
+                MessageTypeDefOf.PositiveEvent); // "Stargate linked to destination."
+        }
 
-		public override void PostExposeData()
-		{
-			Scribe_References.Look<Thing>(ref this.link, "link", false);
-			Scribe_References.Look<Site>(ref this.linkedSite, "linkedSite", false);
-		}
+        private void MakeLink(Site stargateSite)
+        {
+            link = null;
+            linkedSite = null;
+            linkedSite = stargateSite;
+            Messages.Message("RD_StargateLinked".Translate(), MessageTypeDefOf.PositiveEvent);
+        }
 
-		public bool CheckSetupGateAndMap(Pawn p)
-		{
-			Log.Message(string.Format("Checking for link", new object[0]));
-			bool drafted = p.Drafted;
-			bool flag = Find.Selector.IsSelected(p);
-			bool result;
-			if (this.LinkedGate == null)
-			{
-				if (this.LinkedSite == null)
-				{
-					Messages.Message("RD_StargateNotLinked".Translate(), MessageTypeDefOf.RejectInput); //"Stargate is not linked to a destination!"
-					result = false;
-				}
-				else if (this.LinkedSite.HasMap)
-				{
-					IEnumerable<Thing> source = this.LinkedSite.Map.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate"));
-					if (source.Count<Thing>() == 0)
-					{
-						Messages.Message("RD_StargateNotLinked".Translate(), MessageTypeDefOf.RejectInput);
-						result = false;
-					}
-					else
-					{
-						this.MakeLink(source.FirstOrDefault<Thing>());
-						Log.Message(string.Format("Linked extant, unlinked gate!", new object[0]));
-						result = true;
-					}
-				}
-				else
-				{
-                    List<Pawn> pawns = new List<Pawn>
+        public override void PostExposeData()
+        {
+            Scribe_References.Look(ref link, "link");
+            Scribe_References.Look(ref linkedSite, "linkedSite");
+        }
+
+        private bool CheckSetupGateAndMap(Pawn p)
+        {
+            Log.Message("Checking for link");
+            var drafted = p.Drafted;
+            var flag = Find.Selector.IsSelected(p);
+            bool result;
+            if (LinkedGate == null)
+            {
+                if (LinkedSite == null)
+                {
+                    Messages.Message("RD_StargateNotLinked".Translate(),
+                        MessageTypeDefOf.RejectInput); //"Stargate is not linked to a destination!"
+                    result = false;
+                }
+                else if (LinkedSite.HasMap)
+                {
+                    IEnumerable<Thing> source = LinkedSite.Map.listerThings.ThingsOfDef(ThingDef.Named("RD_Stargate"));
+                    if (!source.Any())
+                    {
+                        Messages.Message("RD_StargateNotLinked".Translate(), MessageTypeDefOf.RejectInput);
+                        result = false;
+                    }
+                    else
+                    {
+                        MakeLink(source.FirstOrDefault());
+                        Log.Message("Linked extant, unlinked gate!");
+                        result = true;
+                    }
+                }
+                else
+                {
+                    var pawns = new List<Pawn>
                     {
                         p
                     };
-                    LongEventHandler.QueueLongEvent(delegate()
-					{
-						SitePartWorker_Stargate.tmpPawnsToSpawn.AddRange(pawns);
-						Map orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(this.LinkedSite.Tile, this.LinkedSite.Map.Size, null);
-					}, "GeneratingMapForNewEncounter", false, null);
-					result = false;
-				}
-			}
-			else
-			{
-				Log.Message(string.Format("Linked already!", new object[0]));
-				result = true;
-			}
-			return result;
-		}
+                    LongEventHandler.QueueLongEvent(delegate
+                    {
+                        SitePartWorker_Stargate.tmpPawnsToSpawn.AddRange(pawns);
+                        var unused =
+                            GetOrGenerateMapUtility.GetOrGenerateMap(LinkedSite.Tile, LinkedSite.Map.Size, null);
+                    }, "GeneratingMapForNewEncounter", false, null);
+                    result = false;
+                }
+            }
+            else
+            {
+                Log.Message("Linked already!");
+                result = true;
+            }
 
-		public void SendPawnThroughStargate(Pawn p)
-		{
-			bool drafted = p.Drafted;
-			bool flag = Find.Selector.IsSelected(p);
-			Log.Message(string.Format("Attempting to send {0} through gate", p.Label));
-			if (this.CheckSetupGateAndMap(p))
-			{
-				if (this.LinkedGate == null || !this.LinkedGate.Spawned || this.LinkedGate.Destroyed)
-				{
-					Messages.Message("RD_OtherGateBuried".Translate(), MessageTypeDefOf.RejectInput); //"The other gate has been buried! We cannot transit!"
-				}
-				else
-				{
-					if (p.Spawned)
-					{
-						p.DeSpawn();
-					}
-					GenSpawn.Spawn(p, this.LinkedGate.Position, this.LinkedGate.Map);
-					if (drafted)
-					{
-						p.drafter.Drafted = true;
-					}
-					if (flag)
-					{
-						Current.Game.CurrentMap = p.Map;
-						Find.CameraDriver.JumpToCurrentMapLoc(this.LinkedGate.Position);
-					}
-				}
-			}
-		}
+            return result;
+        }
 
-		private Thing link;
+        public void SendPawnThroughStargate(Pawn p)
+        {
+            var drafted = p.Drafted;
+            var flag = Find.Selector.IsSelected(p);
+            Log.Message($"Attempting to send {p.Label} through gate");
+            if (!CheckSetupGateAndMap(p))
+            {
+                return;
+            }
 
-		private Site linkedSite;
+            if (LinkedGate == null || !LinkedGate.Spawned || LinkedGate.Destroyed)
+            {
+                Messages.Message("RD_OtherGateBuried".Translate(),
+                    MessageTypeDefOf.RejectInput); //"The other gate has been buried! We cannot transit!"
+            }
+            else
+            {
+                if (p.Spawned)
+                {
+                    p.DeSpawn();
+                }
 
-		private static readonly Texture2D teleSym = ContentFinder<Texture2D>.Get("UI/StargateSymbol", true);
-	}
+                GenSpawn.Spawn(p, LinkedGate.Position, LinkedGate.Map);
+                if (drafted)
+                {
+                    p.drafter.Drafted = true;
+                }
+
+                if (!flag)
+                {
+                    return;
+                }
+
+                Current.Game.CurrentMap = p.Map;
+                Find.CameraDriver.JumpToCurrentMapLoc(LinkedGate.Position);
+            }
+        }
+    }
 }
-

@@ -1,25 +1,24 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace ReconAndDiscovery
 {
-	public class OsirisCasket : Building_CryptosleepCasket
-	{
-		public Corpse Corpse
-		{
-			get
-			{
-				for (int i = 0; i < this.innerContainer.Count; i++)
-				{
-                    if (this.innerContainer[i] is Corpse corpse)
+    public class OsirisCasket : Building_CryptosleepCasket
+    {
+        public Corpse Corpse
+        {
+            get
+            {
+                foreach (var thing in innerContainer)
+                {
+                    if (thing is Corpse corpse)
                     {
                         return corpse;
                     }
                 }
-				return null;
-			}
-		}
-	}
-}
 
+                return null;
+            }
+        }
+    }
+}

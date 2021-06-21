@@ -1,128 +1,99 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace ReconAndDiscovery
 {
-	public class CompMandatoryMilkable : CompHasGatherableBodyResource
-	{
-		public bool Overfull
-		{
-			get
-			{
-				return this.ticksOverFull * 2L >= (long)this.Props.ticksUntilDanger;
-			}
-		}
+    public class CompMandatoryMilkable : CompHasGatherableBodyResource
+    {
+        private long ticksOverFull;
 
-		protected override bool Active
-		{
-			get
-			{
-				bool result;
-				if (!base.Active)
-				{
-					result = false;
-				}
-				else
-				{
-					Pawn pawn = this.parent as Pawn;
-					result = ((!this.Props.milkFemaleOnly || pawn == null || pawn.gender == Gender.Female) && (pawn == null || pawn.ageTracker.CurLifeStage.milkable));
-				}
-				return result;
-			}
-		}
+        public bool Overfull => ticksOverFull * 2L >= Props.ticksUntilDanger;
 
-		public CompProperties_MandatoryMilkable Props
-		{
-			get
-			{
-				return (CompProperties_MandatoryMilkable)this.props;
-			}
-		}
+        protected override bool Active
+        {
+            get
+            {
+                bool result;
+                if (!base.Active)
+                {
+                    result = false;
+                }
+                else
+                {
+                    var pawn = parent as Pawn;
+                    result = (!Props.milkFemaleOnly || pawn == null || pawn.gender == Gender.Female) &&
+                             (pawn == null || pawn.ageTracker.CurLifeStage.milkable);
+                }
 
-		protected override int GatherResourcesIntervalDays
-		{
-			get
-			{
-				return this.Props.milkIntervalDays;
-			}
-		}
+                return result;
+            }
+        }
 
-		protected override int ResourceAmount
-		{
-			get
-			{
-				return this.Props.milkAmount;
-			}
-		}
+        private CompProperties_MandatoryMilkable Props => (CompProperties_MandatoryMilkable) props;
 
-		protected override ThingDef ResourceDef
-		{
-			get
-			{
-				return this.Props.milkDef;
-			}
-		}
+        protected override int GatherResourcesIntervalDays => Props.milkIntervalDays;
 
-		protected override string SaveKey
-		{
-			get
-			{
-				return "milkFullness";
-			}
-		}
+        protected override int ResourceAmount => Props.milkAmount;
 
-		public override void CompTick()
-		{
-			base.CompTick();
-			if (base.Fullness >= 1f)
-			{
-				this.ticksOverFull += 1L;
-			}
-			else
-			{
-				this.ticksOverFull = 0L;
-			}
-			if (this.ticksOverFull > (long)this.Props.ticksUntilDanger)
-			{
-				if (Rand.Chance(2.5E-05f))
-				{
-					DamageInfo value = new DamageInfo(DamageDefOf.Bomb, 100, -1f, -1f, null, null, null, 0);
-					this.parent.Kill(new DamageInfo?(value));
-				}
-			}
-		}
+        protected override ThingDef ResourceDef => Props.milkDef;
 
-		public override string CompInspectStringExtra()
-		{
-			string result;
-			if (!this.Active)
-			{
-				result = null;
-			}
-			else
-			{
-				string text = "MilkFullness".Translate() + ": " + base.Fullness.ToStringPercent();
-				if ((double)this.ticksOverFull > 0.33 * (double)this.Props.ticksUntilDanger)
-				{
-					text += "\n" + "RD_Overfull".Translate(); //"Overfull!";
-				}
-				else if ((float)this.ticksOverFull > 0.67f * (float)this.Props.ticksUntilDanger)
-				{
-					text += "\n" + "RD_DangrouslyOverfull".Translate(); //Dangrously Overfull!
-				}
-				result = text;
-			}
-			return result;
-		}
+        protected override string SaveKey => "milkFullness";
 
-		public override void PostExposeData()
-		{
-			base.PostExposeData();
-			Scribe_Values.Look<long>(ref this.ticksOverFull, "ticksOverFull", 0L, false);
-		}
+        public override void CompTick()
+        {
+            base.CompTick();
+            if (Fullness >= 1f)
+            {
+                ticksOverFull += 1L;
+            }
+            else
+            {
+                ticksOverFull = 0L;
+            }
 
-		private long ticksOverFull;
-	}
+            if (ticksOverFull <= Props.ticksUntilDanger)
+            {
+                return;
+            }
+
+            if (!Rand.Chance(2.5E-05f))
+            {
+                return;
+            }
+
+            var value = new DamageInfo(DamageDefOf.Bomb, 100, -1f);
+            parent.Kill(value);
+        }
+
+        public override string CompInspectStringExtra()
+        {
+            string result;
+            if (!Active)
+            {
+                result = null;
+            }
+            else
+            {
+                string text = "MilkFullness".Translate() + ": " + Fullness.ToStringPercent();
+                if (ticksOverFull > 0.33 * Props.ticksUntilDanger)
+                {
+                    text += "\n" + "RD_Overfull".Translate(); //"Overfull!";
+                }
+                else if (ticksOverFull > 0.67f * Props.ticksUntilDanger)
+                {
+                    text += "\n" + "RD_DangrouslyOverfull".Translate(); //Dangrously Overfull!
+                }
+
+                result = text;
+            }
+
+            return result;
+        }
+
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref ticksOverFull, "ticksOverFull");
+        }
+    }
 }
-

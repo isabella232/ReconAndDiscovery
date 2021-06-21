@@ -1,135 +1,163 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
 
 namespace ReconAndDiscovery.Missions
 {
-	public class IncidentWorker_OsirisCasket : IncidentWorker
-	{
-		protected override bool CanFireNowSub(IncidentParms parms)
-		{
-            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out int num);
+    public class IncidentWorker_OsirisCasket : IncidentWorker
+    {
+        private static readonly IntRange TimeoutDaysRange = new IntRange(15, 25);
+
+        protected override bool CanFireNowSub(IncidentParms parms)
+        {
+            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out _);
         }
 
-		private bool CanFindPsychic(Map map, out Pawn pawn)
-		{
-			pawn = null;
-			IEnumerable<Pawn> source = from p in map.mapPawns.FreeColonistsSpawned
-			where p.RaceProps.Humanlike && !p.Faction.HostileTo(Faction.OfPlayer) && p.story.traits.HasTrait(TraitDef.Named("PsychicSensitivity"))
-			select p;
-			bool result;
-			if (source.Count<Pawn>() == 0)
-			{
-				result = false;
-			}
-			else
-			{
-				pawn = source.RandomElement<Pawn>();
-				result = true;
-			}
-			return result;
-		}
+        private bool CanFindPsychic(Map map, out Pawn pawn)
+        {
+            pawn = null;
+            var source = from p in map.mapPawns.FreeColonistsSpawned
+                where p.RaceProps.Humanlike && !p.Faction.HostileTo(Faction.OfPlayer) &&
+                      p.story.traits.HasTrait(TraitDef.Named("PsychicSensitivity"))
+                select p;
+            bool result;
+            if (!source.Any())
+            {
+                result = false;
+            }
+            else
+            {
+                pawn = source.RandomElement();
+                result = true;
+            }
 
-		private bool GetHasGoodStoryConditions(Map map)
-		{
-            return map != null && this.CanFindPsychic(map, out Pawn pawn);
+            return result;
         }
 
-		protected override bool TryExecuteWorker(IncidentParms parms)
-		{
-			Map map = parms.target as Map;
-			bool result;
-			if (this.GetHasGoodStoryConditions(map))
-			{
-                if (!this.CanFindPsychic(map, out Pawn pawn))
+        private bool GetHasGoodStoryConditions(Map map)
+        {
+            return map != null && CanFindPsychic(map, out _);
+        }
+
+        protected override bool TryExecuteWorker(IncidentParms parms)
+        {
+            var map = parms.target as Map;
+            bool result;
+            if (GetHasGoodStoryConditions(map))
+            {
+                if (!CanFindPsychic(map, out var pawn))
                 {
                     result = false;
                 }
                 else
                 {
-                    int randomInRange = IncidentWorker_OsirisCasket.TimeoutDaysRange.RandomInRange;
+                    var randomInRange = TimeoutDaysRange.RandomInRange;
 
-                    if (TileFinder.TryFindNewSiteTile(out int tile))
+                    if (TileFinder.TryFindNewSiteTile(out var tile))
                     {
-
-                        Site site = (Site)WorldObjectMaker.MakeWorldObject(SiteDefOfReconAndDiscovery.RD_Adventure);
+                        var site = (Site) WorldObjectMaker.MakeWorldObject(SiteDefOfReconAndDiscovery.RD_Adventure);
                         site.Tile = tile;
-                        Faction faction = Faction.OfInsects;
+                        var faction = Faction.OfInsects;
                         site.SetFaction(faction);
                         site.AddPart(new SitePart(site, SiteDefOfReconAndDiscovery.RD_AbandonedCastle,
-SiteDefOfReconAndDiscovery.RD_AbandonedCastle.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
-                        IEnumerable<PowerNet> source = from net in map.powerNetManager.AllNetsListForReading
-                                                       where net.hasPowerSource
-                                                       select net;
-                        if (source.Count<PowerNet>() > 0)
+                            SiteDefOfReconAndDiscovery.RD_AbandonedCastle.Worker.GenerateDefaultParams(
+                                StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
+                        var source = from net in map?.powerNetManager.AllNetsListForReading
+                            where net.hasPowerSource
+                            select net;
+                        if (source.Any())
                         {
-                            SitePart osirisCasket = new SitePart(site, SiteDefOfReconAndDiscovery.RD_OsirisCasket, SiteDefOfReconAndDiscovery.RD_OsirisCasket.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            var osirisCasket = new SitePart(site, SiteDefOfReconAndDiscovery.RD_OsirisCasket,
+                                SiteDefOfReconAndDiscovery.RD_OsirisCasket.Worker.GenerateDefaultParams(
+                                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
                             {
                                 hidden = true
                             };
                             site.parts.Add(osirisCasket);
                         }
+
                         if (Rand.Value < 0.15f)
                         {
-                            SitePart weatherSat = new SitePart(site, SiteDefOfReconAndDiscovery.RD_WeatherSat, SiteDefOfReconAndDiscovery.RD_WeatherSat.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            var weatherSat = new SitePart(site, SiteDefOfReconAndDiscovery.RD_WeatherSat,
+                                SiteDefOfReconAndDiscovery.RD_WeatherSat.Worker.GenerateDefaultParams(
+                                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
                             {
                                 hidden = true
                             };
                             site.parts.Add(weatherSat);
                         }
+
                         site.GetComponent<TimeoutComp>().StartTimeout(randomInRange * 60000);
                         if (Rand.Value < 0.25f)
                         {
-                            SitePart scatteredManhunters = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredManhunters, SiteDefOfReconAndDiscovery.RD_ScatteredManhunters.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            var scatteredManhunters = new SitePart(site,
+                                SiteDefOfReconAndDiscovery.RD_ScatteredManhunters,
+                                SiteDefOfReconAndDiscovery.RD_ScatteredManhunters.Worker.GenerateDefaultParams(
+                                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
                             {
                                 hidden = true
                             };
                             site.parts.Add(scatteredManhunters);
                         }
+
                         if (Rand.Value < 0.1f)
                         {
-                            SitePart scatteredTreasure = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            var scatteredTreasure = new SitePart(site, SiteDefOfReconAndDiscovery.RD_ScatteredTreasure,
+                                SiteDefOfReconAndDiscovery.RD_ScatteredTreasure.Worker.GenerateDefaultParams(
+                                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
                             {
                                 hidden = true
                             };
                             site.parts.Add(scatteredTreasure);
                         }
+
                         if (Rand.Value < 1f)
                         {
-                            SitePart enemyRaidOnArrival = new SitePart(site, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            var enemyRaidOnArrival = new SitePart(site,
+                                SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival,
+                                SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival.Worker.GenerateDefaultParams(
+                                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
                             {
                                 hidden = true
                             };
                             site.parts.Add(enemyRaidOnArrival);
                         }
+
                         if (Rand.Value < 0.9f)
                         {
-                            SitePart enemyRaidOnArrival = new SitePart(site, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            var enemyRaidOnArrival = new SitePart(site,
+                                SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival,
+                                SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival.Worker.GenerateDefaultParams(
+                                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
                             {
                                 hidden = true
                             };
                             site.parts.Add(enemyRaidOnArrival);
                         }
+
                         if (Rand.Value < 0.6f)
                         {
-                            SitePart enemyRaidOnArrival = new SitePart(site, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival, SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                            var enemyRaidOnArrival = new SitePart(site,
+                                SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival,
+                                SiteDefOfReconAndDiscovery.RD_EnemyRaidOnArrival.Worker.GenerateDefaultParams(
+                                    StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
                             {
                                 hidden = true
                             };
                             site.parts.Add(enemyRaidOnArrival);
                         }
+
                         Find.WorldObjects.Add(site);
-                        QueuedIncident qi = new QueuedIncident(new FiringIncident(IncidentDef.Named("PsychicDrone"), null, parms), Find.TickManager.TicksGame + 1);
+                        var qi = new QueuedIncident(new FiringIncident(IncidentDef.Named("PsychicDrone"), null, parms),
+                            Find.TickManager.TicksGame + 1);
                         Find.Storyteller.incidentQueue.Add(qi);
                         Find.LetterStack.ReceiveLetter("RD_PsychicMessage".Translate(),
-GrammarResolverSimpleStringExtensions.Formatted(Translator
-                    .Translate("RD_ReceivedVisionBattle"), NamedArgumentUtility.Named(pawn, "PAWN"))
-                    .AdjustedFor(pawn, "PAWN", true)
+                            "RD_ReceivedVisionBattle"
+                                .Translate().Formatted(pawn.Named("PAWN"))
+                                .AdjustedFor(pawn)
 //has received visions accompanying the drone, showing a battle and crying out for help. Others must have noticed, so the site will probably be dangerous.
-, LetterDefOf.PositiveEvent, null);
+                            , LetterDefOf.PositiveEvent, null);
                         result = true;
                     }
                     else
@@ -138,14 +166,12 @@ GrammarResolverSimpleStringExtensions.Formatted(Translator
                     }
                 }
             }
-			else
-			{
-				result = false;
-			}
-			return result;
-		}
+            else
+            {
+                result = false;
+            }
 
-		private static readonly IntRange TimeoutDaysRange = new IntRange(15, 25);
-	}
+            return result;
+        }
+    }
 }
-

@@ -1,19 +1,17 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace ReconAndDiscovery
 {
-	[DefOf]
-	public static class GenStepDefOfReconAndDiscovery
-	{
-		public static MapGeneratorDef RD_CrashedShipMapGenerator;
+    [DefOf]
+    public static class GenStepDefOfReconAndDiscovery
+    {
+        public static MapGeneratorDef RD_CrashedShipMapGenerator;
 
-		public static GenStepDef RD_ScatterFaction;
+        public static GenStepDef RD_ScatterFaction;
 
-		public static GenStepDef RD_ThirdPartyRaid;
+        public static GenStepDef RD_ThirdPartyRaid;
 
-		public static GenStepDef FindPlayerStartSpot;
-	}
+        public static GenStepDef FindPlayerStartSpot;
+    }
 }
-

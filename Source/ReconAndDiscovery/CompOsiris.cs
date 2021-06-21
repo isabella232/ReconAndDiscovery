@@ -1,41 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using ReconAndDiscovery.Things;
 using RimWorld;
-using RimWorld.Planet;
 using Verse;
 using Verse.AI;
-using Verse.AI.Group;
 
 namespace ReconAndDiscovery
 {
     [StaticConstructorOnStartup]
     public class CompOsiris : ThingComp
     {
-        public Building_Casket Casket
-        {
-            get
-            {
-                return this.parent as Building_Casket;
-            }
-        }
+        private Building_Casket Casket => parent as Building_Casket;
 
-        private bool ReadyToHeal
-        {
-            get
-            {
-                return this.Casket.ContainedThing is Pawn || (this.Casket.ContainedThing is Corpse && !(this.Casket.ContainedThing as Corpse).IsNotFresh() && this.parent.GetComp<CompPowerTrader>().PowerOn && this.parent.GetComp<CompRefuelable>().Fuel >= 50f);
-            }
-        }
+        private bool ReadyToHeal => Casket.ContainedThing is Pawn || Casket.ContainedThing is Corpse &&
+            !(Casket.ContainedThing as Corpse).IsNotFresh() && parent.GetComp<CompPowerTrader>().PowerOn &&
+            parent.GetComp<CompRefuelable>().Fuel >= 50f;
 
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
             base.PostDestroy(mode, previousMap);
             if (mode == DestroyMode.Deconstruct)
             {
-                GenSpawn.Spawn(ThingDef.Named("RD_OsirisAI"), this.parent.Position, previousMap);
+                GenSpawn.Spawn(ThingDef.Named("RD_OsirisAI"), parent.Position, previousMap);
             }
         }
 
@@ -45,37 +31,37 @@ namespace ReconAndDiscovery
             {
                 if (pawn.Corpse.holdingOwner != null)
                 {
-                    pawn.Corpse.GetDirectlyHeldThings().TryTransferToContainer(pawn, pawn.Corpse.holdingOwner, true);
+                    pawn.Corpse.GetDirectlyHeldThings().TryTransferToContainer(pawn, pawn.Corpse.holdingOwner);
                 }
                 else if (pawn.Corpse.Spawned)
                 {
                     ResurrectionUtility.Resurrect(pawn);
                     PawnDiedOrDownedThoughtsUtility.RemoveDiedThoughts(pawn);
-                    PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn, false);
-                    CompOsiris.FixPawnRelationships(pawn);
+                    PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
+                    FixPawnRelationships(pawn);
                     pawn.health.Reset();
                     if (pawn.Corpse != null && pawn.Corpse.Spawned)
                     {
                         pawn.Corpse.DeSpawn();
                     }
+
                     GenSpawn.Spawn(pawn, pawn.Corpse.Position, pawn.Corpse.Map);
                     GiveSideEffects(pawn);
                 }
-                if (pawn.Corpse != null)
-                {
-                    pawn.Corpse.Destroy(DestroyMode.Vanish);
-                }
+
+                pawn.Corpse?.Destroy();
             }
             else
             {
                 ResurrectionUtility.Resurrect(pawn);
                 PawnDiedOrDownedThoughtsUtility.RemoveDiedThoughts(pawn);
-                CompOsiris.FixPawnRelationships(pawn);
+                FixPawnRelationships(pawn);
                 pawn.health.Reset();
                 if (pawn.Corpse != null && pawn.Corpse.Spawned)
                 {
                     pawn.Corpse.DeSpawn();
                 }
+
                 GenSpawn.Spawn(pawn, thing.Position, thing.Map);
                 GiveSideEffects(pawn);
 
@@ -88,152 +74,194 @@ namespace ReconAndDiscovery
 
         public void HealContained()
         {
-            if (this.Casket.ContainedThing != null)
+            if (Casket.ContainedThing == null)
             {
-                Pawn pawn;
-                if (this.Casket.ContainedThing is Corpse corpse)
-                {
-                    pawn = corpse.InnerPawn;
-                }
-                else
-                {
-                    pawn = (this.Casket.ContainedThing as Pawn);
-                }
-                if (pawn != null)
-                {
-                    if (pawn.Dead)
-                    {
-                        CompOsiris.Ressurrect(pawn, this.parent);
-                    }
-                    else
-                    {
-                        pawn.health.Reset();
-                    }
-                    if (pawn.RaceProps.Humanlike)
-                    {
-                        pawn.ageTracker.AgeBiologicalTicks = 90000000L;
-                        if (Rand.Value < 0.65f)
-                        {
-                            pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("RD_ReturnedFromTheDeadBad"), null);
-                        }
-                        else
-                        {
-                            pawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDef.Named("RD_ReturnedFromTheDeadGood"), null);
-                        }
-                    }
-                    else if (pawn.RaceProps.Animal)
-                    {
-                        pawn.ageTracker.AgeBiologicalTicks = (long)(pawn.RaceProps.lifeStageAges[2].minAge * 3600000f);
-                    }
-                    pawn.health.AddHediff(HediffDef.Named("LuciferiumAddiction"), null, null);
-                    pawn.health.AddHediff(HediffDef.Named("LuciferiumHigh"), null, null);
-                }
+                return;
             }
+
+            Pawn pawn;
+            if (Casket.ContainedThing is Corpse corpse)
+            {
+                pawn = corpse.InnerPawn;
+            }
+            else
+            {
+                pawn = Casket.ContainedThing as Pawn;
+            }
+
+            if (pawn == null)
+            {
+                return;
+            }
+
+            if (pawn.Dead)
+            {
+                Ressurrect(pawn, parent);
+            }
+            else
+            {
+                pawn.health.Reset();
+            }
+
+            if (pawn.RaceProps.Humanlike)
+            {
+                pawn.ageTracker.AgeBiologicalTicks = 90000000L;
+                pawn.needs.mood.thoughts.memories.TryGainMemory(
+                    Rand.Value < 0.65f
+                        ? ThoughtDef.Named("RD_ReturnedFromTheDeadBad")
+                        : ThoughtDef.Named("RD_ReturnedFromTheDeadGood"));
+            }
+            else if (pawn.RaceProps.Animal)
+            {
+                pawn.ageTracker.AgeBiologicalTicks = (long) (pawn.RaceProps.lifeStageAges[2].minAge * 3600000f);
+            }
+
+            pawn.health.AddHediff(HediffDef.Named("LuciferiumAddiction"));
+            pawn.health.AddHediff(HediffDef.Named("LuciferiumHigh"));
         }
 
         private static void FixPawnRelationships(Pawn p)
         {
-            foreach (Pawn pawn in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
+            foreach (var pawn in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
             {
-                if (pawn != p)
+                if (pawn == p)
                 {
-                    if (pawn != null && pawn.needs != null && pawn.needs.mood != null && pawn.needs.mood.thoughts != null && pawn.needs.mood.thoughts.memories != null)
-                    {
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOf.KnowColonistDied, p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOf.PawnWithBadOpinionDied, p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDefOf.PawnWithGoodOpinionDied, p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("BondedAnimalDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MySonDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyDaughterDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyHusbandDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyWifeDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyFianceDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyFianceeDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyLoverDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyBrotherDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MySisterDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyGrandchildDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyFatherDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyMotherDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyNieceDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyNephewDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyHalfSiblingDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyAuntDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyUncleDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyGrandparentDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyCousinDied"), p);
-                        pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(ThoughtDef.Named("MyKinDied"), p);
-                    }
+                    continue;
                 }
+
+                if (pawn?.needs?.mood?.thoughts?.memories == null)
+                {
+                    continue;
+                }
+
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDefOf.KnowColonistDied, p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDefOf.PawnWithBadOpinionDied, p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDefOf.PawnWithGoodOpinionDied, p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("BondedAnimalDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MySonDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyDaughterDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyHusbandDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyWifeDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyFianceDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyFianceeDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyLoverDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyBrotherDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MySisterDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyGrandchildDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyFatherDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyMotherDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyNieceDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyNephewDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyHalfSiblingDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyAuntDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyUncleDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyGrandparentDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyCousinDied"), p);
+                pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDefWhereOtherPawnIs(
+                    ThoughtDef.Named("MyKinDied"), p);
             }
         }
 
         public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
         {
-            List<FloatMenuOption> list = new List<FloatMenuOption>();
-            FloatMenuOption floatMenuOption = new FloatMenuOption("RD_ResurrectContained".Translate(), delegate ()
+            var list = new List<FloatMenuOption>();
+            var floatMenuOption = new FloatMenuOption("RD_ResurrectContained".Translate(), delegate
             {
-                Job job = new Job(JobDefOfReconAndDiscovery.RD_ActivateOsirisCasket, this.parent)
+                var job = new Job(JobDefOfReconAndDiscovery.RD_ActivateOsirisCasket, parent)
                 {
                     playerForced = true
                 };
-                selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-            }); ;
-            if (this.ReadyToHeal)
+                selPawn.jobs.TryTakeOrderedJob(job);
+            });
+
+            if (ReadyToHeal)
             {
                 list.Add(floatMenuOption);
             }
+
             return list;
         }
 
         public static bool TryRandomlyMissingColonist(out Pawn pawn)
         {
-            bool result = false;
-            pawn = GenCollection.RandomElement<Pawn>(Enumerable.Where<Pawn>(Find.WorldPawns.AllPawnsDead, (Pawn x) => x.Faction == Faction.OfPlayer && x.Corpse == null));
+            var result = false;
+            pawn = Find.WorldPawns.AllPawnsDead.Where(x => x.Faction == Faction.OfPlayer && x.Corpse == null)
+                .RandomElement();
             if (pawn != null)
             {
                 result = true;
             }
+
             return result;
         }
 
-        public static void GiveSideEffects(Pawn pawn)
+        private static void GiveSideEffects(Pawn pawn)
         {
-            BodyPartRecord brain = pawn.health.hediffSet.GetBrain();
-            Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.ResurrectionSickness, pawn, null);
+            var brain = pawn.health.hediffSet.GetBrain();
+            var hediff = HediffMaker.MakeHediff(HediffDefOf.ResurrectionSickness, pawn);
             if (!pawn.health.WouldDieAfterAddingHediff(hediff))
             {
-                pawn.health.AddHediff(hediff, null, null, null);
+                pawn.health.AddHediff(hediff);
             }
+
             if (Rand.Chance(0.8f) && brain != null)
             {
-                Hediff hediff2 = HediffMaker.MakeHediff(HediffDefOf.Dementia, pawn, brain);
+                var hediff2 = HediffMaker.MakeHediff(HediffDefOf.Dementia, pawn, brain);
                 if (!pawn.health.WouldDieAfterAddingHediff(hediff2))
                 {
-                    pawn.health.AddHediff(hediff2, null, null, null);
+                    pawn.health.AddHediff(hediff2);
                 }
             }
+
             if (Rand.Chance(0.8f))
             {
-                foreach (BodyPartRecord bodyPartRecord in Enumerable.Where<BodyPartRecord>(pawn.health.hediffSet.GetNotMissingParts(0, 0, null, null), (BodyPartRecord x) => x.def == BodyPartDefOf.Eye))
+                foreach (var bodyPartRecord in pawn.health.hediffSet.GetNotMissingParts()
+                    .Where(x => x.def == BodyPartDefOf.Eye))
                 {
-                    Hediff hediff3 = HediffMaker.MakeHediff(HediffDefOf.Blindness, pawn, bodyPartRecord);
-                    pawn.health.AddHediff(hediff3, null, null, null);
+                    var hediff3 = HediffMaker.MakeHediff(HediffDefOf.Blindness, pawn, bodyPartRecord);
+                    pawn.health.AddHediff(hediff3);
                 }
             }
+
             if (brain != null && Rand.Chance(0.8f))
             {
-                Hediff hediff4 = HediffMaker.MakeHediff(HediffDefOf.ResurrectionPsychosis, pawn, brain);
+                var hediff4 = HediffMaker.MakeHediff(HediffDefOf.ResurrectionPsychosis, pawn, brain);
                 if (!pawn.health.WouldDieAfterAddingHediff(hediff4))
                 {
-                    pawn.health.AddHediff(hediff4, null, null, null);
+                    pawn.health.AddHediff(hediff4);
                 }
             }
-            if (pawn.Dead)
+
+            if (!pawn.Dead)
             {
-                Log.Error("The pawn has died while being resurrected.", false);
-                ResurrectionUtility.Resurrect(pawn);
+                return;
             }
+
+            Log.Error("The pawn has died while being resurrected.");
+            ResurrectionUtility.Resurrect(pawn);
         }
     }
 }

@@ -7,89 +7,86 @@ using Verse;
 
 namespace ReconAndDiscovery
 {
-	public class GameCondition_TargetedStorm : GameCondition
-	{
-		public override void End()
-		{
-            foreach (Map map in AffectedMaps)
+    public class GameCondition_TargetedStorm : GameCondition
+    {
+        private const int RainDisableTicksAfterConditionEnds = 30000;
+
+        private static readonly IntRange TicksBetweenStrikes = new IntRange(250, 600);
+
+        private readonly int areaRadius = 5;
+
+        private int nextLightningTicks;
+
+        private Thing target;
+
+        public override void End()
+        {
+            foreach (var map in AffectedMaps)
             {
-			    map.weatherDecider.DisableRainFor(30000);
-			    base.End();
+                map.weatherDecider.DisableRainFor(30000);
+                base.End();
             }
-		}
+        }
 
-		public override void ExposeData()
-		{
-			base.ExposeData();
-			Scribe_References.Look<Thing>(ref this.target, "target", false);
-			Scribe_Values.Look<int>(ref this.nextLightningTicks, "nextLightningTicks", 0, false);
-		}
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_References.Look(ref target, "target");
+            Scribe_Values.Look(ref nextLightningTicks, "nextLightningTicks");
+        }
 
-		private void FindNewTarget()
-		{
-            foreach (Map map in AffectedMaps)
+        private void FindNewTarget()
+        {
+            foreach (var map in AffectedMaps)
             {
-                IEnumerable<Pawn> source = from p in map.mapPawns.AllPawnsSpawned
-			    where p.HostileTo(Faction.OfPlayer)
-			    select p;
-			    if (source.Count<Pawn>() > 0)
-			    {
-			    	this.target = source.RandomElement<Pawn>();
-			    }
-			    else
-			    {
-			    	this.End();
-			    }
-            }
-		}
-
-		public override void GameConditionTick()
-		{
-            foreach (Map map in AffectedMaps)
-            {
-                if (this.target == null || !this.target.Spawned)
+                var source = from p in map.mapPawns.AllPawnsSpawned
+                    where p.HostileTo(Faction.OfPlayer)
+                    select p;
+                if (source.Any())
                 {
-                    this.FindNewTarget();
+                    target = source.RandomElement();
                 }
-                else if (Find.TickManager.TicksGame > this.nextLightningTicks)
+                else
                 {
-                    Vector2 vector = new Vector2(Rand.Gaussian(0f, 1f), Rand.Gaussian(0f, 1f));
+                    End();
+                }
+            }
+        }
+
+        public override void GameConditionTick()
+        {
+            foreach (var map in AffectedMaps)
+            {
+                if (target == null || !target.Spawned)
+                {
+                    FindNewTarget();
+                }
+                else if (Find.TickManager.TicksGame > nextLightningTicks)
+                {
+                    var vector = new Vector2(Rand.Gaussian(), Rand.Gaussian());
                     vector.Normalize();
-                    vector *= Rand.Range(0f, (float)this.areaRadius);
-                    IntVec3 intVec = new IntVec3((int)Math.Round((double)vector.x) + this.target.Position.x, 0, (int)Math.Round((double)vector.y) + this.target.Position.z);
-                    if (this.IsGoodLocationForStrike(map, intVec))
+                    vector *= Rand.Range(0f, areaRadius);
+                    var intVec = new IntVec3((int) Math.Round(vector.x) + target.Position.x, 0,
+                        (int) Math.Round(vector.y) + target.Position.z);
+                    if (!IsGoodLocationForStrike(map, intVec))
                     {
-                        map.weatherManager.eventHandler.AddEvent(new WeatherEvent_LightningStrike(map, intVec));
-                        this.nextLightningTicks = Find.TickManager.TicksGame + GameCondition_TargetedStorm.TicksBetweenStrikes.RandomInRange;
+                        continue;
                     }
+
+                    map.weatherManager.eventHandler.AddEvent(new WeatherEvent_LightningStrike(map, intVec));
+                    nextLightningTicks = Find.TickManager.TicksGame + TicksBetweenStrikes.RandomInRange;
                 }
             }
-		}
+        }
 
-		private IEnumerable<IntVec3> GetPotentiallyAffectedCells(IntVec2 center)
-		{
-			return GenRadial.RadialCellsAround(this.target.Position, 5f, true);
-		}
+        private IEnumerable<IntVec3> GetPotentiallyAffectedCells()
+        {
+            return GenRadial.RadialCellsAround(target.Position, 5f, true);
+        }
 
-		public override void Init()
-		{
-			base.Init();
-		}
-
-		private bool IsGoodLocationForStrike(Map map, IntVec3 loc)
-		{
-			return loc.InBounds(map) && !loc.Roofed(map) && loc.Standable(map);
-		}
-
-		private const int RainDisableTicksAfterConditionEnds = 30000;
-
-		private static readonly IntRange TicksBetweenStrikes = new IntRange(250, 600);
-
-		private int nextLightningTicks;
-
-		private int areaRadius = 5;
-
-		public Thing target;
-	}
+        private bool IsGoodLocationForStrike(Map map, IntVec3 loc)
+        {
+            return loc.InBounds(map) && !loc.Roofed(map) && loc.Standable(map);
+        }
+    }
 }
-

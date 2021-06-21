@@ -1,10 +1,8 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 
 namespace ReconAndDiscovery
 {
-	public class AdventureWorker : IncidentWorker
-	{
-	}
+    public class AdventureWorker : IncidentWorker
+    {
+    }
 }
-

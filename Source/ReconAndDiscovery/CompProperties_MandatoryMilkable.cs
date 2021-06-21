@@ -1,24 +1,22 @@
-﻿using System;
-using Verse;
+﻿using Verse;
 
 namespace ReconAndDiscovery
 {
-	public class CompProperties_MandatoryMilkable : CompProperties
-	{
-		public CompProperties_MandatoryMilkable()
-		{
-			this.compClass = typeof(CompMandatoryMilkable);
-		}
+    public class CompProperties_MandatoryMilkable : CompProperties
+    {
+        public readonly int milkAmount = 1;
 
-		public int ticksUntilDanger = 60000;
+        public readonly bool milkFemaleOnly = true;
 
-		public int milkIntervalDays;
+        public readonly int ticksUntilDanger = 60000;
 
-		public int milkAmount = 1;
+        public ThingDef milkDef;
 
-		public ThingDef milkDef;
+        public int milkIntervalDays;
 
-		public bool milkFemaleOnly = true;
-	}
+        public CompProperties_MandatoryMilkable()
+        {
+            compClass = typeof(CompMandatoryMilkable);
+        }
+    }
 }
-

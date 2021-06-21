@@ -1,7 +1,4 @@
-﻿using System;
-
-namespace ReconAndDiscovery
+﻿namespace ReconAndDiscovery
 {
-	public delegate bool Predicate<T1, T2>(T1 obj1, T2 obj2);
+    public delegate bool Predicate<in T1, in T2>(T1 obj1, T2 obj2);
 }
-

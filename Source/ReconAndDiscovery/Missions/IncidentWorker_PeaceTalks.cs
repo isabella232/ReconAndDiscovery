@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
@@ -11,30 +10,32 @@ namespace ReconAndDiscovery.Missions
     {
         protected override bool CanFireNowSub(IncidentParms parms)
         {
-            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out int num);
+            return base.CanFireNowSub(parms) && TileFinder.TryFindNewSiteTile(out _);
         }
 
-        public bool TryFindFaction(out Faction faction, Predicate<Faction> validator)
+        private bool TryFindFaction(out Faction faction, Predicate<Faction> validator)
         {
             faction = null;
-            List<Faction> list = Find.FactionManager.AllFactionsVisible.ToList<Faction>();
+            var list = Find.FactionManager.AllFactionsVisible.ToList();
             if (list.Contains(Faction.OfPlayer))
             {
                 list.Remove(Faction.OfPlayer);
             }
+
             list = (from f in list
-                    where validator(f)
-                    select f).ToList<Faction>();
+                where validator(f)
+                select f).ToList();
             bool result;
-            if (list.Count<Faction>() > 0)
+            if (list.Any())
             {
-                faction = list.RandomElement<Faction>();
+                faction = list.RandomElement();
                 result = true;
             }
             else
             {
                 result = false;
             }
+
             return result;
         }
 
@@ -42,39 +43,40 @@ namespace ReconAndDiscovery.Missions
         {
             bool result;
             if ((from wo in Find.WorldObjects.AllWorldObjects
-                 where wo.def == SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks
-                 select wo).Count<WorldObject>() > 0)
+                where wo.def == SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks
+                select wo).Any())
             {
                 result = false;
             }
-            else if (!this.TryFindFaction(out Faction faction, (Faction f) => f != Faction.OfPlayer && f.PlayerGoodwill < 0f && f.def.CanEverBeNonHostile && f.def.humanlikeFaction))
+            else if (!TryFindFaction(out var faction,
+                f => f != Faction.OfPlayer && f.PlayerGoodwill < 0f && f.def.CanEverBeNonHostile &&
+                     f.def.humanlikeFaction))
             {
                 result = false;
             }
             else
             {
-                if (TileFinder.TryFindNewSiteTile(out int tile))
+                if (TileFinder.TryFindNewSiteTile(out var tile))
                 {
-                    Site site = (Site)WorldObjectMaker.MakeWorldObject(SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks);
+                    var site = (Site) WorldObjectMaker.MakeWorldObject(
+                        SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks);
                     site.Tile = tile;
                     site.SetFaction(faction);
                     site.AddPart(new SitePart(site, SiteDefOfReconAndDiscovery.RD_PeaceTalks,
-SiteDefOfReconAndDiscovery.RD_PeaceTalks.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
+                        SiteDefOfReconAndDiscovery.RD_PeaceTalks.Worker.GenerateDefaultParams(
+                            StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction)));
 
-                    SitePart peaceTalksFaction = new SitePart(site, SiteDefOfReconAndDiscovery.RD_PeaceTalksFaction, SiteDefOfReconAndDiscovery.RD_PeaceTalksFaction.Worker.GenerateDefaultParams(StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
+                    var peaceTalksFaction = new SitePart(site, SiteDefOfReconAndDiscovery.RD_PeaceTalksFaction,
+                        SiteDefOfReconAndDiscovery.RD_PeaceTalksFaction.Worker.GenerateDefaultParams(
+                            StorytellerUtility.DefaultSiteThreatPointsNow(), tile, faction))
                     {
                         hidden = true
                     };
                     site.parts.Add(peaceTalksFaction);
                     site.GetComponent<QuestComp_PeaceTalks>().StartQuest(faction);
-                    int num = 5;
+                    var num = 5;
                     site.GetComponent<TimeoutComp>().StartTimeout(num * 60000);
-                    base.SendStandardLetter(parms, site, new NamedArgument[]
-                    {
-                        faction.leader.Label,
-                        faction.Name,
-                        num.ToString()
-                    });
+                    SendStandardLetter(parms, site, faction.leader.Label, faction.Name, num.ToString());
                     Find.WorldObjects.Add(site);
                     result = true;
                 }
@@ -83,8 +85,8 @@ SiteDefOfReconAndDiscovery.RD_PeaceTalks.Worker.GenerateDefaultParams(Storytelle
                     result = false;
                 }
             }
+
             return result;
         }
     }
 }
-

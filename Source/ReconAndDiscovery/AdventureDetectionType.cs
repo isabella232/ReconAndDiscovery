@@ -1,13 +1,10 @@
-﻿using System;
-
-namespace ReconAndDiscovery
+﻿namespace ReconAndDiscovery
 {
-	public enum AdventureDetectionType
-	{
-		PSYCHIC,
-		COMMS, 
-		RESEARCH,
-		NONE
-	}
+    public enum AdventureDetectionType
+    {
+        PSYCHIC,
+        COMMS,
+        RESEARCH,
+        NONE
+    }
 }
-
