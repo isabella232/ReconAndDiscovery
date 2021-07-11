@@ -103,7 +103,7 @@ namespace ReconAndDiscovery
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(parent));
             Find.WorldSelector.ClearSelection();
             var tile = parent.Map.Tile;
-            Find.WorldTargeter.BeginTargeting_NewTemp(ChoseWorldTarget, true, null, true);
+            Find.WorldTargeter.BeginTargeting(ChoseWorldTarget, true, null, true);
         }
 
         private bool ChoseWorldTarget(GlobalTargetInfo target)

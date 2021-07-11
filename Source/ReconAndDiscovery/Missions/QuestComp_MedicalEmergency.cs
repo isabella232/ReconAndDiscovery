@@ -297,7 +297,7 @@ namespace ReconAndDiscovery.Missions
             var tile = parent.Tile;
             CloseMapImmediate();
 
-            var faction = FactionGenerator.NewGeneratedFaction(FactionDefOf.Ancients);
+            var faction = FactionGenerator.NewGeneratedFaction(new FactionGeneratorParms(FactionDefOf.Ancients));
             map.pawnDestinationReservationManager.GetPawnDestinationSetFor(faction);
             Find.FactionManager.Add(faction);
             var settlement = (Settlement) WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Settlement);

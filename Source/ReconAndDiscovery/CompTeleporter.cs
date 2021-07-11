@@ -69,7 +69,7 @@ namespace ReconAndDiscovery
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(parent));
             Find.WorldSelector.ClearSelection();
             var tile = parent.Map.Tile;
-            Find.WorldTargeter.BeginTargeting_NewTemp(ChoseWorldTarget, true, TargeterMouseAttachment, true);
+            Find.WorldTargeter.BeginTargeting(ChoseWorldTarget, true, TargeterMouseAttachment, true);
         }
 
         private bool ChoseWorldTarget(GlobalTargetInfo target)
@@ -160,8 +160,8 @@ namespace ReconAndDiscovery
             }
             else
             {
-                MoteMaker.ThrowMetaPuff(position2.ToVector3(), map2);
-                MoteMaker.ThrowMetaPuff(position.ToVector3(), map);
+                FleckMaker.ThrowMetaPuff(position2.ToVector3(), map2);
+                FleckMaker.ThrowMetaPuff(position.ToVector3(), map);
                 pawn.DeSpawn();
                 var fire = (Fire) GenSpawn.Spawn(ThingDefOf.Fire, position2, map2);
                 fire.fireSize = 1f;

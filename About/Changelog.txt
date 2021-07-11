@@ -1,5 +1,8 @@
 # Changelog for ReconAndDiscovery
 
+1.0.8.0 - Mod updated for 1.3 and passed autotests
+
+
 1.0.7.0 - Refactored the code, fixed a few obvious errors but nothing major. Might take a look at it again at a later date
 
 
