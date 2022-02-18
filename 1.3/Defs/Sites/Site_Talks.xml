@@ -45,5 +45,6 @@
     <showFactionInInspectString>true</showFactionInInspectString>
     <badEvenIfNoMap>false</badEvenIfNoMap>
     <requiresFaction>true</requiresFaction>
+    <disallowsAutomaticDetectionTimerStart>true</disallowsAutomaticDetectionTimerStart>
   </SitePartDef>
 </Defs>

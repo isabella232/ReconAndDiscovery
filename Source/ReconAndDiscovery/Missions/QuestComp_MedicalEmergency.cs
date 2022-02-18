@@ -77,7 +77,7 @@ namespace ReconAndDiscovery.Missions
             var num = (from p in injured
                 where !p.Dead && p.RaceProps.Humanlike
                 select p).Count();
-            var giveTech = false;
+            var giveTech = true;
             if (num - maxPawns == 0)
             {
                 if (Rand.Value < 0.1 * num)
@@ -143,29 +143,15 @@ namespace ReconAndDiscovery.Missions
         private ThingDef RandomHiTechReward()
         {
             var value = Rand.Value;
-            ThingDef result;
-            if (value <= 0f)
-            {
-                result = ThingDef.Named("Gun_ChargeRifle");
-            }
-            else if (value <= 0.25f)
-            {
-                result = ThingDef.Named("RD_HolographicEmitter");
-            }
-            else if (value <= 0.50f)
-            {
-                result = ThingDef.Named("RD_Teleporter");
-            }
-            else if (value <= 0.75f)
-            {
-                result = ThingDef.Named("RD_GattlingLaser");
-            }
-            else
-            {
-                result = ThingDef.Named("Gun_ChargeRifle");
-            }
+            value = .20f;
 
-            return result;
+            return value switch
+            {
+                <= 0.25f => ThingDef.Named("RD_HolographicEmitter"),
+                <= 0.50f => ThingDef.Named("RD_Teleporter"),
+                <= 0.75f => ThingDef.Named("RD_GattlingLaser"),
+                _ => ThingDef.Named("Gun_ChargeRifle")
+            };
         }
 
         private void CloseMapImmediate()
