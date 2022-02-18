@@ -119,38 +119,43 @@ namespace ReconAndDiscovery
 
             if (pawn.Dead)
             {
+                Log.Message(Emitter.def.defName);
                 Log.Message($"{pawn.Label} is dead.");
+                Log.Message(Emitter.GetDirectlyHeldThings().ToString());
+                Log.Message(pawn.Corpse.ToString());
+                Log.Message(pawn.Corpse.holdingOwner.ToString());
                 if (pawn.Corpse.holdingOwner == Emitter.GetDirectlyHeldThings())
                 {
                     return;
                 }
 
-                Emitter.TryAcceptThing(pawn.Corpse);
+                // Emitter.TryAcceptThing(pawn.Corpse);
+
+                return;
             }
-            else
+
+            Log.Message("Branch 2");
+            if (!pawn.story.traits.HasTrait(TraitDef.Named("RD_Holographic")))
             {
-                if (!pawn.story.traits.HasTrait(TraitDef.Named("RD_Holographic")))
-                {
-                    SetUpPawn();
-                }
-
-                if (!pawn.Spawned)
-                {
-                    GenSpawn.Spawn(pawn, parent.Position, parent.Map);
-                }
-
-                pawn.needs.food.CurLevel = 1f;
-                if (!pawn.Position.InHorDistOf(parent.Position, 12f) ||
-                    !GenSight.LineOfSight(parent.Position, pawn.Position, parent.Map, true))
-                {
-                    pawn.inventory.DropAllNearPawn(pawn.Position);
-                    pawn.equipment.DropAllEquipment(pawn.Position, false);
-                    pawn.DeSpawn();
-                    GenSpawn.Spawn(pawn, parent.Position, parent.Map);
-                }
-
-                pawn.health.Reset();
+                SetUpPawn();
             }
+
+            if (!pawn.Spawned)
+            {
+                GenSpawn.Spawn(pawn, parent.Position, parent.Map);
+            }
+
+            pawn.needs.food.CurLevel = 1f;
+            if (!pawn.Position.InHorDistOf(parent.Position, 12f) ||
+                !GenSight.LineOfSight(parent.Position, pawn.Position, parent.Map, true))
+            {
+                pawn.inventory.DropAllNearPawn(pawn.Position);
+                pawn.equipment.DropAllEquipment(pawn.Position, false);
+                pawn.DeSpawn();
+                GenSpawn.Spawn(pawn, parent.Position, parent.Map);
+            }
+
+            pawn.health.Reset();
         }
 
         public void Scan(Corpse c)

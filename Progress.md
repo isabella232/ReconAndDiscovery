@@ -55,10 +55,11 @@
  * During the Peace Talks a bunch of null exception errors are being thrown about whether you can trade with the enemy leader if you save and load in the peace talks site
  * RD_Nanites
    * I don't think this was ever implemented?
+ * Medical Emergency
+   * Instead of kicking players out of the Medical Emergency when they form a new faction, we should wait for players to leave on their own accord and generate the new faction
    
 #### Untested
  * Muffalo Herds
- * Holo-emitters
  * Portable Generators
  * Weather Control Points
  * War Idols
@@ -67,7 +68,8 @@
  * Taking Seraphites causes an exception
  * RD_TradeFair
    * Now need to get the list of factions to add to the map through a comp that we'll have to create
- * Crashed Ship Medical Emergencies auto close the map and cause your colonists to be lost
+ * RD_HoloEmitter
+   * When trying to execute `HoloTick`, it fails to check the `pawn.Corpse.holdingOwner` because somehow `pawn.Corse` has become null
 
 ## Details of Fixes
 
@@ -89,10 +91,15 @@ generator wasn't be added because the Rect size was defined incorrectly and the 
 pushed to the resolver stack before the room
 
 #### RD_CrashedShip
-
 `ReconAndDiscovery.Maps.GenStep_RareBeasts.Generate` threw an exception on generating rare beasts because the tile id being passed in
 to generate the pawn request was `-1`, which throws an error if you're also telling it to generate an inhabitant pawn. I fixed this 
-by just passing in the tile of the generation request 
+by just passing in the tile of the generation request.
+
+If it's a Medical Quest then the faction for that quest was a static faction that would sometimes bug out and pick the wrong faction, one that
+wasn't the injured pawns that you need to save. To fix this I've made the fact that the quest is for non-static and generated on quest start.
+On top of that, if they decided to form a new Faction then they would generate as a faction using the Ancients parameters. The problem here is
+that the Ancients don't have any icons to put their settlement on the map, so that would error out when you tried to leave. This was fixed by
+changing their faction generation params to OutlanderCivil
 
 #### World Object Generation
 This one was breaking pretty much every world site that was being generated. It looks like 1.3 added the idea of raid timers being
@@ -132,5 +139,4 @@ somehow.
  * In `IncidentWorker_OsirisCasket.GetPsychicPawn` I removed the need for one of your pawns to be Psychic so I could test it more easily
  * In `IncidentWorker_OsirisCasket.GenerateSiteParts` I added a `forceGenerate` for testing purposes, this can be removed
  * In `QuestComp_MedicalEmergency.CalculateQuestOutcome` I hardcoded `giveTech = true` to remove randomness for debugging
- * In `QuestComp_MedicalEmergency.RandomHiTechReward` I hardcoded the reward to receive for debugging
  * In `IncidentWorker_CrashedShip.TryExecuteWorker` I forced it to always be a medical emergency for testing
