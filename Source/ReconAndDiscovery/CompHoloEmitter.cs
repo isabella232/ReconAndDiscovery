@@ -119,22 +119,15 @@ namespace ReconAndDiscovery
 
             if (pawn.Dead)
             {
-                Log.Message(Emitter.def.defName);
-                Log.Message($"{pawn.Label} is dead.");
-                Log.Message(Emitter.GetDirectlyHeldThings().ToString());
-                Log.Message(pawn.Corpse.ToString());
-                Log.Message(pawn.Corpse.holdingOwner.ToString());
                 if (pawn.Corpse.holdingOwner == Emitter.GetDirectlyHeldThings())
                 {
                     return;
                 }
 
-                // Emitter.TryAcceptThing(pawn.Corpse);
-
+                Emitter.TryAcceptThing(pawn.Corpse);
                 return;
             }
 
-            Log.Message("Branch 2");
             if (!pawn.story.traits.HasTrait(TraitDef.Named("RD_Holographic")))
             {
                 SetUpPawn();
@@ -154,7 +147,7 @@ namespace ReconAndDiscovery
                 pawn.DeSpawn();
                 GenSpawn.Spawn(pawn, parent.Position, parent.Map);
             }
-
+            
             pawn.health.Reset();
         }
 

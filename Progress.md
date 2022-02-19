@@ -44,6 +44,7 @@
    * [RD_TradeFair](#RD_TradeFair)
  * Buildings
    * [Stargate](#Stargate)
+   * [Holo Emitter](#Holo Emitter)
 
 #### Things to look at later
  * SymbolResolver_CrashedShip
@@ -57,6 +58,8 @@
    * I don't think this was ever implemented?
  * Medical Emergency
    * Instead of kicking players out of the Medical Emergency when they form a new faction, we should wait for players to leave on their own accord and generate the new faction
+ * Holo Emitter
+   * When a hologram pawn dies, it should teleport back to the hologram base before resurrecting
    
 #### Untested
  * Muffalo Herds
@@ -66,11 +69,9 @@
 
 #### Still Broken
  * Taking Seraphites causes an exception
- * RD_TradeFair
-   * Now need to get the list of factions to add to the map through a comp that we'll have to create
- * RD_HoloEmitter
-   * When trying to execute `HoloTick`, it fails to check the `pawn.Corpse.holdingOwner` because somehow `pawn.Corse` has become null
-
+ * Holo Emitter
+   * Formatting hologram causes an exception, even though it does succeed
+   
 ## Details of Fixes
 
 #### RD_RaidEnemyQuest
@@ -134,6 +135,12 @@ instead and we pass in the host and attending factions through a comp rather tha
 
 For the moment, I've changed the area that is generated to be that of AbandonedCastle, but it might be a good idea to see if we can't re-use AbandonedColony
 somehow.
+
+#### Holo Emitter
+It looks like there was a weird condition regarding the CompOsiris and whether it should transfer the pawn back to the emitter or whether it should ressurect it.
+I side-stepped it by just always resurrecting it, but I suppose I might have removed it being teleported back to the emitter if the hologram dies. Also, when it was
+resurrecting pawns as holograms, it was trying to use the Corpse's position to spawn the hologram even though the Corpse didn't exist anymore, which prevented the spawn
+all together
 
 ## Things to Revert
  * In `IncidentWorker_OsirisCasket.GetPsychicPawn` I removed the need for one of your pawns to be Psychic so I could test it more easily
