@@ -11,11 +11,6 @@ namespace ReconAndDiscovery.Missions
             p.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Manhunter, null, true);
         }
 
-        // protected override bool CanFireNowSub(IncidentParms parms)
-        // {
-        //     return CanFireNow(parms);
-        // }
-
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
             if (parms.target is not Map map)
