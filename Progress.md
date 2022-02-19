@@ -56,6 +56,7 @@
  * Item
    * [Seraphites](#Seraphites)
    * [War Idol Sacrifice](#War Idol Sacrifice)
+   * [Weather Idol](#Weather Idol) 
 
 #### Things to look at later
  * SymbolResolver_CrashedShip
@@ -72,10 +73,12 @@
  * RD_MuffaloMassInsanity
    * The muffalo herd that spawned during testing was **massive**, turning half of them manhunter seems... very harsh
  * Nitralope Overfull alert should point to the nitralopes that need to be milked
+ * Weather Idol
+   * Could transition this to psi meditation like anima trees
+   * Make the weather changes Gizmo's instead of clicks
    
 #### Untested
  * Action Triggers
- * Weather Control Points
 
 #### Still Broken
 Nothing is broken right now
@@ -165,6 +168,9 @@ a herd would go manhunter if you had any psychic pawns because it was looking fo
 
 #### War Idol Sacrifice
 War Idol Sacrifice failed when tyring to carry the item because the JobGiver wasn't setting a count for the JobDriver
+
+#### Weather Idol
+Made it not consume mana for "Clear weather" if weather was already clear and not consume mana for "Strike down our enemies" if there are no enemies
 
 ## Things to Revert
 Nothing to revert at this time
