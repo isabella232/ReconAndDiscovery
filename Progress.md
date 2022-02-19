@@ -34,6 +34,7 @@
  * Map Incident
    * [RD_RaidEnemyQuest](#RD_RaidEnemyQuest)
    * [RD_RaidTeleporter](#RD_RaidTeleporter)
+   * [RD_MuffaloMassInsanity](#RD_MuffaloMassInsanity)
  * Site Part
    * [RD_Nanites](#RD_Nanites)
    * [RD_AbandonedLab](#RD_AbandonedLab)
@@ -42,6 +43,7 @@
    * [Crashed Ship](#RD_CrashedShip)
    * [RD_PeaceTalks](#RD_PeaceTalks)
    * [RD_TradeFair](#RD_TradeFair)
+   * [RD_MuffaloHerdMigration](#RD_MuffaloHerdMigration)
  * Buildings
    * [Stargate](#Stargate)
    * [Holo Emitter](#Holo Emitter)
@@ -53,8 +55,6 @@
     * It looks like it's meant to be generating 3 engines while it's only generating 1. Perhaps don't re-use the same rect and keep changing it?
  * SymbolResolver_PathOfDestruction
     * I'm not sure if this is working? Or what it's meant to do?
- * RD_MuffaloHerdMigration
-    * How to trigger it?
  * During the Peace Talks a bunch of null exception errors are being thrown about whether you can trade with the enemy leader if you save and load in the peace talks site
  * RD_Nanites
    * I don't think this was ever implemented?
@@ -62,15 +62,21 @@
    * Instead of kicking players out of the Medical Emergency when they form a new faction, we should wait for players to leave on their own accord and generate the new faction
  * Holo Emitter
    * When a hologram pawn dies, it should teleport back to the hologram base before resurrecting
+ * RD_MuffaloMassInsanity
+   * The muffalo herd that spawned during testing was **massive**, turning half of them manhunter seems... very harsh
    
 #### Untested
- * Muffalo Herds
+ * Devillo
+ * Nitrolopes
+ * Action Triggers
  * Portable Generators
  * Weather Control Points
  * War Idols
 
 #### Still Broken
-Nothing at the moment
+ * RD_MuffaloMassInsanity
+   * Doesn't fire off the warning letter in `SitePartWorker_MuffaloHerd.PostMapGenerate` because caravan hasn't put anyone on the map yet
+   * Seems to crash the game when it fires
    
 ## Details of Fixes
 
@@ -147,6 +153,12 @@ formatting first we set it's ideo to null so that no rituals pop up and then we 
 Taking the Seraphites, while it would work, caused an exception in the health tick. It looks like this was caused by trying to remove both luciferium hediffs at once
 so I changed the loop to remove the addiction first and the high in the next tick. Additionally it now only looks for Luciferium addiction instead of removing all
 addictions
+
+#### RD_MuffaloHerdMigration
+It doesn't send the message that the herd might be going mad soon because in `PostMapGenerate` none of the colonists are in the `map.mapPawns` yet
+
+#### RD_MuffaloMassInsanity
+`CanFireNowSub` was calling `CanFireNow`, which causes an infinite loop as `CanFireNow` calls `CanFireNowSub`
 
 ## Things to Revert
 Nothing to revert at this time
