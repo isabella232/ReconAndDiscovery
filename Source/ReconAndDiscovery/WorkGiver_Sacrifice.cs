@@ -62,7 +62,10 @@ namespace ReconAndDiscovery
                 return null;
             }
             
-            return new Job(JobDefOfReconAndDiscovery.RD_SacrificeAtAltar, victim, psionicEmanator);
+            return new Job(JobDefOfReconAndDiscovery.RD_SacrificeAtAltar, victim, psionicEmanator)
+            {
+                count = 1
+            };
         }
     }
 }

@@ -164,7 +164,7 @@ a herd would go manhunter if you had any psychic pawns because it was looking fo
 100 ticks after entering to give your pawns time to arrive
 
 #### War Idol Sacrifice
-Job Reservations for War Idol 
+War Idol Sacrifice failed when tyring to carry the item because the JobGiver wasn't setting a count for the JobDriver
 
 ## Things to Revert
 Nothing to revert at this time
