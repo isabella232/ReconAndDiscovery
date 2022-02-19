@@ -25,8 +25,11 @@
    * SymbolResolver_EdgeShields
    * SymbolResolver_WireOutline
    * SymbolResolver_RoomWithDoor
- * Teleporters
- * Osiris Casket
+ * Items
+   * Teleporters
+   * Osiris Casket
+   * Portable Generators
+   * War Idols
  * Animals
    * Nitralopes
    * Devillo
@@ -52,6 +55,7 @@
    * [Holo Emitter](#Holo Emitter)
  * Item
    * [Seraphites](#Seraphites)
+   * [War Idol Sacrifice](#War Idol Sacrifice)
 
 #### Things to look at later
  * SymbolResolver_CrashedShip
@@ -71,9 +75,7 @@
    
 #### Untested
  * Action Triggers
- * Portable Generators
  * Weather Control Points
- * War Idols
 
 #### Still Broken
 Nothing is broken right now
@@ -88,8 +90,7 @@ Even with this fixed though, the incident worker for this doesn't seem to **do**
 Perhaps it was an intended feature that was never made?
 
 #### RD_Nanites
-
- 1. The site texture was pointing to the wrong location
+The site texture was pointing to the wrong location
 
 #### RD_AbandonedLab
 
@@ -161,6 +162,9 @@ It doesn't send the message that the herd might be going mad soon because in `Po
 `CanFireNowSub` was calling `CanFireNow`, which causes an infinite loop as `CanFireNow` calls `CanFireNowSub`. Additionally, it wasn't sending the warning message that
 a herd would go manhunter if you had any psychic pawns because it was looking for your pawns on the map too early. I solved this by queuing up a warning incident for
 100 ticks after entering to give your pawns time to arrive
+
+#### War Idol Sacrifice
+Job Reservations for War Idol 
 
 ## Things to Revert
 Nothing to revert at this time
