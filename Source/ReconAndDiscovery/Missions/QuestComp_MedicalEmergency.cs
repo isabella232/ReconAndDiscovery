@@ -76,7 +76,7 @@ namespace ReconAndDiscovery.Missions
             var num = (from p in injured
                 where !p.Dead && p.RaceProps.Humanlike
                 select p).Count();
-            var giveTech = true;
+            var giveTech = false;
             if (num - maxPawns == 0)
             {
                 if (Rand.Value < 0.1 * num)

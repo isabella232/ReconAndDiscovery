@@ -58,7 +58,7 @@ namespace ReconAndDiscovery.Missions
                 return false;
             }
 
-            var isAMedicalEmergency = Rand.Value < 0.4f || true;
+            var isAMedicalEmergency = Rand.Value < 0.4f;
 
             var site = (Site) WorldObjectMaker.MakeWorldObject(isAMedicalEmergency
                 ? SiteDefOfReconAndDiscovery.RD_AdventureMedical

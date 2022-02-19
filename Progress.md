@@ -45,6 +45,8 @@
  * Buildings
    * [Stargate](#Stargate)
    * [Holo Emitter](#Holo Emitter)
+ * Item
+   * [Seraphites](#Seraphites)
 
 #### Things to look at later
  * SymbolResolver_CrashedShip
@@ -68,9 +70,7 @@
  * War Idols
 
 #### Still Broken
- * Taking Seraphites causes an exception
- * Holo Emitter
-   * Formatting hologram causes an exception, even though it does succeed
+Nothing at the moment
    
 ## Details of Fixes
 
@@ -140,10 +140,13 @@ somehow.
 It looks like there was a weird condition regarding the CompOsiris and whether it should transfer the pawn back to the emitter or whether it should ressurect it.
 I side-stepped it by just always resurrecting it, but I suppose I might have removed it being teleported back to the emitter if the hologram dies. Also, when it was
 resurrecting pawns as holograms, it was trying to use the Corpse's position to spawn the hologram even though the Corpse didn't exist anymore, which prevented the spawn
-all together
+all together. Killing the hologram and then immediately destroying it's corpse during formatting caused an exception with the burial obligation filter, so when
+formatting first we set it's ideo to null so that no rituals pop up and then we just destroy the pawn instead of killing it.
+
+#### Seraphites
+Taking the Seraphites, while it would work, caused an exception in the health tick. It looks like this was caused by trying to remove both luciferium hediffs at once
+so I changed the loop to remove the addiction first and the high in the next tick. Additionally it now only looks for Luciferium addiction instead of removing all
+addictions
 
 ## Things to Revert
- * In `IncidentWorker_OsirisCasket.GetPsychicPawn` I removed the need for one of your pawns to be Psychic so I could test it more easily
- * In `IncidentWorker_OsirisCasket.GenerateSiteParts` I added a `forceGenerate` for testing purposes, this can be removed
- * In `QuestComp_MedicalEmergency.CalculateQuestOutcome` I hardcoded `giveTech = true` to remove randomness for debugging
- * In `IncidentWorker_CrashedShip.TryExecuteWorker` I forced it to always be a medical emergency for testing
+Nothing to revert at this time
