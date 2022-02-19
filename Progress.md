@@ -27,6 +27,9 @@
    * SymbolResolver_RoomWithDoor
  * Teleporters
  * Osiris Casket
+ * Animals
+   * Nitralopes
+   * Devillo
 
 #### Tested and Fixed
 
@@ -64,20 +67,17 @@
    * When a hologram pawn dies, it should teleport back to the hologram base before resurrecting
  * RD_MuffaloMassInsanity
    * The muffalo herd that spawned during testing was **massive**, turning half of them manhunter seems... very harsh
+ * Nitralope Overfull alert should point to the nitralopes that need to be milked
    
 #### Untested
- * Devillo
- * Nitrolopes
  * Action Triggers
  * Portable Generators
  * Weather Control Points
  * War Idols
 
 #### Still Broken
- * RD_MuffaloMassInsanity
-   * Doesn't fire off the warning letter in `SitePartWorker_MuffaloHerd.PostMapGenerate` because caravan hasn't put anyone on the map yet
-   * Seems to crash the game when it fires
-   
+Nothing is broken right now
+
 ## Details of Fixes
 
 #### RD_RaidEnemyQuest
@@ -158,7 +158,9 @@ addictions
 It doesn't send the message that the herd might be going mad soon because in `PostMapGenerate` none of the colonists are in the `map.mapPawns` yet
 
 #### RD_MuffaloMassInsanity
-`CanFireNowSub` was calling `CanFireNow`, which causes an infinite loop as `CanFireNow` calls `CanFireNowSub`
+`CanFireNowSub` was calling `CanFireNow`, which causes an infinite loop as `CanFireNow` calls `CanFireNowSub`. Additionally, it wasn't sending the warning message that
+a herd would go manhunter if you had any psychic pawns because it was looking for your pawns on the map too early. I solved this by queuing up a warning incident for
+100 ticks after entering to give your pawns time to arrive
 
 ## Things to Revert
 Nothing to revert at this time
