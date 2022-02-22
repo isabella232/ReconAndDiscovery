@@ -26,7 +26,7 @@ namespace ExpandedIncidents.Settings
 
         // Token: 0x06000029 RID: 41 RVA: 0x0000376C File Offset: 0x0000196C
         private void ResetSettings()
-        {
+        { 
             RaD_ModSettings.RaidEnemyQuestBaseChance = 0.0f;
             RaD_ModSettings.DiscoveredStargateBaseChance = 0.0f;
             RaD_ModSettings.RaidStargateBaseChance = 1.9f;

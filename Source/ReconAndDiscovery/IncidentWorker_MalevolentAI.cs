@@ -8,7 +8,6 @@ namespace ReconAndDiscovery
     {
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            bool result;
             if (parms.target is not Map map)
             {
                 return false;

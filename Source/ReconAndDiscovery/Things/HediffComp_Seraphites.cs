@@ -8,7 +8,6 @@ namespace ReconAndDiscovery.Things
     public class HediffComp_Seraphites : HediffComp
     {
         private bool hasBeenRemoved = false;
-        private bool firstLoop = true;
 
         public HediffCompProperties_Seraphites Props => (HediffCompProperties_Seraphites) props;
 

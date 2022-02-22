@@ -95,7 +95,7 @@ namespace ReconAndDiscovery.Missions
 
         public void ResolveNegotiations(Pawn playerNegotiator, Pawn otherNegotiator)
         {
-            if (Rand.Chance(0.05f) && true)
+            if (Rand.Chance(0.05f))
             {
                 var trapDialogue = new DiaNode("RD_NegotiationsTrap".Translate()); //"The negotiations are a trap!"
                 var diaOption2 = new DiaOption("OK".Translate())

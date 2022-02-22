@@ -37,7 +37,6 @@ namespace ReconAndDiscovery.Missions
 
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
-            bool result;
             if ((from existingPeaceTalks in Find.WorldObjects.AllWorldObjects
                 where existingPeaceTalks.def == SiteDefOfReconAndDiscovery.RD_AdventurePeaceTalks
                 select existingPeaceTalks).Any())

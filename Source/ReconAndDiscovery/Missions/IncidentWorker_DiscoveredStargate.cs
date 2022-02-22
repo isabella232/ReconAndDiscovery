@@ -76,7 +76,6 @@ namespace ReconAndDiscovery.Missions
         protected override bool TryExecuteWorker(IncidentParms parms)
         {
             var tile = -1;
-            bool result;
             var faction = Find.FactionManager.RandomEnemyFaction();
             for (var i = 0; i < 20; i++)
             {
