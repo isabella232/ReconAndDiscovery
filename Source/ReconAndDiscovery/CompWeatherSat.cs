@@ -20,7 +20,10 @@ namespace ReconAndDiscovery
                 list.Add(new FloatMenuOption("RD_EndExtremeWeather".Translate(), // End Extreme Weather (10 mana)
                     delegate
                     {
-                        if (map.weatherManager.curWeather == WeatherDefOf.Clear)
+                        if (map.weatherManager.curWeather == WeatherDefOf.Clear
+                            && !manager.ConditionIsActive(GameConditionDefOf.ColdSnap)
+                            && !manager.ConditionIsActive(GameConditionDefOf.Flashstorm)
+                            && !manager.ConditionIsActive(GameConditionDefOf.HeatWave))
                         {
                             return;
                         }
