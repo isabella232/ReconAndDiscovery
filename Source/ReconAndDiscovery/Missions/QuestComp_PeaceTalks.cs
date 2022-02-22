@@ -64,8 +64,7 @@ namespace ReconAndDiscovery.Missions
                 {
                     return;
                 }
-
-                Negotiator.mindState.wantsToTradeWithColony = true;
+                
                 if (Negotiator.GetComp<CompNegotiator>() != null)
                 {
                     return;

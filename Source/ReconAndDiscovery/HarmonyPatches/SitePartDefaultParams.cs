@@ -4,28 +4,29 @@ using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
+using Verse;
 
 namespace ReconAndDiscovery.HarmonyPatches
 {
-    // [HarmonyPatch(typeof(Site), nameof(Site.PostMapGenerate))]
+    // [HarmonyPatch(typeof(Pawn_TraderTracker), nameof(Pawn_TraderTracker.CanTradeNow), methodType: MethodType.Getter)]
     // public class SitePartDefaultParams
     // {
-    //     public static bool Prefix(Site __instance)
+    //     public static bool Prefix(Pawn_TraderTracker __instance, Pawn ___pawn, TraderKindDef ___traderKind, ref bool __result)
     //     {
-    //         var map = __instance.Map;
-    //         for (int index = 0; index < __instance.parts.Count; ++index)
-    //             __instance.parts[index].def.Worker.PostMapGenerate(map);
-    //         float a = 0.0f;
-    //         for (int index = 0; index < __instance.parts.Count; ++index)
-    //             a = Mathf.Max(a, __instance.parts[index].def.forceExitAndRemoveMapCountdownDurationDays);
-    //         float num = a * MapParentTuning.SiteDetectionCountdownMultiplier.RandomInRange;
-    //         if (!__instance.parts.Any<SitePart>((p => p.def.disallowsAutomaticDetectionTimerStart)))
+    //         var pawn = ___pawn;
+    //         var traderKind = ___traderKind;
+    //
+    //         Log.Message($"{traderKind.defName}");
+    //
+    //         if (pawn.Dead || !pawn.Spawned || !pawn.mindState.wantsToTradeWithColony ||
+    //             !pawn.CanCasuallyInteractNow() || pawn.Downed || pawn.IsPrisoner || pawn.Faction == Faction.OfPlayer ||
+    //             pawn.Faction != null && pawn.Faction.HostileTo(Faction.OfPlayer))
     //         {
-    //             int ticks = Mathf.RoundToInt(num * 60000f);
-    //             __instance.GetComponent<TimedDetectionRaids>().StartDetectionCountdown(ticks);
+    //             __result = false;
+    //             return false;
     //         }
-    //         // __instance.allEnemiesDefeatedSignalSent = false;
-    //         
+    //
+    //         // __result = __instance.Goods.Any<Thing>((Func<Thing, bool>) (x => traderKind.WillTrade(x.def))) || traderKind.tradeCurrency == TradeCurrency.Favor;
     //         return false;
     //     }
     // }
