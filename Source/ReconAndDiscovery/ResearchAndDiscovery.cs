@@ -8,7 +8,6 @@ namespace ReconAndDiscovery
         public Mod(ModContentPack content) : base(content)
         {
             Log.Message("Init mod please");
-            new Harmony("Mlie.ReconAndDiscovery").PatchAll();
         }      
     }
 }
